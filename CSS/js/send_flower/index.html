@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>talk in js-代理模式</title>
+</head>
+<body>
+
+<script>
+    //object
+    //描述对象
+    //对象字面量 JSON Object
+     const xsj ={
+        name:'徐士杰',
+        age:22,
+        single:true,
+        hometown:'绍兴',
+        room:1319,
+        yz:90,
+        //属性
+        //target 形参
+        sendFlower: function(target){
+            //console.log(target.name);
+            target.receiveFlower(xsj);
+        }
+        //函数功能
+};   
+
+    const meimei={
+        name:'梅梅',
+        age:17,
+        mood:50,
+        receiveFlower:function(sender){
+            //如果心情指数大于80 否则拒绝
+            /*if(sender.yz<85){
+                console.log('没空');
+            }else{*/
+            if(meimei.mood>80){
+            console.log("收到了花");}
+            else{
+                console.log('拒绝');
+            }
+        },
+        listenGoodMood:function(){
+            //心情不好
+            //定时器
+            console.log('本公主谁都不想见');
+            setTimeout(function(){
+            meimei.mood=90;      
+               meimei.receiveFlower();
+            },3000);
+        }
+    }
+    // 送花 A->B A->C->B
+    //A 送花 send_flower C 收花 转送给B  B 收花 receive_flower
+    const huahua={
+        name:'花花',
+        //与梅梅实现了同样的接口
+        receiveFlower:function(sender){
+           // meimei.receiveFlower(sender);
+            //心情好，再送
+            //代理者 监听梅梅的心情
+            meimei.listenGoodMood(function(){
+
+            })
+        }
+
+    };
+</script>
+</body>
+</html>
