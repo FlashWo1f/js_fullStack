@@ -1,0 +1,66 @@
+*{
+    padding: 0;
+    margin: 0;
+}
+.page{
+    width: 92%;
+    height: 100%;
+    margin: 0 auto;
+}
+.page_userinfo__img{
+    width: 100%;
+    height: 360px;
+    margin-top: 15px;
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-image: url(./example.png);
+    
+}
+
+#name {
+    width: 55px;
+    position: relative;
+}
+#name::after{
+    content: "";
+    height: 16px;
+    width: 16px;
+    background-image: url(./girl.png);
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    background-size: 100%;
+}
+.page_userinfo_meta {
+    padding: 0.5em 1em;
+}
+.page_userinfo_meta, .attribute{
+    position: relative;
+    height: 1rem;
+    /* line-height: 2rem; */
+    border-radius: .3rem;
+    /* margin-right: 5px; */
+    /* padding: .5rem; */
+    display: inline-block;
+    /* margin-right: 10px; */
+}
+.attribute {
+    position: relative;
+    padding-left: 0;
+    margin-right:3px;
+}
+.bule{
+    background-color: blue;
+}
+.green{
+    background-color: green;
+}
+.orange{
+    background-color: orange;
+}
+p{
+    color: white;
+}
+#name{
+    color:black;
+}

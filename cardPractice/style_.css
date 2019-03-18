@@ -1,0 +1,105 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+html,body{
+    width: 100%;
+    height: 100%;
+    font-size: 20px;
+
+    background-color: rgb(236, 231, 231);
+}
+ul li{
+    list-style: none;
+}
+.page{
+    width: 100%;
+    padding: 15px;
+    box-sizing: border-box;
+}
+.page-header{
+    width: 100%;
+    background-color: #cfcccc;
+}
+.page-header__pic{
+    width: 100%;
+    height: 10rem;
+    background: url(./example.png) no-repeat;
+    background-size: cover;
+}
+.page-header__userinfo{
+    padding:10px 10px 13px 10px;
+    position: relative;
+}
+.name{
+    line-height: 1;
+}
+.labels{
+    margin-top: 10px;
+}
+.label{
+    padding: 5px 10px;
+    font-size: 14px;
+    border-radius: 5px;
+    color: white;
+}
+.blue{
+    background-color: #48A6FD;
+}
+.green{
+    background-color: #1DCA42;
+}
+.orange{
+    background-color: #FB8800;
+}
+.page-header__msg{
+    margin-top: 10px;
+}
+.items{
+
+}
+.item{
+    width: 130px;
+    line-height: 2;
+    display: inline-block;
+    position: relative;
+    padding-left: 20px;
+}
+.city::before{
+    content: "";
+    width: 15px;
+    height: 20px;
+    background: url(./weixin.png) no-repeat;
+    background-size: 100% 100%;
+    position: absolute;
+    left: 0;
+    top: 0;
+}
+.ewm{
+    width: 34px;
+    height: 33px;
+    position: absolute;
+    top:32px;
+    right: 11.5px;
+   
+    
+}
+.ewm img{
+    display: block;
+    width: 100%;
+    height: 100%;
+}
+.hongbao{
+    width: 55px;
+    height: 50px;
+    position: absolute;
+    top:100px;
+    right: 5px;
+   
+    
+}
+.hongbao img{
+    display: block;
+    width: 100%;
+    height: 100%;
+}
