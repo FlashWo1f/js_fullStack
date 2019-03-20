@@ -41,6 +41,7 @@
     height: 1.890625rem;
     margin: 0 auto .1rem;
     position: relative;
+    
   }
   .rider1 {
     background-image: 
@@ -106,6 +107,7 @@
     background-color: #fff;
     margin: 0 auto;
     overflow: hidden;
+    
   }
   .process-v {
     height: 100%;

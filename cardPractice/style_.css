@@ -7,7 +7,7 @@ html,body{
     height: 100%;
     font-size: 20px;
 
-    background-color: rgb(236, 231, 231);
+    background-color: #f5fafe;
 }
 ul li{
     list-style: none;
@@ -19,13 +19,17 @@ ul li{
 }
 .page-header{
     width: 100%;
-    background-color: #cfcccc;
+    background-color: #ffffff;
+    border-radius: 10px;
+    box-shadow:0px 0px  5px 5px #e6eaee;
 }
 .page-header__pic{
     width: 100%;
     height: 10rem;
-    background: url(./example.png) no-repeat;
+    background: url(./bg.jpg) no-repeat;
     background-size: cover;
+    border-top-right-radius: 10px;
+    border-top-left-radius: 10px;
 }
 .page-header__userinfo{
     padding:10px 10px 13px 10px;
@@ -33,6 +37,16 @@ ul li{
 }
 .name{
     line-height: 1;
+}
+.name::after{
+    content: "";
+    height: 16px;
+    width: 16px;
+    background-image: url(./girl.png);
+    position: absolute;
+    right: 269px;
+    bottom: 131px;
+    background-size: 100%;
 }
 .labels{
     margin-top: 10px;
@@ -102,4 +116,48 @@ ul li{
     display: block;
     width: 100%;
     height: 100%;
+}
+.page-center-browse{
+    width: 97%;
+    margin: 10px;
+    padding-left: 10px;
+    background-color: #ffffff;
+    box-sizing: border-box;
+    border-radius: 5px;
+}
+.page-center-browse p{
+    float: right;
+    position: relative;
+    top: -44px;
+    left:-11px;
+    font-size: .7rem;
+}
+
+.page-center-browse.tx
+{
+    padding: 3.5px;
+    margin-left: -21px;
+    
+}
+.txd{
+    width: 35px;
+    height: 35px;
+
+    border-radius: 50%;
+}
+.page-center-provide{
+    background-color: #ffffff;
+    padding: 12px;
+    border-radius: 5px;
+}
+.title{
+    font-size: 14px;
+    
+}
+.content1{
+    font-size: 10px;
+    line-height: 1.4;
+}
+.title::before{
+    
 }
