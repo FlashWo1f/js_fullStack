@@ -1,0 +1,102 @@
+*{
+    padding: 0;
+    margin: 0;
+}
+.page{
+    width: 100%;
+    height: 100%;   
+    background-color: #f5f9fe;
+}
+.head{
+    background-color: #46a5fd;
+    width: 100%;
+    height: 160px;
+}
+.tx{
+    height: 54px;
+    width: 54px;
+    background: url(./tx.jpg);
+    background-size: contain;
+    border-radius: 50%;
+    position: absolute;
+    top:70px;
+    left: 17px;
+}
+.username{
+    position: absolute;
+    top: 74px;
+    left: 78px;
+    color: #ffffff;
+    font-size: 16px;
+}
+.vip{
+    /* width: 91px; */
+    height: 22px;
+    padding: 0 10px 0 10px;
+    line-height: 1.375;
+    border-radius: 12px;
+    background-color: #ffffff;
+    color: #d9d8d7;
+    position: absolute;
+    top: 100px;
+    left: 78px;
+    text-align: center;
+}
+.crown{
+    width: 20px;
+    height: 16px;
+    background: url(./crown1.png)no-repeat;
+    background-size: contain;
+    margin-right: 10px;
+    position: absolute;
+    top:2px;
+    left: 10px;
+}
+.center.info{
+    width: 92%;
+    height: 85px;
+    margin-left: 15px;
+    margin-right: 15px;
+    box-sizing: border-box;
+    border-radius: 10px;
+    background-color: #ffffff;
+    transform: translate(0,-30%);
+
+}
+.num{
+    justify-content: center;
+    display: inline-block;
+    width: 75px;
+    height: 35px;
+    border-right: 1px solid #e1e1e1;
+}
+.yue{
+    flex:1;
+
+}
+.candy{
+    flex:1;
+
+}
+.coin{
+    flex:1;
+}
+.center.func{
+    width: 92%;
+    height: 170px;
+    margin-left: 15px;
+    margin-right: 15px;
+    margin-top: -10px;
+    border-radius: 10px;
+    box-sizing: border-box;
+    background-color: #ffffff;
+}
+.foot{
+    width: 92%;
+    height: 102px;
+    margin: 15px;
+    background-repeat: 10px;
+    border-radius: 10px;
+    box-sizing: border-box;
+    background-color: #ffffff;
+}
