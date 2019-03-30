@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        * {
+            padding: 0;
+            margin: 0;
+        }
+
+        html {
+            color: #111;
+            background: #fff;
+        }
+
+        body {
+            font: 12px Helvetica, Arial, sans-serif;
+            line-height: 1.62;
+        }
+
+        input {
+            margin-right: 3px;
+            vertical-align: middle;
+        }
+
+        ul,
+        li {
+            list-style: none;
+            display: inline-block;
+        }
+
+        #anony-nav {
+            width: 950px;
+            margin: 0 auto 25px;
+
+        }
+
+        #anony-nav .anony-nav-links {
+            float: right;
+            margin-top: 6px;
+        }
+
+        #anony-nav .anony-nav-links li {
+            display: inline-block;
+            zoom: 1;
+            margin: 0 0 0 17px;
+        }
+
+        #anony-nav .anony-nav-links li a {
+            display: inline-block;
+            /* display: inline; */
+            zoom: 1;
+            width: 40px;
+            height: 20px;
+            overflow: hidden;
+            margin: 0;
+            line-height: 20em;
+            outline: none;
+            vertical-align: middle;
+            background: transparent url(anony_nav_logo.png) no-repeat 100% 100%;
+            /* background-image: -webkit-image-set(url(anony_nav_logo.png) 1x, url(anony_nav_logo.png@2x.png) 2x); */
+        }
+
+        #anony-nav .anony-nav-links li .lnk-book {
+            background-position: 0 0;
+        }
+
+        #anony-nav .anony-nav-links li .lnk-movie {
+            background-position: -60px 0;
+        }
+
+        #anony-nav .anony-nav-links li .lnk-music {
+            background-position: -120px 0;
+        }
+
+        #anony-nav .anony-nav-links li .lnk-group {
+            background-position: -180px 0;
+        }
+
+        #anony-nav .anony-nav-links li .lnk-shijian {
+            background-position: -240px 0;
+        }
+
+        #anony-nav .anony-nav-links li .lnk-fm {
+            background-position: -300px 0;
+        }
+
+        #anony-nav .anony-nav-links li .lnk-events {
+            background-position: -360px 0;
+        }
+
+        #anony-nav .anony-nav-links li .lnk-market {
+            background-position: -420px 0;
+        }
+
+        /* ul,
+        menu,
+        dir {
+            display: block;
+            list-style-type: disc;
+            margin-block-start: 1em;
+            margin-block-end: 1em;
+            margin-inline-start: 0px;
+            margin-inline-end: 0px;
+            padding-inline-start: 40px;
+        } */
+
+        #anony-nav .anony-nav-links li {
+            display: inline-block;
+            /* *display: inline; */
+            zoom: 1;
+            margin: 0 0 0 17px;
+        }
+
+        #anony-nav h1 {
+            display: inline-block;
+            /* *display: inline; */
+            zoom: 1;
+            vertical-align: middle;
+            width: 160px;
+            height: 34px;
+            margin: 0 20px 0 0;
+            padding: 0;
+            font-size: 12px;
+            font-weight: normal;
+            background: url(logo_db@2x.png) no-repeat 0 0;
+            background-size: contain;
+            /* background-image: -webkit-image-set(url(/f/sns/19886d4…/pics/nav/logo_db.png) 1x, url(/f/sns/0f9e2db…/pics/nav/logo_db@2x.png) 2x); */
+            overflow: hidden;
+        }
+
+        form {
+            display: block;
+        }
+
+        #anony-nav .anony-srh {
+            position: relative;
+            display: inline-block;
+            
+            zoom: 1;
+            vertical-align: middle;
+            width: 270px;
+            height: 30px;
+            border: 1px solid #c3c3c3;
+        }
+
+        #anony-nav .anony-srh .inp {
+            display: block;
+            height: 30px;
+            overflow: hidden;
+        }
+
+        #anony-nav .anony-srh .inp input {
+            width: 240px;
+            border: none;
+            font-size: 13px;
+            height: 20px;
+            padding: 5px;
+        }
+
+        #anony-nav .anony-srh .bn {
+            position: absolute;
+            right: 0;
+            top: 0;
+            width: 30px;
+            height: 30px;
+            overflow: hidden;
+            background: url(bn_srh_1.png)no-repeat;
+            background-size: contain;
+            
+        }
+
+        #anony-nav .anony-srh .bn input {
+            border: none;
+            background: transparent;
+            overflow: hidden;
+            width: 30px;
+            height: 30px;
+            font-size: 0;
+            color: transparent;
+            cursor: pointer;
+        }
+        .anony-reg-new{
+            margin-bottom: 25px;
+            width: 100%;
+            height: 304px;
+            background-size: contain;
+            background-position: calc(50% - 305px) top;
+            background-repeat: no-repeat;
+            background-color: #edf4ed;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="anony-nav">
+        <div class="anony-nav-links">
+            <ul>
+                <li><a class="lnk-book" href="">豆瓣读书</a></li>
+                <li><a class="lnk-movie">豆瓣电影</a></li>
+                <li><a class="lnk-music">豆瓣音乐</a></li>
+                <li><a class="lnk-group">豆瓣小组</a></li>
+                <li><a class="lnk-events">豆瓣同城</a></li>
+                <li><a class="lnk-fm">豆瓣FM</a></li>
+                <li><a class="lnk-shijian">豆瓣时间</a></li>
+                <li><a class="lnk-market">豆瓣豆品</a></li>
+            </ul>
+        </div>
+        <h1>
+            <a href="https://www.douban.com">豆瓣</a>
+        </h1>
+        <div class="anony-srh">
+            <form action="" method="GET">
+                <span class="inp">
+                    <input type="text" maxlength="60" size="12" placeholder="书籍、电影、音乐、小组、小站、成员" name="q"
+                        autocomplete="off">
+                </span>
+                <span class="bn">
+                    <input type="submit" value="搜索">
+                </span>
+            </form>
+        </div>
+    </div>
+    <div class="anony-reg-new" style="background-image: url(https://img1.doubanio.com/view/puppy_image/raw/public/16874860437wq5ntbd7.jpg);">
+        <div class="wrapper">
+
+        </div>
+    </div>
+</body>
+
+</html>
