@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>object-deconstruction</title>
+</head>
+
+<body>
+    <script>
+        const obj = {
+            name: "Vladimir",
+            age: 32,
+            foo:{bar:"barbar"},
+            baz: ["hello", {msg:"world"}]
+
+        }
+        //es5
+        /* var name = obj.name;
+         var age = obj.age;*/
+        //es6 deconstruction
+        // 对象中属性不吃顺序
+        // const {age, name} = obj;
+        //age:this_age 冒号赋值 age变空  ，this_age=32
+        const {age:this_age,name:this_name,foo:{bar},baz:[hello,{msg:world}]} = obj;
+    </script>
+</body>
+
+</html>

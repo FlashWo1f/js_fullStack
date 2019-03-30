@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        const arr = [12, 18, 30, 45];
+        //返回第一个满足条件的值  找不到返回undefined
+        const this_age = arr.find(function (age) {
+            return age > 18;
+        });
+        //返回所有满足条件的值，filter过滤  找不到则返回空数组
+        const this_ages = arr.filter(function (age) {
+            return age > 18;
+        });
+        //数组里所有值满足条件返回true 否则false
+        const this_every = arr.every(age => age >= 18);
+        //数组里至少有一个满足条件返回true  否则false
+        const this_some = arr.some(age => age < 18);
+    </script>
+</body>
+
+</html>

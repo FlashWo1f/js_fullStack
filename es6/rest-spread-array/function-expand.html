@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        //es6 对函数的扩展
+        function Person(nickName = "未知昵称"){
+            this.nickName = nickName;
+        }
+        const p1 = new Person("Vladimir");
+        //p1{nickName:"Vladimir"}
+        
+        const p2 = new Person();
+        //rest 参数 形式(...变量名)  获取多余的参数 变量名要是数组  把多余的变量放入这个数组中
+        // a, ...args  a 之后的就是余下的    ...args 只能放在最后  否则报错
+        function sum(a,...args){
+            //Array.from(arguments)
+            console.log(args);
+        }
+        sum(2,4,6,8);
+    </script>
+</body>
+</html>

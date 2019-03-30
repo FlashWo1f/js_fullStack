@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>array deconstruction</title>
+</head>
+<body>
+    <script>
+        const lists = [
+            {name:"Vladimir"},
+            {age:32},
+            [{school:"ecut"}]
+        ];
+        // I am Vladimir and 32
+        //es5 的
+        var nameObj = lists[0];
+        var ageObj = lists[1];
+        // 数组解构  es6   d  undefined
+        const [a, b] = lists;
+        const [,,c,d] = lists;
+        const [,,[f]] = lists;
+    </script>
+</body>
+</html>
