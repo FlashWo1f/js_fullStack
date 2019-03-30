@@ -42,6 +42,18 @@
     left: 78px;
     text-align: center;
 }
+.gold{
+    color: gold;
+    position: absolute;
+    top: 103px;
+    right: 173px;
+}
+.cardlink{
+    color: #ffffff;
+    position: absolute;
+    top:85px;
+    right: 19px;
+}
 .crown{
     width: 20px;
     height: 16px;
@@ -121,4 +133,38 @@
     border-radius: 10px;
     box-sizing: border-box;
     background-color: #ffffff;
+}
+.foot-div{
+    width: 100%;
+    height: 100%;
+    padding: 17px;
+    box-sizing: border-box;
+    display: flex;
+}
+.people{
+    width: 70px;
+    height: 70px;
+    background-image: url(./superMe.png);
+    background-size: contain;
+}
+.wenzi{
+    margin-top: 10px;
+    margin-left: 12px;
+    display: block;
+    flex: 1;
+}
+.intro_{
+    margin-top: 8px;
+    color: #777271;
+    font-size: 12px;
+}
+.click{
+    height: 30px;
+    width: 95px;
+    margin-top: 23px;
+    background-color: #3e97ff;
+    color:#ffffff;
+    text-align: center;
+    border-radius: 15px;
+    line-height: 1.7;
 }
