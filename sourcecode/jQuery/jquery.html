@@ -16,14 +16,30 @@
             //DOM Ready时间
             //查找元素
             if(typeof selector === "string"){
-                
+                function JQueryEle(ele){
+                    this.ele = ele;
+                }
+                JQueryEle.prototype.html = function(str){
+                    this.ele.innerHTML = str
+                }
+                const jQuery = {}; //命名空间 框架名字叫jQuery
+                jQuery.wrapper = function(ele){
+                    // 将ele对象封装于此
+                    // jQuery里的节点对象，不是简单的html节点，而是一个jQuerynew对象
+                    const jqueryEle = new JQueryEle(ele)
+                    return jqueryEle
+                }
+                const ele = document.querySelector(selector);
+                if(ele){
+                    return jQuery.wrapper(ele);
+                }
             }else if(typeof selector === "function"){
                 document.addEventListener('DOMContentLoaded', selector, false)
             }
         }
         $(function(){
             console.log('DOM Ready');
-            $('#root').html('<h1>旅梦</h1>')
+            $('#root').html('<h1>我要去越南选老婆</h1>')
         })
     </script>
 </body>

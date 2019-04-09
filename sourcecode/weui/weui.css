@@ -15,6 +15,7 @@ a img {
 }
 a {
   text-decoration: none;
+  -webkit-tap-highlight-color: rgba(0,0,0,0);
 }
 .weui-btn {
   position: relative;
@@ -30,6 +31,7 @@ a {
   color: #fff;
   line-height: 2.555555555555555;
   border-radius: 5px;
+  -webkit-tap-highlight-color: rgba(0,0,0,0);
   overflow: hidden;
 }
 .weui-btn:after {
