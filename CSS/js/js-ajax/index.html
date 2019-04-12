@@ -18,7 +18,7 @@
         // 第三参数是同步或异步
         xhr.open('get', 'mock.json', true)
         xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded")
-        xhr.send();
+        xhr.send()
         // console.log(xhr.responseText)
         // console.log(xhr.readyState, xhr.status)
         //status 200 表示成功获取到数据
@@ -45,18 +45,27 @@
         function marry(){
             setTimeout(()=>{
                 console.log('猛哥结婚了')
+                // resolve('是的')
             },500)
-            
         }
-        p   
-            .then(xq)   
-            .then((ae)=>{
-                console.log(ae)
-            })
-            .then(marry)
-            .catch(()=>{
-                console.log('猛哥捕猎失败')
-            })
+        function child(){
+            console.log('猛哥の子诞生')
+        }    
+        // p   
+        //     .then(xq)   
+        //     .then((ae)=>{
+        //         console.log(ae)
+        //     })
+        //     .then(marry)
+        //     .then(child)
+        //     .catch(()=>{
+        //         console.log('猛哥捕猎失败')
+        //     })
+        // 在括号里的3个方法完成之后再执行then里的方法
+        // Promise.all([p, xq(), marry()]).then(child)
+        Promise.race([p, xq(), marry()]).then((value)=>{
+            console.log(value)
+        })
     </script>
 </body>
 </html>
