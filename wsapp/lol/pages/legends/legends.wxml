@@ -1,0 +1,12 @@
+<view class="container legend-list">
+    周免英雄
+    <!-- 类似${} -->
+    <block wx:for="{{legends}}">
+        <text>
+            {{item.name}} {{item.title}}
+        </text>
+        <view class="image-section">
+            <image style="width:80px;height:80px;background-color:#eeeeee" mode="aspectFit" src="{{item.src}}" />
+        </view>
+    </block>
+</view>
