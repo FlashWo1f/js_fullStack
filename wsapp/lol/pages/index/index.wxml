@@ -8,7 +8,7 @@
     </block>
   </view>
   <view class="freeLegend" bindtap="bindFreeLegendTap">周免英雄</view>
-  <view class="latestBattle">最近战绩</view>
+  <view class="latestBattle" bindtap="bindBattleTap">最近战绩</view>
   <view class="usermotto">
     <text class="user-motto">{{motto}}</text>
   </view>

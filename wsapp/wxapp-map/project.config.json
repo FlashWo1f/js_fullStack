@@ -12,9 +12,9 @@
 		"autoAudits": false
 	},
 	"compileType": "miniprogram",
-	"libVersion": "2.6.5",
+	"libVersion": "2.6.6",
 	"appid": "wx36901ebd9bb9aeb6",
-	"projectname": "wxappLearn",
+	"projectname": "wxapp-map",
 	"debugOptions": {
 		"hidedInDevtools": []
 	},

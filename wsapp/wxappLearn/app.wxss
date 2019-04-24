@@ -1,7 +1,9 @@
 /**app.wxss**/
+page{
+  width: 100%;
+}
 .container {
   height: 100%;
   width: 100%;
-  padding: 15rpx;
   box-sizing: border-box;
 } 

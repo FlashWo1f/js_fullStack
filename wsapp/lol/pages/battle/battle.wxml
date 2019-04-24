@@ -1,5 +1,27 @@
-<view>
-<block>
+<view class="battle-list">
+    最新战绩
+    <!-- 类似${} -->
+            <block wx:for="{{battle}}">
+                <ul>
+                    <li>
+                        <view class="info">
+                            <view class="vod">
+                                <text>
+                                    {{item.vod}} {{item.record}}
+                                </text>
+                            </view>
+                            <view class="date">
+                                <text>
+                                    {{item.date}}
+                                </text>
+                            </view>
+                        </view>
+                        
+                        <view class="left-image">
+                            <image style="width:80px;height:80px;background-color:#eeeeee;border-radius: 50%;float:left" mode="aspectFit" src="{{item.src}}" />
+                        </view>
+                    </li>
+                </ul>
+            </block>
     
-</block>
 </view>

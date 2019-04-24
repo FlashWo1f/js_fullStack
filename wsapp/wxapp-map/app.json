@@ -1,8 +1,6 @@
 {
   "pages":[
     "pages/index/index",
-    "pages/legends/legends",
-    "pages/battle/battle",
     "pages/logs/logs"
   ],
   "window":{
@@ -10,5 +8,10 @@
     "navigationBarBackgroundColor": "#fff",
     "navigationBarTitleText": "WeChat",
     "navigationBarTextStyle":"black"
+  },
+  "permission":{
+    "scope.userLocation": {
+      "desc": "你的位置信息将用于小程序位置接口的效果展示"
+    }
   }
 }

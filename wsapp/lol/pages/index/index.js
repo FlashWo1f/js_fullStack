@@ -57,5 +57,11 @@ Page({
     wx.navigateTo({
       url:'../legends/legends'
     })
+  },
+  bindBattleTap: function(){
+    console.log('点击了战绩')
+    wx.navigateTo({
+      url: '../battle/battle'
+    })
   }
 })
