@@ -1,0 +1,6 @@
+<!--pages/mine/index.wxml-->
+<view>
+  <ul>
+    <li wx:for="{{people}}">{{item.name}}</li>
+  </ul>
+</view>

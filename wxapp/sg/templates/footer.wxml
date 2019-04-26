@@ -1,0 +1,8 @@
+<template name="footer">
+  <view class="footer" wx:if="{{ isEarth }}">
+    <view class="footer__img">
+        <!-- 俺也是有底线的 -->
+      <image src="/assets/images/landscape.png" />
+    </view>
+  </view>
+</template>
