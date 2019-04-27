@@ -9,7 +9,6 @@
     "navigationBarTitleText": "iKcamp英语学习",
     "backgroundColor": "#f8f8f8",
     "navigationBarTextStyle": "white"
-
-  }
-  
+  },
+  "sitemapLocation": "sitemap.json"
 }
