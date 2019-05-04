@@ -1,0 +1,17 @@
+<view class="container">
+    <view class="list" bindtap="swithchList"></view>
+    <!-- block 区块 在页面上不输出  主要承载一些指令 -->
+    <block wx:if="{{!isList}}">
+        <image src="https://7a68-zhh-cloud-b7a1a9-1257892988.tcb.qcloud.la/列表.svg?sign=b2bb8634bff3d0901db99aea167a73dd&t=1540886041" />
+        <swiper previous-margin="80rpx" next-margin="80rpx">
+            <block wx:for="{{accounts}}" wx:key="index">
+                <swiper-item>
+                    <accountCover account="{{item}}">
+
+                    </accountCover>
+                </swiper-item>
+            </block>
+        </swiper>
+        
+    </block>
+</view>

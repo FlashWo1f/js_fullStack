@@ -1,0 +1,14 @@
+{
+  "pages": [
+    "pages/accountBooks/accountBooks",
+    "pages/index/index"
+  ],
+  "window": {
+    "backgroundColor": "#3a3a3a",
+    "backgroundTextStyle": "light",
+    "navigationBarBackgroundColor": "#35363a",
+    "navigationBarTitleText": "travel note",
+    "navigationBarTextStyle": "white"
+  },
+  "sitemapLocation": "sitemap.json"
+}
