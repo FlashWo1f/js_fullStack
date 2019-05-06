@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>snap</title>
+    <style>
+        #app {
+            font-family: "Avenir", Helvetica, Arial, sans-serif;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+            text-align: center;
+            color: #2c3e50;
+            margin-top: 60px;
+        }
+
+        .main {
+            width: 100%;
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .main .gauntlet {
+            height: 100px;
+        }
+
+        .main .gauntlet-item {
+            width: 80px;
+            height: 80px;
+            cursor: pointer;
+        }
+
+        .main #gauntlet-snap {
+            background: transparent url(https://yiliang114.github.io/vue-thanos-snap/images/thanos_snap.png) center left no-repeat;
+            background-position: 0 0;
+        }
+        .main .snaping {
+            -webkit-animation: gauntlet 2.8s steps(47) both;
+            /* forwards  */
+            animation: gauntlet 2.8s steps(47) both;
+        }
+        @-webkit-keyframes gauntlet {
+            0% {
+            background-position: 0 0;
+            }
+            100% {
+            background-position: -3760px 0;
+            }
+        }
+        .main #gauntlet-reverse {
+            background: transparent url('https://yiliang114.github.io/vue-thanos-snap/images/thanos_reverse.png') center left no-repeat;
+            background-position: 0 0;
+        }
+
+        .main .reversing {
+            -webkit-animation: gauntlet 2.8s steps(47) both;
+            animation: gauntlet 2.8s steps(47) both;
+        }
+        .content {
+            display: flex;
+            flex-wrap: wrap;
+            padding: 10px;
+        }
+        .content .item {
+            flex: 1;
+            height: 260px;
+            margin: 10px;
+            border: 1px solid #CECECE;
+            text-align: center;
+            box-sizing: border-box;
+        }
+        .content .item .avatar img {
+            width: 200px;
+            height: 200px;
+        }
+        .content .item .info {
+            height: 30px;
+            line-height: 30px;
+        }
+
+
+
+
+    </style>
+</head>
+
+<body>
+    <div id="app" class="main">
+        <!-- {{hero}} -->
+        <Snap></Snap>
+    </div>
+    <script src="https://cdn.bootcss.com/vue/2.6.10/vue.min.js"></script>
+    <script src="./heroes.js"></script>
+    <script>
+        // MVVM 组件
+        Vue.component('Content', {
+            // 外部传入的数据
+            props:{
+                heroes: {
+                    type: Array
+                }
+            },
+            data(){
+                return{
+                    // heroes
+                }
+            },
+            template: `
+            <div class="content">
+                <div class="item"
+                v-for="(hero, index) in heroes"
+                >
+                    <div class="item-body">
+                        <div class="avatar">
+                            <img :src="hero.src" />
+                        </div>
+                        <div class="info">
+                            {{hero.name}}
+                        </div>
+                    </div>
+                </div>    
+            </div>
+            `
+        })
+        Vue.component('Snap', {
+            data(){
+                return{
+                    snaping: false,
+                    reversing: false,
+                    showSnap: true,
+                    showReverse: false,
+                    heroes
+                }
+            },
+            methods:{
+                snapHandle(){
+                    this.snaping = true
+                    const audio = this.$refs.allAudio
+                    audio.src = "https://yiliang114.github.io/vue-thanos-snap/media/thanos_snap_sound.b746c7d7.mp3"
+                    audio.play()
+                    setTimeout(() => {
+                        this.showSnap = false
+                        this.showReverse = true
+                        this.snaping = false
+                    },2800)
+                },
+                reverseHandle(){
+                    this.reversing = true
+                    const audio = this.$refs.allAudio
+                    audio.src = "https://yiliang114.github.io/vue-thanos-snap/media/thanos_reverse_sound.e00730e1.mp3"
+                    audio.play()
+                    setTimeout(() => {
+                        this.showSnap = true
+                        this.showReverse = false
+                        this.reversing = false
+                    },2800)
+                },
+                
+            },
+            template:
+                `<div class="main">
+                    <div class="gauntlet">
+                        <div class="gauntlet-wrapper">
+                            <div id="gauntlet-snap" class="gauntlet-item" 
+                            :class="snaping ? 'snaping' : ''"
+                            @click="snapHandle"
+                            v-if="showSnap"
+                            >
+                            </div>
+                            <div class="gauntlet-item" 
+                            @click="reverseHandle"
+                            id="gauntlet-reverse"
+                            :class="reversing ? 'reversing' : ''"
+                            v-if="showReverse"
+                            >
+                            
+                            </div>
+                        </div>
+                    </div>
+                    <audio preload ref="allAudio">
+
+                    </audio>
+                    <Content :heroes="heroes" />
+                </div>
+                `
+        })
+        new Vue({
+            el: '#app',
+            data() {
+                return {
+                    hero: '灭霸'
+                }
+            }
+        })
+    </script>
+</body>
+
+</html>
