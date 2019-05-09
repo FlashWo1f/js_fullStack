@@ -110,7 +110,7 @@
       </div> -->
     </section>
     <!-- section5 -->
-    <section>
+    <section class="section-seperate">
       <p class="action-list section-til">视频和剧照</p>
       <ul class="movie-photo__lists">
         <!-- <li class="stage-img-container">
@@ -123,7 +123,7 @@
       </ul>
     </section>
     <!-- section6 -->
-    <section class="pos_r">
+    <section class="pos_r section-seperate">
       <div class="section-seperate section-expander ">
         <p class="section-til">讨论
           <span class="join-comment">参与讨论</span>
@@ -138,41 +138,79 @@
           <li class="comment-item">
             <div class="comment-item__sort">
               <span>好评</span>
-              <span class="comment-item__num"></span>
+              <span class="comment-item__num-good"></span>
             </div>
           </li>
           <li class="comment-item">
             <div class="comment-item__sort">
               <span>差评</span>
-              <span class="comment-item__num"></span>
+              <span class="comment-item__num-bad"></span>
             </div>
           </li>
           <li class="comment-item">
             <div class="comment-item__sort">
               <span>点映</span>
-              <span class="comment-item__num"></span>
+              <span class="comment-item__num-dy"></span>
             </div>
           </li>
           <li class="comment-item">
             <div class="comment-item__sort">
               <span>购票</span>
-              <span class="comment-item__num"></span>
+              <span class="comment-item__num-bought"></span>
             </div>
           </li>
           <li class="comment-item">
             <div class="comment-item__sort">
               <span>认证作者</span>
-              <span class="comment-item__num"></span>
+              <span class="comment-item__num-author"></span>
             </div>
           </li>
           <li class="comment-item">
             <div class="comment-item__sort">
               <span>同城</span>
-              <span class="comment-item__num"></span>
+              <span class="comment-item__num-sameCity"></span>
             </div>
           </li>
         </ul>
       </div>  
+    </section>
+    <!-- section7 -->
+    <section class="section-seperate section-expander">
+      <p class="section-til">精选</p>
+      <ul class="chosen-comment" id="chosen-comment">
+        <li class="chosen-comment__item">
+          <div class="item-avatal">
+            <img src="bofang.png" alt="">
+          </div>
+          <div class="item-detail">
+            <div class="item-detail__hd">
+              <div>
+                <span class="nick-name">Inde</span>
+                <span class="level">
+                  <img src="" alt="">
+                </span>
+              </div>
+              <p class="item-score__desc">给这部电影打了<span>10</span>分</p>
+            </div>
+            <div class="item-detail__content">
+              <p>喻导帅比</p>
+            </div>
+            <div class="item-detail__footer">
+              <span class="item-detail__time">03-22</span>
+              <div class="pull-right">
+                <a href="#" class="link comment-like">
+                  <i class="icon icon-approve"></i>
+                  <span>3211</span>
+                </a>
+                <a href="#" class="link comment-reply">
+                    <i class="icon icon-comment"></i>
+                    <span>328</span>
+                </a>
+              </div>
+            </div>
+          </div>
+        </li>
+      </ul>
     </section>
     <!-- toast -->
     <div id="toast">
@@ -204,6 +242,7 @@
           celebrity(res.data.person)
           booking(res.data.booking)
           photo(res.data.pictures)
+          commentNum(res.data.commentNum)
         }
       })
       function star(e) {
@@ -275,7 +314,17 @@
         </li>`)
         }
       }
+      //讨论
+      function commentNum(e){
+        //插入Easymock
+        $('.comment-item__num-good').html(e.good)
+        $('.comment-item__num-bad').html(e.bad)
+        $('.comment-item__num-dy').html(e.dy)
+        $('.comment-item__num-bought').html(e.bought)
+        $('.comment-item__num-author').html(e.author)
+        $('.comment-item__num-sameCity').html(e.sameCity)
 
+      }
     })()
   </script>
 </body>
