@@ -11,7 +11,7 @@ exports.main = async (event, context) => {
   const userInfo = event.userInfo
   return await db.collection('group').add({
     data: {
-      name: event.userInfo.groupName,
+      name: event.groupName,
       createBy: userInfo.openId,
       createTime: new Date(),
       delete: false,

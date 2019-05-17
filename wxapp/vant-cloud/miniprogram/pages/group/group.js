@@ -34,6 +34,7 @@ Page({
 
       },
       success: function(res) {
+        console.log(res)
         self.setData({
           groupList: res.result
         })

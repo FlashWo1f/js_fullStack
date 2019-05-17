@@ -7,23 +7,18 @@ const db = cloud.database({ env })
 
 // 云函数入口函数
 exports.main = async (event, context) => {
-  const userInfo = event.userInfo
-  return await db.collection('group').add({
-    data: {
-      name: event.groupName,
-      createBy: userInfo.openId,
-      createTime: new Date(),
-      deleted: false,
-      updateTime: new Date()
-    }
-  })
-    .then(res => {
-      return db.collection('user-group').add({
-        data: {
-          groupId: res._id,
-          userId: userInfo.openId,
-          invalid: false
-        }
-      })
+  const groupNum = await db.collection('user-group')
+    .where({
+      userId: cloud.getWXContext().OPENID
     })
+    .get()
+    const storeUser = await db.collection('user').where({
+      openId: cloud.getWXContext().OPENID
+    })
+    .get()
+
+    return {
+      groupNum: groupNum.data.length,
+      storeUser: storeUser.data[0]
+    }
 }

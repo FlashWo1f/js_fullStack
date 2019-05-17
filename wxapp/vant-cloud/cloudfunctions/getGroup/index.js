@@ -18,7 +18,8 @@ exports.main = async (event, context) => {
     const oneGroup = await db.collection('group')
       .where({
         _id: item.groupId,
-        deleted: false
+        // createBy: item.userId
+        delete: false
       })
       .get()
     if (oneGroup.data.length > 0) {
