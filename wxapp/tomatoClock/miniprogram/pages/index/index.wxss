@@ -1,0 +1,60 @@
+/**index.wxss**/
+
+page {
+  background: #f6f6f6;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+}
+.container{
+  width: 100%;
+  min-height: 100%;
+}
+.countDown.circle1{
+  width: 650rpx;
+  height: 650rpx;
+  border: 1rpx #cdcdcd solid;
+  border-radius: 50%;
+  margin-top: 60rpx;
+  text-align: center;
+  position: relative;
+}
+.countDown.circle2{
+  width: 580rpx;
+  height: 580rpx;
+  border: 1rpx #b1b1b1 solid;
+  border-radius: 50%;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%)
+  
+}
+.text{
+  position: absolute;
+  left: 50%;
+  top: 30%;
+  transform: translate(-50%, -50%);
+}
+.time{
+  font-size: 80rpx;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+}
+.button{
+  font-size: 32rpx;
+  height: 96rpx;
+  line-height: 96rpx;
+  padding: 0 64rpx;
+  margin-top: 50rpx;
+  border: 2px #000000 solid;
+  border-radius: 50rpx;
+}
+.giveUp{
+  font-size:32rpx;
+  margin-top: 65rpx;
+}
+
+

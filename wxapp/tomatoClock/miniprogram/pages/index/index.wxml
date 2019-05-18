@@ -1,0 +1,22 @@
+<!--index.wxml-->
+<view class="container">
+    <block wx:if="{{isCounting}}">
+        <view class="countDown circle1">
+            <view class="countDown circle2">
+                <view class="countDown progress">
+                    <view class="text">计时中</view>
+                    <view class="time">{{countDown}}</view>
+                </view>
+            </view>
+        </view>
+        <view class="button">暂停计时</view>
+        <view class="giveUp">放弃</view>
+    </block>
+    <block wx:if="{{!isCounting}}">
+        <view class="text-select">选择一个任务</view>
+        <view class="text-focus">在接下来的25分钟里，专注做这件事</view>
+        <block wx:for="{{things}}">
+        
+        </block>
+    </block>
+</view>
