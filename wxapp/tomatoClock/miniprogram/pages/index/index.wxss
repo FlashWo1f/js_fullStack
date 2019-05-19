@@ -56,5 +56,57 @@ page {
   font-size:32rpx;
   margin-top: 65rpx;
 }
+.text-select{
+  font-size: 44rpx;
+  text-align: center;
+  margin-top: 120rpx;
+  margin-bottom: 44rpx;
+}
+.text-focus{
+  font-size: 36rpx;
+  text-align: center;
+  margin-bottom: 40rpx;
+  color: #888888;
+}
+.things{
+  display: flex;
+  flex-wrap: wrap;
+  margin: 0 30rpx 0 30rpx;
+}
+.thing{
+  width: 231rpx;
+  height: 245rpx;
+  box-sizing: border-box;
+  border-left: 2rpx #eeeeee solid;
+  border-bottom: 2rpx #eeeeee solid;
+  position: relative;
+}
 
+.thing-img{
+  width: 65rpx;
+  height: 55rpx;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+.thing-des{
+  position: absolute;
+  top: 80%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+.on{
+  border-bottom: 5rpx #66bcff solid;
+}
+.button-go{
+  height: 120rpx;
+  padding: 0 100rpx;
+  line-height: 120rpx;
+  font-size: 40rpx;
+  color: #213f76;
+  margin-top: 90rpx;
+  border-radius: 70rpx;
+  border: 3rpx #213f76 solid;
+}
 

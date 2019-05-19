@@ -5,19 +5,57 @@ Page({
   data: {
     countDown:'23:56',
     isCounting: false,
+    curIndex: 0,
     things:[
     {
       type: '工作',
-      src: ''
-    }
+      index: 0,
+      src: "../../images/work.png"
+    },
+    {
+      type: '学习',
+      index: 1,
+      src: '../../images/learn.png'
+    },
+    {
+      type: '思考',
+      index: 2,
+      src: '../../images/reflection.png'
+    },
+    {
+      type: '写作',
+      index: 3,
+      src: '../../images/write.png'
+    },
+    {
+      type: '运动',
+      index: 4,
+      src: '../../images/motion.png'
+    },
+    {
+      type: '阅读',
+      index: 5,
+      src: '../../images/read.png'
+    },
   ]
   },
-
+  beSelected:function(e){
+    console.log(e)
+    this.setData({
+      curIndex: e.target.dataset.id
+    })
+  },
+  goCount(e){
+    console.log(e)
+    this.setData({
+      isCounting: !this.data.isCounting
+    })
+  },
   onLoad: function() {
     if (!wx.cloud) {
       wx.redirectTo({
         url: '../chooseLib/chooseLib',
-      })
+      })    
       return
     }
 
