@@ -6,11 +6,42 @@ Page({
    */
   data: {
     hasList: false,
-    cart: [],
-    selectAllStatus: true
+    carts: [],
+    selectAllStatus: true,
+    
   },
-  selectList(){
-
+  selectList(e){   
+    var index = e.target.dataset.index
+    var select = 'carts[' + index + '].selected'
+    this.setData({
+      [select]: !this.data.carts[index].selected
+    })
+    
+    // console.log(e)
+  },
+  minusCount(e){
+    // console.log(e)
+    var index = e.target.dataset.index
+    var minus = 'carts[' + index + '].num' 
+    var price = 'carts[' + index + '].price'
+    if(this.data.carts[index].num > 1)
+      {
+        this.setData({
+        [minus]: this.data.carts[index].num - 1,
+        // [price]: this.data.carts[index].price * this.data.carts[index].num
+        })
+      }
+  },
+  addCount(e){
+    // console.log(e)
+    var index = e.target.dataset.index
+    var add = 'carts[' + index + '].num' 
+    var price = 'carts[' + index + '].price' 
+    this.setData({
+    [add]: this.data.carts[index].num + 1,
+    // [price]: this.data.carts[index].price * this.data.carts[index].num
+    })
+      
   },
   selectAll(){
     let selectAllStatus = this.data.selectAllStatus
