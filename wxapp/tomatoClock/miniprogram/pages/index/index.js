@@ -3,9 +3,10 @@ const app = getApp()
 
 Page({
   data: {
-    countDown:'23:56',
+    countDown:'30:00',
     isCounting: false,
     curIndex: 0,
+    isPaused: false,
     things:[
     {
       type: '工作',
@@ -50,6 +51,61 @@ Page({
     this.setData({
       isCounting: !this.data.isCounting
     })
+  },
+  transtion:function(str){
+    str = '' + str
+    return str.length === 1 ? `0${str}` : str
+  },
+  onReady:function(){
+    this.drawProgressBg()
+    this.countInterval()
+    this.drawProgressPercent(0)
+  },
+  drawProgressBg(){
+    const ctx = wx.createCanvasContext('progressBg')
+    ctx.setLineWidth(4)
+    ctx.setStrokeStyle('#e5e5e5')
+    ctx.setLineCap('round')
+    ctx.beginPath()
+    //3点钟方向 === 0
+    ctx.arc(135, 135, 127, 0, 2 * Math.PI, false)
+    ctx.stroke()
+    ctx.draw()
+  },
+  drawProgressPercent(step){
+    const ctx = wx.createCanvasContext('progressCanvas')
+    ctx.setLineWidth(4)
+    ctx.setStrokeStyle('#fbc502')
+    ctx.setLineCap('round')
+    ctx.beginPath()
+    ctx.arc(135, 135, 127, -Math.PI / 2, step * Math.PI / 2 - Math.PI / 2, false)
+    ctx.stroke()
+    ctx.draw()
+  },
+  countInterval(){
+    let cur = 1800
+    var date = new Date(0, 0)
+    this.interval = setInterval(() => {
+      if(cur >= 0){
+        cur--
+        date.setMinutes(cur / 60)
+        date.setSeconds(cur % 60)
+        this.setData({
+          countDown: this.transtion(date.getMinutes()) + ':' + this.transtion(date.getSeconds())
+        })
+        this.drawProgressPercent(4 - cur / 450)
+      }
+    }, 1000)
+  },
+  pause(){
+    this.setData({
+      isPaused: !this.data.isPaused
+    })
+    if(this.data.isPaused){
+      clearInterval(this.interval)
+    }else{
+      this.countInterval()
+    }
   },
   onLoad: function() {
     if (!wx.cloud) {
