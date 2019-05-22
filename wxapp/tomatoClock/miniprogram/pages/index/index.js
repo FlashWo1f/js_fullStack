@@ -64,7 +64,7 @@ Page({
   drawProgressBg(){
     const ctx = wx.createCanvasContext('progressBg')
     ctx.setLineWidth(4)
-    ctx.setStrokeStyle('#e5e5e5')
+    ctx.setStrokeStyle('#5f7dac')
     ctx.setLineCap('round')
     ctx.beginPath()
     //3点钟方向 === 0
@@ -75,7 +75,7 @@ Page({
   drawProgressPercent(step){
     const ctx = wx.createCanvasContext('progressCanvas')
     ctx.setLineWidth(4)
-    ctx.setStrokeStyle('#fbc502')
+    ctx.setStrokeStyle('#ffffff')
     ctx.setLineCap('round')
     ctx.beginPath()
     ctx.arc(135, 135, 127, -Math.PI / 2, step * Math.PI / 2 - Math.PI / 2, false)
@@ -96,6 +96,8 @@ Page({
         this.drawProgressPercent(4 - cur / 450)
       }
     }, 1000)
+    if(cur < 0)
+    clearInterval(this.interval)
   },
   pause(){
     this.setData({

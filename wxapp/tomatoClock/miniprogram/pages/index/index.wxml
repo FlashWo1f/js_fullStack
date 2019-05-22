@@ -1,18 +1,22 @@
-<!--index.wxml-->
+<!-- index.wxml -->
 <view class="container">
     <block wx:if="{{isCounting}}">
-        <view class="countDown circle1">
-            <view class="countDown circle2">
-                <view class="countDown progress">
-                    <canvas class="progress_bg" canvas-id="progressBg" />
-                    <canvas class="progress_canvas" canvas-id="progressCanvas" />
-                    <view class="text">计时中</view>
-                    <view class="time">{{countDown}}</view>
+        <view class="count">
+            <view class="countDown circle1">
+                <view class="countDown circle2">
+                    <view class="countDown progress">
+                        <canvas class="progress_bg" canvas-id="progressBg" />
+                        <canvas class="progress_canvas" canvas-id="progressCanvas" />
+                        <view class="text">计时中</view>
+                        <view class="time">{{countDown}}</view>
+                    </view>
                 </view>
             </view>
+            <view class="button {{isPause ? 'pause' : ''}}" bindtap="pause">
+                {{isPaused ? '继续计时' : '暂停计时'}}
+            </view>
+            <view class="giveUp" bindtap="goCount">放弃</view>
         </view>
-        <view class="button {{isPause ? 'pause' : ''}}" bindtap="pause">{{isPause ? '继续计时' : '暂停计时'}}</view>
-        <view class="giveUp" bindtap="goCount">放弃</view>
     </block>
     <block wx:if="{{!isCounting}}">
         <view class="text-select">选择一个任务</view>

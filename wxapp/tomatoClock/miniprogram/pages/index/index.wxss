@@ -6,6 +6,14 @@ page {
   flex-direction: column;
   justify-content: flex-start;
 }
+.count {
+  background:	linear-gradient(#1c3e80, #5f9abb);
+  display: flex;
+  flex-direction: column;
+	justify-content: flex-start;
+	width: 100%;
+	height: 100vh;
+}
 .container{
   width: 100%;
   min-height: 100%;
@@ -13,22 +21,22 @@ page {
 .countDown.circle1{
   width: 650rpx;
   height: 650rpx;
-  border: 1rpx #cdcdcd solid;
+  border: 1rpx #426699 solid;
   border-radius: 50%;
   margin-top: 60rpx;
   text-align: center;
-  position: relative;
+	position: relative;
+  margin-left: 48rpx;
 }
 .countDown.circle2{
   width: 580rpx;
   height: 580rpx;
-  border: 1rpx #b1b1b1 solid;
+  border: 1rpx #5678a9 solid;
   border-radius: 50%;
   position: absolute;
   top: 50%;
   left: 50%;
-  transform: translate(-50%, -50%)
-  
+  transform: translate(-50%, -50%);
 }
 .countDown.progress{
   width: 540rpx;
@@ -44,12 +52,14 @@ page {
   height: 270px;
 }
 .text{
+	color: #ffffff;
   position: absolute;
   left: 50%;
   top: 30%;
   transform: translate(-50%, -50%);
 }
 .time{
+	color: #ffffff;
   font-size: 80rpx;
   position: absolute;
   left: 50%;
@@ -57,20 +67,27 @@ page {
   transform: translate(-50%, -50%);
 }
 .button{
-  font-size: 32rpx;
+	font-size: 32rpx;
+	color: #ffffff;
   height: 96rpx;
+  width: 135rpx;
   line-height: 96rpx;
   padding: 0 64rpx;
   margin-top: 50rpx;
-  border: 2px #000000 solid;
+  border: 2px #ffffff solid;
   border-radius: 50rpx;
+  position: relative;
+  left: 50%;
+  transform: translateX(-50%);
 }
 .pause{
   background-color: #ffffff;
 }
 .giveUp{
+	color: #ffffff;
   font-size:32rpx;
   margin-top: 65rpx;
+  text-align: center;
 }
 .text-select{
   font-size: 44rpx;
@@ -116,13 +133,15 @@ page {
   border-bottom: 5rpx #66bcff solid;
 }
 .button-go{
-  height: 120rpx;
+	height: 120rpx;
+	width: 160rpx;
   padding: 0 100rpx;
   line-height: 120rpx;
   font-size: 40rpx;
   color: #213f76;
   margin-top: 90rpx;
   border-radius: 70rpx;
-  border: 3rpx #213f76 solid;
+	border: 3rpx #213f76 solid;
 }
+
 
