@@ -43,7 +43,7 @@ Page({
   beSelected:function(e){
     console.log(e)
     this.setData({
-      curIndex: e.target.dataset.id
+      curIndex: e.currentTarget.dataset.id
     })
   },
   goCount(e){
@@ -51,6 +51,13 @@ Page({
     this.setData({
       isCounting: !this.data.isCounting
     })
+    this.countInterval(1800)
+  },
+  giveUp(){
+    this.setData({
+      isCounting: !this.data.isCounting
+    })
+    clearInterval(this.interval)
   },
   transtion:function(str){
     str = '' + str
@@ -58,7 +65,6 @@ Page({
   },
   onReady:function(){
     this.drawProgressBg()
-    this.countInterval()
     this.drawProgressPercent(0)
   },
   drawProgressBg(){
@@ -82,8 +88,8 @@ Page({
     ctx.stroke()
     ctx.draw()
   },
-  countInterval(){
-    let cur = 1800
+  countInterval(cur){
+    
     var date = new Date(0, 0)
     this.interval = setInterval(() => {
       if(cur >= 0){
@@ -103,10 +109,14 @@ Page({
     this.setData({
       isPaused: !this.data.isPaused
     })
+    var currTime = this.data.countDown,
+    currTimer = currTime.split(":")[0] * 60 + currTime.split(":")[1] * 1
     if(this.data.isPaused){
+      
       clearInterval(this.interval)
     }else{
-      this.countInterval()
+      
+      this.countInterval(currTimer)
     }
   },
   onLoad: function() {

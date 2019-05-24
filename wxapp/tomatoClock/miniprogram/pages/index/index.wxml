@@ -15,14 +15,14 @@
             <view class="button {{isPause ? 'pause' : ''}}" bindtap="pause">
                 {{isPaused ? '继续计时' : '暂停计时'}}
             </view>
-            <view class="giveUp" bindtap="goCount">放弃</view>
+            <view class="giveUp" bindtap="giveUp">放弃</view>
         </view>
     </block>
     <block wx:if="{{!isCounting}}">
         <view class="text-select">选择一个任务</view>
         <view class="text-focus">在接下来的25分钟里，专注做这件事</view>
         <view class="things">
-            <view wx:for="{{things}}" wx:key="item.index" data-id="{{item.index}}" class="thing {{curIndex === index ? 'on' : ''}}" data-index="{{index}}" bindtap="beSelected">
+            <view wx:for="{{things}}" wx:key="item.index" data-id="{{item.index}}" class="thing {{curIndex === index ? 'on' : ''}}" data-type="{{item.type}}" bindtap="beSelected">
                 <image src="{{item.src}}" class="thing-img" />
                 <view class="thing-des">{{item.type}}</view>
             </view>
