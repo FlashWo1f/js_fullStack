@@ -1,0 +1,1 @@
+<view wx:for="{{youhuiLists}}" wx:key="index">{{item.title}}</view>
