@@ -1,3 +1,16 @@
 <view class="page">
+    <view class="header">
+        <view class="todayTomato">
+            <view class="todayText">今日番茄数</view>
+            <view class="todayNumber">{{todayTomato}}</view>
+        </view>
+        <view class="totalTomato">
+            <view class="totalText">累计番茄数</view>
+            <view class="totalNumber">{{totalTomato}}</view>    
+        </view>
+    </view>
+    <view class="body">
     
+    </view>
+    <view class="footer"></view>
 </view>

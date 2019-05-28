@@ -1,1 +1,44 @@
 /* miniprogram/pages/statistics/statistics.wxss */
+.page{
+    width: 100%;
+    min-height: 100vh;
+    background: #f5f5f5;
+}
+.header,.body,.footer{
+    background: #ffffff;
+}
+.header{
+    display: flex;
+}
+.todayTomato{
+    height: 118rpx;
+    width: 375rpx;
+    box-sizing: border-box;
+    margin: 55rpx 0;
+    border-right: 2rpx #f5f5f5 solid;
+    position: relative;
+}
+.totalTomato{
+    height: 118rpx;
+    width: 375rpx;
+    box-sizing: border-box;
+    margin: 55rpx 0;
+    border-left: 2rpx #f5f5f5 solid;
+    position: relative;
+}
+.todayText,.totalText{
+    font-size: 25rpx;
+    color: #888888;
+    position: absolute;
+    left: 50%;
+    transform: translate(-50%);
+}
+.todayNumber,.totalNumber{
+    font-size: 50rpx;
+    color: #f04457;
+    margin-top: 37.5rpx;
+    position: absolute;
+    left: 50%;
+    transform: translate(-50%, 25rpx);
+    
+}
