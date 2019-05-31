@@ -10,7 +10,41 @@
         </view>
     </view>
     <view class="body">
-    
+      <view class="body-top">
+        <view class="body-top-left">
+          <view class="finish-today">今日完成</view>
+          <view class="date-today">2019年05月21日</view>
+        </view>
+        <view class="body-top-right">
+          {{howMuch}}个番茄
+        </view>
+      </view>
+      <view class="body-center">
+        <view class="statistical-chart">
+          <canvas class="sc-bg" canvas-id="scBg"></canvas>
+          <canvas class="sc-canvas" canvas-id="scCanvas"></canvas>
+        </view>
+      </view>
+      <view class="body-bottom">
+        <view class="stuff1 stuff">
+          <view class="stuff1-color"></view>工作
+        </view>
+        <view class="stuff2 stuff">
+          <view class="stuff2-color"></view>学习
+        </view>
+        <view class="stuff3 stuff">
+          <view class="stuff3-color"></view>思考
+        </view>
+        <view class="stuff4 stuff">
+          <view class="stuff4-color"></view>写作
+        </view>
+        <view class="stuff5 stuff">
+          <view class="stuff5-color"></view>运动
+        </view>
+        <view class="stuff6 stuff">
+          <view class="stuff6-color"></view>阅读
+        </view>
+      </view>
     </view>
     <view class="footer"></view>
 </view>

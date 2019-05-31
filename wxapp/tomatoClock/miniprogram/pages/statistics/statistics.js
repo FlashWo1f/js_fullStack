@@ -6,14 +6,46 @@ Page({
    */
   data: {
     todayTomato: 0,
-    totalTomato: 0
+    totalTomato: 0,
+    howMuch: 0,
+    done: [
+      {'work': 0, 'color': '#6cbafd'},
+      {'learn': 0, 'color': '#80d127'},
+      {'reflection': 0, 'color': '#ffa31d'},
+      {'write': 0, 'color': '#2fd9ed'},
+      {'motion': 0, 'color': '#968bef'},
+      {'read': 0, 'color': '#fc4557'}
+    ]
+  },
+  drawStatisticalChartBg(){
+    const ctx = wx.createCanvasContext('scBg')
+    ctx.setLineWidth(20)
+    ctx.setStrokeStyle('#f0f0f0')
+    ctx.setLineCap('round')
+    ctx.beginPath()
+    //3点钟方向 === 0
+    ctx.arc(62, 62, 49, 0, 2 * Math.PI, false)
+    ctx.stroke()
+    ctx.draw()
+  },
+  drawStatisticalChartCanvas(done){
+    const ctx = wx.createCanvasContext('scCanvas')
+    ctx.setLineWidth(20)
+    ctx.setStrokeStyle(done.color)
+    ctx.setLineCap('round')
+    ctx.beginPath()
+    //3点钟方向 === 0
+    ctx.arc(62, 62, 49, - Math.PI / 2, 2 * Math.PI, false)
+    ctx.stroke()
+    ctx.draw()
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-
+    console.log(options)
+    this.drawStatisticalChartBg()
   },
 
   /**
