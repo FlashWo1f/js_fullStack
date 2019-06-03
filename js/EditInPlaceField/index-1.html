@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="app"></div>
+    <script>
+        //构造函数
+        function EditInPlace(id, value, parentElement) {
+            this.id = id;
+            this.value = value;
+            this.parentElement = parentElement;
+            this.createElement(this.id);
+        }
+
+        EditInPlace.prototype.createElement = function (id) {
+            this.containerElement = document.createElement('div');
+            this.containerElement.id = id;
+            this.parentElement.appendChild(this.containerElement);
+            //值 
+            this.staticElement = document.createElement('span');
+            this.staticElement.innerHTML = this.value;
+            this.containerElement.appendChild(this.staticElement);
+            //输入框
+            this.fieldElement = document.createElement('input');
+            this.fieldElement.type = 'text';
+            this.fieldElement.value = this.value;
+            this.containerElement.appendChild(this.fieldElement);
+            //save btn
+            this.saveButton = document.createElement('input');
+            this.saveButton.type = 'button';
+            this.saveButton.value = "Save";
+            this.containerElement.appendChild(this.saveButton);
+            //cancel btn
+            this.cancelButton = document.createElement('input');
+            this.cancelButton.type = 'button';
+            this.cancelButton.value = "Cancel";
+            this.containerElement.appendChild(this.cancelButton);
+            //默认查看状态
+            this.attachEvent();
+            this.convertToText();
+        }
+        EditInPlace.prototype.convertToText = function(){
+            //查看状态
+            this.saveButton.style.display = "none";
+            this.cancelButton.style.display = "none";
+            this.fieldElement.style.display = 'none';
+            this.staticElement.style.display = 'inline';
+        }
+        EditInPlace.prototype.convertToEditAble =function(){
+            //编辑状态
+            this.saveButton.style.display = "inline";
+            this.cancelButton.style.display = "inline";
+            this.fieldElement.style.display = 'inline';
+            this.staticElement.style.display = 'none';
+        }
+        EditInPlace.prototype.attachEvent = function(){
+            this.staticElement.addEventListener('click',() => {this.convertToEditAble();});
+        }
+        const ed1 = new EditInPlace('ep1', "厚德载物，自强不息", document.getElementById('app'));
+        const ed2 = new EditInPlace('ep2', "崇义风格", document.getElementById('app'));
+    </script>
+</body>
+
+</html>

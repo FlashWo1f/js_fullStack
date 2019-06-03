@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        var xhr = null
+        if(window.XMLHttpRequest){
+        xhr = new XMLHttpRequest()
+            
+        }else{
+            xhr = new ActiveXObject("Microsoft.XMLHTTP")
+        }
+        // 第三参数是同步或异步
+        xhr.open('get', 'mock.json', true)
+        xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded")
+        xhr.send()
+        // console.log(xhr.responseText)
+        // console.log(xhr.readyState, xhr.status)
+        //status 200 表示成功获取到数据
+        var p = new Promise((resolve, reject) => {
+            xhr.onreadystatechange = function(){
+            if(xhr.readyState == 4 && xhr.status == 200){
+                console.log(xhr.responseText)
+                resolve(xhr.responseText)
+                
+            }
+        }
+        })
+        // !Promise!
+        function xq(){
+            return new Promise( (resolve, reject) =>{
+                setTimeout(()=>{
+                console.log('猛哥相亲了')
+                resolve('相个🔨亲')
+            },1000)} )
+            
+            
+        }    
+        // xq()
+        function marry(){
+            setTimeout(()=>{
+                console.log('猛哥结婚了')
+                // resolve('是的')
+            },500)
+        }
+        function child(){
+            console.log('猛哥の子诞生')
+        }    
+        // p   
+        //     .then(xq)   
+        //     .then((ae)=>{
+        //         console.log(ae)
+        //     })
+        //     .then(marry)
+        //     .then(child)
+        //     .catch(()=>{
+        //         console.log('猛哥捕猎失败')
+        //     })
+        // 在括号里的3个方法完成之后再执行then里的方法
+        // Promise.all([p, xq(), marry()]).then(child)
+        Promise.race([p, xq(), marry()]).then((value)=>{
+            console.log(value)
+        })
+    </script>
+</body>
+</html>

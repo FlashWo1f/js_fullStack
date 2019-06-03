@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>target</title>
+  <style>
+  #evParent {
+    width: 400px;
+    height: 300px;
+    border: 1px solid #000;
+  }
+  #ev {
+    width: 300px;
+    height: 200px;
+    border: 1px solid #000;
+    text-align: center;
+  }
+  #ev img{
+    width: 100%;
+    height: 100%;
+  }
+  </style>
+</head>
+<body>
+  <div id="evParent">
+    父级
+    <div id="ev">
+      <img 
+      src="http://po6khh05j.bkt.clouddn.com/ie6.jpg" alt="">
+    </div>
+  </div>
+  <script>
+      const evParent = document.getElementById('evParent');
+      const ev = document.getElementById('ev');
+      ev.addEventListener('click',() =>{console.log('target2 bubble');},false);//event 2th
+      ev.addEventListener('click',() =>{console.log('target bubble');},false);
+      evParent.addEventListener('click',() => {console.log('evParent bubble');},false);
+      evParent.addEventListener('click',(event) => {console.log(event.currentTarget,event.target);console.log('evParent capture');},true);
+      ev.addEventListener('click',(event) =>{console.log(event.currentTarget,event.target);console.log('target capture');},true);
+      
+  </script>
+</body>
+</html>
