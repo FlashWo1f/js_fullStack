@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <script src="https://cdn.jsdelivr.net/npm/vue@2.6.10/dist/vue.js"></script>
+  <title>Document</title>
+</head>
+<body>
+  <div id="app">
+    <div class="wendu">{{wendu}}℃</div>
+    <p class="sugg">{{sugg}}</p>
+    <div class="btn">
+      <button @click="add">add</button>
+      <button @click="reduce">reduce</button>
+    </div>
+  </div>
+  <script>
+    var app = new Vue({
+      el: '#app',
+      data () {
+        return {
+          wendu: 29,
+          sugg: '这边建议穿短袖呢'
+        }
+      },
+      methods: {
+        add () {
+          this.wendu += 3
+        },
+        reduce () {
+          this.wendu -= 3
+        }
+      },
+      watch: {
+        wendu (newVal, oldVal) {
+          if (newVal >= 26) {
+            this.sugg = "这边建议穿短袖呢"
+          } else if(newVal >= 0){
+            this.sugg = "建议穿长袖呢"
+          } else{
+            this.sugg = "这边建议不要出门呢"
+          }
+        }
+      },
+    })
+  </script>
+</body>
+</html>
