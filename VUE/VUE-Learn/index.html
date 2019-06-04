@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.6.10/dist/vue.js"></script>
+    <div id="app">
+        <!-- {{message}} -->
+        <!-- <p class="coll">Polik</p>
+        <p class="good" v-bind:class="{cool : isGood}">baby</p>
+        <p class="good" v-bind:class="isGood ? 'cool' : 'notCool'">baby</p>
+        <p class="good" v-bind:class="[activeClass]">baby</p> -->
+        <!-- <ul>
+            <li v-for="item in todos">{{item.text}}</li>
+        </ul> -->
+        <p>{{content}}</p>
+        <input type="text" v-model="content">
+        <p class="coll" v-on:click="reverseMsg">{{msg}}</p>
+    </div>
+    <script>
+        var app = new Vue({
+            el: '#app',
+            data: {
+                // message: 'hello world',
+                // isGood: true,
+                // activeClass: 'active',
+                // todos: [
+                //     {text: '学习vue'},
+                //     {text: '学习js'},
+                //     {text: '写项目'}
+                // ]
+                content: '',
+                msg: 'Polik'
+            },
+            methods: {
+                reverseMsg(){
+                    this.msg = this.msg.split('').reverse().join('')
+                }
+            }
+        })
+    </script>
+</body>
+</html>
