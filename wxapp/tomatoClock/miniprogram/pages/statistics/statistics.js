@@ -9,12 +9,12 @@ Page({
     totalTomato: 0,
     howMuch: 0,
     done: [
-      {'work': 0, 'color': '#6cbafd'},
-      {'learn': 0, 'color': '#80d127'},
-      {'reflection': 0, 'color': '#ffa31d'},
-      {'write': 0, 'color': '#2fd9ed'},
-      {'motion': 0, 'color': '#968bef'},
-      {'read': 0, 'color': '#fc4557'}
+      {work: 0, color: '#6cbafd'},
+      {learn: 0, color: '#80d127'},
+      {reflection: 0, color: '#ffa31d'},
+      {write: 0, color: '#2fd9ed'},
+      {motion: 0, color: '#968bef'},
+      {read: 0, color: '#fc4557'}
     ]
   },
   drawStatisticalChartBg(){
