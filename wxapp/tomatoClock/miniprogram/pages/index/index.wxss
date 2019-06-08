@@ -21,7 +21,7 @@ page {
 .countDown.circle1{
   width: 650rpx;
   height: 650rpx;
-  border: 1rpx #426699 solid;
+  border: 1rpx rgba(200, 200, 200, 0.1) solid;
   border-radius: 50%;
   margin-top: 60rpx;
   text-align: center;
@@ -31,7 +31,7 @@ page {
 .countDown.circle2{
   width: 580rpx;
   height: 580rpx;
-  border: 1rpx #5678a9 solid;
+  border: 1rpx rgba(200, 200, 200, 0.1) solid;
   border-radius: 50%;
   position: absolute;
   top: 50%;

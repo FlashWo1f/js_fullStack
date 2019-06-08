@@ -5,7 +5,7 @@ Page({
   data: {
     countDown:'30:00',
     isCounting: false,
-    curIndex: 0,
+    curIndex: 0,  //当前选中的category
     isPaused: false,
     things:[
     {
@@ -48,6 +48,7 @@ Page({
   },
   goCount(e){
     console.log(e)
+    this.drawProgressBg()
     this.setData({
       isCounting: !this.data.isCounting
     })
@@ -58,6 +59,7 @@ Page({
       isCounting: !this.data.isCounting
     })
     clearInterval(this.interval)
+    
   },
   transtion:function(str){
     str = '' + str
@@ -104,6 +106,16 @@ Page({
     }, 1000)
     if(cur < 0)
     clearInterval(this.interval)
+    // 6/8
+    wx.cloud.callFunction({
+      name: 'detailTomato',
+      data: {
+        
+      },
+      success(){
+
+      }
+    })
   },
   pause(){
     this.setData({
