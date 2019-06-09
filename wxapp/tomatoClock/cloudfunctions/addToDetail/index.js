@@ -7,11 +7,12 @@ const db = cloud.database({ env })
 exports.main = async (event, context) => {
   const wxContext = cloud.getWXContext()
   const userInfo = event.userInfo
-  return db.collection('detailTomato').add({
+  return await db.collection('detailTomato').add({
     data: {
-      category: 'work',
+      category: event.category,
       date: new Date(),
       openId: userInfo.openId
-    }
+    },
   })
+  
 }

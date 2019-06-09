@@ -10,31 +10,37 @@ Page({
     things:[
     {
       type: '工作',
+      category: 'work',
       index: 0,
       src: "../../images/work.png"
     },
     {
       type: '学习',
+      category: 'learn',
       index: 1,
       src: '../../images/learn.png'
     },
     {
       type: '思考',
+      category: 'reflection',
       index: 2,
       src: '../../images/reflection.png'
     },
     {
       type: '写作',
+      category: 'write',
       index: 3,
       src: '../../images/write.png'
     },
     {
       type: '运动',
+      category: 'motion',
       index: 4,
       src: '../../images/motion.png'
     },
     {
       type: '阅读',
+      category: 'read',
       index: 5,
       src: '../../images/read.png'
     },
@@ -52,7 +58,7 @@ Page({
     this.setData({
       isCounting: !this.data.isCounting
     })
-    this.countInterval(1800)
+    this.countInterval(10)
   },
   giveUp(){
     this.setData({
@@ -94,7 +100,7 @@ Page({
     
     var date = new Date(0, 0)
     this.interval = setInterval(() => {
-      if(cur >= 0){
+      if(cur > 0){
         cur--
         date.setMinutes(cur / 60)
         date.setSeconds(cur % 60)
@@ -103,19 +109,30 @@ Page({
         })
         this.drawProgressPercent(4 - cur / 450)
       }
+      if(cur <= 0){
+      
+        clearInterval(this.interval)
+        console.log(222)
+        // 6/8
+          let self = this
+          wx.cloud.callFunction({
+            name: 'addToDetail',
+            data: {
+              category: self.data.things[self.data.curIndex].category
+            },
+            success(){
+              console.log(1)
+            },
+            fail(){
+              console.log('?')
+            },
+            complete(){
+              console.log(2)
+            }
+          })
+        }
     }, 1000)
-    if(cur < 0)
-    clearInterval(this.interval)
-    // 6/8
-    wx.cloud.callFunction({
-      name: 'detailTomato',
-      data: {
-        
-      },
-      success(){
-
-      }
-    })
+    
   },
   pause(){
     this.setData({

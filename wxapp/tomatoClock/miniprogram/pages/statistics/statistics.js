@@ -46,6 +46,21 @@ Page({
   onLoad: function (options) {
     console.log(options)
     this.drawStatisticalChartBg()
+    wx.cloud.callFunction({
+      name: 'addToTotal',
+      data: {
+        
+      },
+      success:(e) => {
+        console.log('success')
+        this.setData({
+
+        })
+      },
+      fail: function(err) {
+        console.log(err)
+      }
+    })
   },
 
   /**
