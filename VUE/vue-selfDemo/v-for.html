@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <script src="https://cdn.bootcss.com/vue/2.6.5/vue.js"></script>
+</head>
+<body>
+  <div id="app">
+    <p v-for="(user, i) in list">id: {{user.id}}---{{user.name}} ----{{i}}</p>
+    <!-- 也可以遍历对象(key, value)第三个位置可以加索引 -->
+    <p v-for="count in 10">这是第{{count}}</p>
+  </div>
+  <script>
+    var vm = new Vue({
+      el: '#app',
+      data: {
+        list: [
+          {id: 1, name: 'zhdsgsssg'},
+          {id: 2, name: 'zhang'},
+          {id: 3, name: 'zoohg'},
+          {id: 4, name: 'zhdfng'},
+          {id: 5, name: 'zasang'},
+        ]
+      },
+      methods: {
+        
+      },
+    })  
+  </script>
+</body>
+</html>
