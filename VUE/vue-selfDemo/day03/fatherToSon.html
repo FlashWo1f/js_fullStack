@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <script src="https://cdn.bootcss.com/vue/2.6.5/vue.js"></script>
+</head>
+<body>
+  <div id="app">
+    <!-- 父组件，可以在引用子组件的时候 通过属性绑定v-bind的形式把需要传递给子组件的数据 -->
+    <!-- 以属性绑定的形式 传递到子组件内部  -->
+    <con1 v-bind:parentmsg="msg"></con1>
+  </div>
+  <script>
+      var vm = new Vue({
+        el: '#app',
+        data() {
+          return {
+
+            msg: '123 父组件中的数据'
+          }
+          },
+          // 子组件的data数据  并不是父组件传递过来的 而是子组件自身私有的
+          // 比如子组件通过Ajax 请求过来的数据 不关父组件， 都可以放到data上面
+        methods: {
+            
+        },
+        components: {
+          // 经过演示， 子组件中 默认无法访问到父组件的data上的数据和方法
+
+          con1: {
+            template: '<h1>子组件 {{parentmsg}}</h1>',
+            props: ['parentmsg'] // 把父组件传递过来的parentmsg属性 现在props数组中 定义一下这样才能使用这个数据
+
+          }
+        }
+        
+      })
+  </script>
+</body>
+</html>

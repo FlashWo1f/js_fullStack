@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <script src="https://cdn.bootcss.com/vue/2.6.5/vue.js"></script>
+</head>
+<body>
+  <div id="app">
+    
+  </div>
+  <template id="tem1">
+    <div>
+        <h1>这是子组件</h1>
+    </div>
+  </template>
+  <script>
+      var con2 = {
+        template: '#tem1'
+      }
+      var vm = new Vue({
+        el: '#app',
+        data() {
+         return {
+
+         }
+        },
+         
+        methods: {
+            
+        },
+        components: {
+          con2
+        }
+        
+      })
+  </script>
+</body>
+</html>
