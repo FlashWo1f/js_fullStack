@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+
+<body>
+  <script>
+    var session = {
+      'screens': [],
+      'state': true
+    };
+    session.screens.push({ "name": "screenA", "width": 450, "height": 250 });
+    session.screens.push({ "name": "screenB", "width": 650, "height": 350 });
+    session.screens.push({ "name": "screenC", "width": 750, "height": 120 });
+    session.screens.push({ "name": "screenD", "width": 250, "height": 60 });
+    session.screens.push({ "name": "screenE", "width": 390, "height": 120 });
+    session.screens.push({ "name": "screenF", "width": 1240, "height": 650 });
+
+    // 使用 JSON.stringify 转换为 JSON 字符串
+    // 然后使用 localStorage 保存在 session 名称里
+    localStorage.setItem('session', JSON.stringify(session));
+
+    // 然后是如何转换通过 JSON.stringify 生成的字符串，该字符串以 JSON 格式保存在 localStorage 里
+    var restoredSession = JSON.parse(localStorage.getItem('session'));
+    // var restoredSession = localStorage.getItem('session')
+
+    // 现在 restoredSession 包含了保存在 localStorage 里的对象
+    console.log(restoredSession);
+  </script>
+</body>
+
+</html>
