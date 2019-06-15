@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <!-- <script src="https://cdn.bootcss.com/vue/2.6.10/vue.min.js"></script> -->
+  <title>hashchange 实现前端路由</title>
+</head>
+
+<body>
+  <a href="#top">回到首页</a>
+  <a href="#/">home</a>
+  <a href="#/book">book</a>
+  <a href="#/movie">movie</a>
+  <div id="content"></div>
+  <script>
+    // hashchange 导航，
+    // 内容显示区域
+    const Home = { template: '<div>home</div>' };
+    const Book = { template: '<div>book</div>' };
+    const Movie = { template: '<div>movie</div>' };
+    class Router {
+      constructor(options) {
+        this.routes = {};//前端路由数组
+        this.init();
+        options.forEach(item => {
+          this.route(item.path, () => {
+            document.getElementById('content').innerHTML = item.component;
+          })
+        })
+        // console.log(this.routes);
+      }
+      route(path, cb) {
+        this.routes[path] = cb;
+      }
+
+    // 链接的点击事件
+    bindEvent() {
+
+    }
+    init() {
+      window.addEventListener('load', this.updateView.bind(this), false)
+      window.addEventListener('hashchange', this.updateView.bind(this));
+    }
+    updateView() {
+      // console.log('updated')
+      // / 代表首页  #goods 商品 #detail 详情页
+      const hashTag = window.location.hash.slice(1) || '/';
+      this.routes[hashTag] && this.routes[hashTag]();
+      // var aa = () => {
+      //   console.log('nba')
+      // }
+      // aa() nba 函数调用
+    }
+    }
+    new Router([
+      {
+        path: '/',
+        component: 'home'
+      },
+      {
+        path: '/book',
+        component: 'book'
+      },
+      {
+        path: '/movie',
+        component: 'movie'
+      }
+    ]);
+  </script>
+</body>
+
+</html>
