@@ -1,0 +1,19 @@
+{
+  "name": "spider-ajax",
+  "version": "1.0.0",
+  "description": "网站的反扒机制",
+  "main": "before.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "cheerio": "^1.0.0-rc.3",
+    "cnpm": "^6.1.0",
+    "puppeteer": "^1.17.0",
+    "request": "^2.88.0",
+    "request-promise": "^4.2.4"
+  }
+}
