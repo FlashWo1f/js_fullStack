@@ -1,6 +1,7 @@
 <template>
   <div class="cartcontrol">
     <transition name="move">
+      <!-- // 阻止事件冒泡 防止点击li -->
       <div class="cart-decrease" v-show="food.count > 0" @click.stop.prevent="decreaseCart">
         <span class="inner icon-remove_circle_outline"></span>
       </div>
@@ -30,10 +31,12 @@ export default {
         return
       }
       if (!this.food.count) {
+        // 给food里添加一条键值对
         this.$set(this.food, 'count', 1)
       } else {
         this.food.count++
       }
+      // event.target即点击的那个DOM结构
       this.$emit('add', event.target)
     },
     decreaseCart () {

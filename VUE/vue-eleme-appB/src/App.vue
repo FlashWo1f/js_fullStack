@@ -6,13 +6,14 @@
         <router-link to="/goods">商品</router-link>
       </div>
       <div class="tab-item">
-        <router-link to="ratings">评论</router-link>
+        <router-link to="/rating">评论</router-link>
       </div>
       <div class="tab-item">
         <router-link to="/seller">商家</router-link>
       </div>
     </div>
     <keep-alive>
+      <!-- 通过所有router-view的组件都能接受到这个seller -->
       <router-view :seller="seller"></router-view>
     </keep-alive>
   </div>

@@ -51,6 +51,10 @@
           </li>
         </ul>
       </div>
+      <shopcart ref="shopcart" 
+      :selectFoods="selectFoods" 
+      :deliveryPrice="seller.deliveryPrice" 
+      :minPrice="seller.minPrice"></shopcart>
     </div>
   </div>
 </template>
@@ -58,6 +62,7 @@
 <script>
 import BScroll from 'better-scroll'
 import cartcontrol from '@/components/cartcontrol/cartcontrol'
+import shopcart from '@/components/shopcart/shopcart'
 export default {
   name: 'Goods',
   props: {
@@ -82,10 +87,22 @@ export default {
         }
       }
       return 0
+    },
+    selectFoods (){
+      let foods = []
+      this.goods.forEach(good => {
+        good.foods.forEach(food => {
+          if (food.count) {
+            foods.push(food)
+          }
+        })
+      })
+      return foods
     }
   },
   components: {
-    cartcontrol
+    cartcontrol,
+    shopcart
   },
   methods: {
     _calculateHeight(){
