@@ -35,8 +35,14 @@
         </div>
         <div class="body-bottom">
           <ul>
-            <li>
-              
+            <li v-for="(comment, index) in comments" :key="index">
+              <div class="oneComment">
+                <div class="avatar"></div>
+                <div class="content">
+                  <div class="username"></div>
+                  <div class="userDelivery"></div>
+                </div>
+              </div>
             </li>
           </ul>
         </div>
