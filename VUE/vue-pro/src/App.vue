@@ -1,0 +1,78 @@
+<template>
+  <div id="app">
+    <!-- header -->
+    <mt-header fixed title="旅梦开发团-Vue项目"></mt-header>
+    <!-- 中间路由router-view -->
+    <router-view></router-view>
+    <!-- 底部tabbar -->
+    <div class="tabbar">
+      <div class="tabbar-item">
+        <router-link to="/home">
+          <img src="./assets/mine.png" alt>
+          <div>首页</div>
+        </router-link>
+      </div>
+      <div class="tabbar-item">
+        <router-link to="/member">
+          <img src="./assets/mine.png" alt>
+          <div>会员</div>
+        </router-link>
+      </div>
+      <div class="tabbar-item">
+        <router-link to="/shopcar">
+          <img src="./assets/mine.png" alt>
+          <div>购物车</div>
+        </router-link>
+      </div>
+      <div class="tabbar-item">
+        <router-link to="/search">
+          <img src="./assets/mine.png" alt>
+          <div>搜索</div>
+        </router-link>
+      </div>
+    </div>
+  </div>
+</template>
+
+<script>
+export default {
+  name: "App"
+};
+</script>
+
+<style>
+#app {
+  font-family: "Avenir", Helvetica, Arial, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-align: center;
+  color: #2c3e50;
+  margin-top: 40px;
+  margin-bottom: 40px;
+}
+.tabbar {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  display: flex;
+  width: 100%;
+}
+.tabbar-item {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  background-color: #fff;
+}
+.tabbar-item img {
+  width: 20px;
+  height: 20px;
+}
+.tabbar-item a{
+  text-decoration: none;
+  color: #aaaaaa;
+}
+.router-link-active{
+  color: #2525dd !important;
+}
+</style>
