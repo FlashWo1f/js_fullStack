@@ -4,12 +4,19 @@ import HomeContainer from '../components/HomeContainer'
 import MemberContainer from '../components/MemberContainer'
 import SearchContainer from '../components/SearchContainer'
 import ShopcarContainer from '../components/ShopcarContainer'
+import NewsList from '../components/NewsList'
+import Newsinfo from '../components/Newsinfo'
+
 
 
 Vue.use(Router)
 
 export default new Router({
   routes: [
+    {
+      path: '/',
+      redirect: '/home'
+    },
     {
       path: '/home',
       name: 'HomeContainer',
@@ -29,6 +36,16 @@ export default new Router({
       path: '/shopcar',
       name: 'ShopcarContainer',
       component: ShopcarContainer
-    }
+    },
+    {
+      path: '/home/newslist',
+      name: 'NewsList',
+      component: NewsList
+    },
+    {
+      path: '/home/newsinfo/:id',
+      name: 'Newsinfo',
+      component: Newsinfo
+    },
   ]
 })

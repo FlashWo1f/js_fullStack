@@ -3,7 +3,10 @@
     <!-- header -->
     <mt-header fixed title="旅梦开发团-Vue项目"></mt-header>
     <!-- 中间路由router-view -->
-    <router-view></router-view>
+    <transition>
+    
+      <router-view></router-view>
+    </transition>
     <!-- 底部tabbar -->
     <div class="tabbar">
       <div class="tabbar-item">
@@ -47,8 +50,13 @@ export default {
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
-  margin-top: 40px;
-  margin-bottom: 40px;
+  padding-top: 40px;
+  padding-bottom: 45px;
+  overflow-x: hidden;
+}
+html, body{
+  padding: 0;
+  margin: 0;
 }
 .tabbar {
   position: fixed;
@@ -74,5 +82,17 @@ export default {
 }
 .router-link-active{
   color: #2525dd !important;
+}
+.v-enter{
+  opacity: 0;
+  transform: translateX(100%);
+}
+.v-leave-to{
+  opacity: 0;
+  transform: translateX(-100%);
+  position: absolute;
+}
+.v-enter-active, .v-leave-active{
+  transition: all .5s ease;
 }
 </style>
