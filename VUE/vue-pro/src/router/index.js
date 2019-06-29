@@ -6,6 +6,9 @@ import SearchContainer from '../components/SearchContainer'
 import ShopcarContainer from '../components/ShopcarContainer'
 import NewsList from '../components/NewsList'
 import Newsinfo from '../components/Newsinfo'
+import GoodsList from '../components/GoodsList'
+import GoodsInfo from '../components/GoodsInfo'
+
 
 
 
@@ -46,6 +49,16 @@ export default new Router({
       path: '/home/newsinfo/:id',
       name: 'Newsinfo',
       component: Newsinfo
+    },
+    {
+      path: '/home/goodslist',
+      name: 'GoodsList',
+      component: GoodsList
+    },
+    {
+      path: '/home/goodsinfo/:id',
+      name: 'GoodsInfo',
+      component: GoodsInfo
     },
   ]
 })

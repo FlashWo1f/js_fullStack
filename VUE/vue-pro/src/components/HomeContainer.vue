@@ -7,7 +7,7 @@
     </mt-swipe>
     <div class="funcs">
       <div class="func a">
-        <router-link to="/home/newslist">
+        <router-link to="/home/newslist" tag="div">
         
         <img src="../assets/menu1.png" alt="">
         <div>新闻资讯</div>
@@ -18,8 +18,10 @@
         <div>图片分享</div>
       </div>
       <div class="func a">
+      <router-link to="/home/goodslist" tag="div">
         <img src="../assets/menu3.png" alt="">
         <div>商品购买</div>
+        </router-link>
       </div>
       <div class="func a">
         <img src="../assets/menu4.png" alt="">

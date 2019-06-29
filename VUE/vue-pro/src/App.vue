@@ -1,7 +1,15 @@
 <template>
   <div id="app">
     <!-- header -->
-    <mt-header fixed title="旅梦开发团-Vue项目"></mt-header>
+    <mt-header fixed title="旅梦开发团-Vue项目">
+      
+    </mt-header>
+    <div class="back" @click="this.backToCur">
+      <img src="./assets/back.png" alt="">
+      <div class="backctx">
+        &nbsp;返回
+      </div>
+    </div>
     <!-- 中间路由router-view -->
     <transition>
     
@@ -39,7 +47,12 @@
 
 <script>
 export default {
-  name: "App"
+  name: "App",
+  methods: {
+    backToCur(){
+      this.$router.go(-1)
+    }
+  },
 };
 </script>
 
@@ -58,6 +71,22 @@ html, body{
   padding: 0;
   margin: 0;
 }
+.back{
+  display: flex;
+  position: fixed;
+  left: 0px;
+  top: 8px;
+  z-index: 1000;
+}
+.back img{
+  width: 20px;
+  height: 20px;
+}
+.backctx{
+  line-height: 20px;
+  color: #ffffff;
+}
+
 .tabbar {
   position: fixed;
   bottom: 0;
