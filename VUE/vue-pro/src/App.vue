@@ -16,6 +16,7 @@
       <router-view></router-view>
     </transition>
     <!-- 底部tabbar -->
+    <div class="allGoodNm" v-show="$store.getters.getAllCount == 0 ? false : true">{{$store.getters.getAllCount}}</div>
     <div class="tabbar">
       <div class="tabbar-item">
         <router-link to="/home">
@@ -70,6 +71,19 @@ export default {
 html, body{
   padding: 0;
   margin: 0;
+}
+.allGoodNm {
+  height: 22px;
+  width: 22px;
+  border-radius: 50%;
+  background-color: #ee2233;
+  color: #ffffff;
+  font-size: 12px;
+  line-height: 22px;
+  position: absolute;
+  bottom: 33px;
+  left: 239px;
+  z-index: 20;
 }
 .back{
   display: flex;
