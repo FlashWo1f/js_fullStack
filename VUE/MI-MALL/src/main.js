@@ -3,6 +3,14 @@
 import Vue from 'vue'
 import App from './App'
 import router from './router'
+import { Search } from 'vant';
+import { Tab, Tabs } from 'vant';
+import { Swipe, SwipeItem } from 'vant';
+import { Grid, GridItem } from 'vant';
+Vue.use(Grid).use(GridItem);
+Vue.use(Swipe).use(SwipeItem);
+Vue.use(Tab).use(Tabs);
+Vue.use(Search);
 
 Vue.config.productionTip = false
 
