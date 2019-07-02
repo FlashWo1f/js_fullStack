@@ -1,30 +1,11 @@
-# VUE
+## 父子组件之间的渲染问题
 
-在vm实例中， 如果想要获取data上的数据 或者想要调用methods中的方法, 必须使用this.数据属性名或者this.方法名来进行访问 这里的this 表示我们new出来的VM实例对象 VM会监听到自身data所有数据的改变，只要数据发生变化 就会自动把最新的数据 从data上同步到页面上去  不再操作DOM了
-### v-cloak v-text v-html
-<p v-cloak>{{msg}}</p>
-<p v-text="msg"></p>
-v-html 能解析成html
-
-### v-bind是VUE提供用于绑定属性的指令
-简写方式 (:)
-它的里面可以写合法的JS表达式
-
-### v-on：事件绑定机制
-v-on:click="func"
-可简写为 (@)
-
-### 事件修饰符
-事件修饰符可以串联
-.stop 阻止冒泡机制 @click.stop
-.prevent 阻止默认事件
-.capture  实现捕获触发事件机制
-.self 实现只要点击当前元素才会触发事件
-.once 只触发一次事件处理函数
-.stop 和 .self 区别  .stop阻止之外所有的冒泡 .self 某一个元素
-
-### v-model 实现双向数据绑定
-v-bind只能实现数据的单向绑定 从M自动绑定到V 
-使用v-model指令 可以实现表单和MODEL中数据的双向绑定
-v-model只能运用表单元素中
-input(radio, text, address, email) select checkbox  textarea 可以用
+var vm = new Vue({
+  el: '#app',
+  render: c => c(app), // render 会把 el 指定的容器中，所有的内容都清空覆盖，所以 不要 把 路由的                          router-view 和 router-link 直接写到 el 所控制的元素中
+  router //  将路由对象挂载到 vm 上
+})
+day06-04
+// 注意： App 这个组件，是通过 VM 实例的 render 函数，渲染出来的， render 函数如果要渲染 组件， 渲染出来的组件，只能放到 el: '#app' 所指定的 元素中；
+// Account 和 GoodsList 组件， 是通过 路由匹配监听到的，所以， 这两个组件，只能展示到 属于 路由的 <router-view></router-view> 中去；
+所以在路由匹配中匹配到子组件时 为什么不会把全部的VM实例全部覆盖掉  而是局部切换组件 破案了

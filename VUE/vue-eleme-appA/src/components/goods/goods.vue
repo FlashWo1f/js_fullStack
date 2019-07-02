@@ -13,6 +13,11 @@
           </li>
         </ul>
       </div>
+      <div class="foods-wrapper" ref="foodsWrapper">
+        <ul>
+          <li v-for="(item, index) in goods" :key="index" class="food-list" ref="foodList"></li>
+        </ul>
+      </div>
     </div>
   </div>
 </template>

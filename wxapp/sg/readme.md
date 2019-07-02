@@ -9,7 +9,7 @@
     生命周期 wx.request
 
 - list 有套路
-    onLoad onReachBottm onPullDownRefresh
+    onLoad onReachBottom onPullDownRefresh
     isLoading 加载状态
     currentPage  要传参
     totalPage  最后一页
@@ -18,3 +18,10 @@
     公用的界面
     <template data={{}} />
     <template name="loading" />
+    
+- 为什么小程序比较快
+    - 安装包缓存
+    - 分包加载
+    - 独立渲染线程
+    - Webview 预加载
+    - Native 组件

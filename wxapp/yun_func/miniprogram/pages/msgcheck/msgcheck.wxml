@@ -1,0 +1,3 @@
+<button bindtap="msgCheck">
+    msgCheck
+</button>

@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+
+<body>
+  <script src="https://cdn.bootcss.com/jquery/3.4.1/jquery.min.js"></script>
+  <script>
+    $.ajax({
+      type: 'GET',
+      // GET http://127.0.0.1:8080/api/post 404 (Not Found) 没有指认域名 默认在 开这个服务的端口localhost8080
+      url: `/api/post`,
+      dataType: 'JSON'
+    })
+      .done(function (res) {
+        console.log(res)
+      })
+      .fail(function (e) { console.log(e) })  
+  </script>
+</body>
+
+</html>
