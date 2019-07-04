@@ -3,6 +3,7 @@
 import Vue from 'vue'
 import App from './App'
 import router from './router'
+import axios from 'axios'
 import { Search } from 'vant';
 import { Tab, Tabs } from 'vant';
 import { Swipe, SwipeItem } from 'vant';
@@ -13,7 +14,7 @@ Vue.use(Tab).use(Tabs);
 Vue.use(Search);
 
 Vue.config.productionTip = false
-
+Vue.prototype.$http = axios // 将axios挂载到vue的原型链上
 /* eslint-disable no-new */
 new Vue({
   el: '#app',

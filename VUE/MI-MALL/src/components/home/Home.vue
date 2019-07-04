@@ -15,7 +15,7 @@
         </div>
       </div>
       <div class="header-category">
-        <van-tabs v-model="active" animated>
+        <van-tabs animated>
           <!-- body内在van-tab的slot里面 -->
           <van-tab title="推荐">
             <van-swipe :autoplay="5000" indicator-color="white">
@@ -29,14 +29,13 @@
                 <img src="https://i1.mifile.cn/a4/xmad_15617155056609_JWmIz.jpg" alt="">
               </van-swipe-item>
             </van-swipe>
-            <van-grid square>
-              <van-grid-item
-                v-for="(item, i) in iconTo"
-                :key="i"
-                :icon="item.img_url"
-                :text="item.title"
-              />
-            </van-grid>
+            <div class="funcGrids">
+              <div class="funcGrid" v-for="(item, i) in funcGrid" :key="i">
+                <img :src="item.imgUrl" alt="">
+                <div class="text">{{item.text}}</div>
+              </div>
+            </div>
+            <ProductBox newPrice="2999" oldPrice="2399" description="新一代独立显卡" title="Air 13.3 i5 集显版" imgUrl="https://cdn.cnbj1.fds.api.mi-img.com/mi-mall/7b5e50495e27667efadc28ba70515ea6.jpg?w=1212&h=716"/>
           </van-tab>
           <van-tab title="手机">内容 2</van-tab>
           <van-tab title="智能">内容 3</van-tab>
@@ -52,19 +51,28 @@
 </template>
 
 <script>
+import ProductBox from '../../common/ProductBox'
 export default {
   data() {
     return {
-      iconTo: [
-        {img_url: '../../assets/crown.png', title: '新品发布'},
-        {img_url: '../../assets/crown.png', title: '新品发布'},
-        {img_url: '../../assets/crown.png', title: '新品发布'},
-        {img_url: '../../assets/crown.png', title: '新品发布'},
-        {img_url: '../../assets/crown.png', title: '新品发布'},
-        {img_url: '../../assets/crown.png', title: '新品发布'},
-      ]
+      funcGrid: [
+        {imgUrl: require('../../assets/crown.png'), text: '新品发布'},
+        {imgUrl: require('../../assets/qun.png'), text: '小米众筹'},
+        {imgUrl: require('../../assets/xin.png'), text: '订金预售'},
+        {imgUrl: require('../../assets/1.png'), text: '1分拼团'},
+        {imgUrl: require('../../assets/bag.png'), text: '超值特卖'},
+        {imgUrl: require('../../assets/clock.png'), text: '小米秒杀'},
+        {imgUrl: require('../../assets/transform.png'), text: '以旧换新'},
+        {imgUrl: require('../../assets/tv.png'), text: '电视热卖'},
+        {imgUrl: require('../../assets/washer.png'), text: '家电热卖'},
+        {imgUrl: require('../../assets/sim.png'), text: '米粉卡'}
+      ],
+
     }
   },
+  components: {
+      ProductBox
+  }
 }
 </script>
 
@@ -87,5 +95,20 @@ export default {
     img 
       width 100%
       height 100%
+    .funcGrids
+      width 100%
+      display flex
+      flex-wrap wrap
+      justify-content space-between
+      color #515151
+      
+      .funcGrid
+        text-align center
+        width 20%
+        font-size 12px
+        img
+          width 28px
+          height 28px
+          padding 26px 0 3px 0
 </style>
 
