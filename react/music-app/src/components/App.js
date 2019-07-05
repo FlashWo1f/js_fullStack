@@ -38,8 +38,8 @@ function App() {
             <Route path="/recommend" component={Recommend} />
             <Route path="/rank" component={Rank} />
             <Route path="/search" component={Search} />
-            <Route path="/" component={Recommend} />
-            {/* <Redirect from="/" to="/recommend" /> */}
+            {/* <Route path="/" component={Recommend} /> */}
+            <Redirect from="/" to="/recommend" />
           </Switch>
         </div>
         <Player />
