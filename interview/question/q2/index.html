@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+    // 能取到  let 和 var 的区别
+    var user = '雏田'
+    // 不能
+    // let user = '雏田'
+    let a = {
+      user: '纲手',
+      fn: function() {
+        console.log(this.user)
+      }
+    }  
+    let b = a.fn
+    a.fn()
+    b.call(a)
+    // bind返回的是函数
+    b.bind(a)()
+    let c = b.bind(a)
+    c()
+  </script>
+</body>
+</html>
