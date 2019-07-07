@@ -13,12 +13,12 @@ export default {
 
 <style lang="stylus" scoped>
 .nsymbol, .newPrice
-  font-size 17px
+  font-size 15px
   color #ee2233
 .nsymbol
-  font-size 12px
+  font-size 11px
   position relative
-  top -4px
+  top -2px
 .osymbol, .oldPrice
   font-size 10px
   color #b0b0b0

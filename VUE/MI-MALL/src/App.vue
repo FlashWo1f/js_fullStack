@@ -54,6 +54,7 @@ body,html
     left 0
     font-size 13px
     color #757575
+    background-color #fff
     .tabbar-item
       width 25%
       text-align center

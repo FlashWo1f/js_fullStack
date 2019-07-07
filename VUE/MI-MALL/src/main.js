@@ -8,6 +8,8 @@ import { Search } from 'vant';
 import { Tab, Tabs } from 'vant';
 import { Swipe, SwipeItem } from 'vant';
 import { Grid, GridItem } from 'vant';
+import { Toast } from 'vant';
+Vue.use(Toast);
 Vue.use(Grid).use(GridItem);
 Vue.use(Swipe).use(SwipeItem);
 Vue.use(Tab).use(Tabs);

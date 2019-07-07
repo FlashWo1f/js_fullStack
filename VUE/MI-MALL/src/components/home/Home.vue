@@ -17,7 +17,7 @@
       <div class="header-category">
         <van-tabs animated>
           <!-- body内在van-tab的slot里面 -->
-          <van-tab title="推荐">
+          <van-tab title="推荐" class="recommendBox">
             <van-swipe :autoplay="5000" indicator-color="white">
               <van-swipe-item>
                 <img src="https://i1.mifile.cn/a4/xmad_15617449331718_ckXCh.jpg" alt="">
@@ -29,13 +29,30 @@
                 <img src="https://i1.mifile.cn/a4/xmad_15617155056609_JWmIz.jpg" alt="">
               </van-swipe-item>
             </van-swipe>
+            <!-- 功能栏 -->
             <div class="funcGrids">
               <div class="funcGrid" v-for="(item, i) in funcGrid" :key="i">
                 <img :src="item.imgUrl" alt="">
                 <div class="text">{{item.text}}</div>
               </div>
             </div>
-            <ProductBox newPrice="2999" oldPrice="2399" description="新一代独立显卡" title="Air 13.3 i5 集显版" imgUrl="https://cdn.cnbj1.fds.api.mi-img.com/mi-mall/7b5e50495e27667efadc28ba70515ea6.jpg?w=1212&h=716"/>
+            <!-- 产品推荐 -->
+            <div class="recommendProduct">
+              <!-- 推荐类型 -->
+              <div class="reProduct" v-for="(item, i) in recommendProduct" :key="i">
+                <h2 class="productTitle">{{item.recommendTitle}}</h2>
+                <div class="products">
+                  <!-- 具体类型的推荐产品 -->
+                  <div class="singleProducts" v-for="pro in item.products" :key="pro.id">
+                    <!-- 自定义组件ProductBox 装载基本产品信息 -->
+                    <router-link to="" tag="div">
+                      <ProductBox :newPrice="pro.newPrice" :oldPrice="pro.oldPrice" :description="pro.description" :title="pro.title" :imgUrl="pro.img_url"/>
+                    </router-link>
+                  </div>
+                </div>
+              </div>
+            </div>
+        
           </van-tab>
           <van-tab title="手机">内容 2</van-tab>
           <van-tab title="智能">内容 3</van-tab>
@@ -67,12 +84,23 @@ export default {
         {imgUrl: require('../../assets/washer.png'), text: '家电热卖'},
         {imgUrl: require('../../assets/sim.png'), text: '米粉卡'}
       ],
-
+      recommendProduct: []
     }
   },
   components: {
       ProductBox
-  }
+  },
+  created() {
+    this.$http.get('https://www.easy-mock.com/mock/5d1e01dfb65a8b72e0d2acab/mi-mall/recommend')
+    .then(res => {
+      console.log(res)
+      if (res.status == 200) {
+        this.recommendProduct = res.data.data.recommend
+        // Toast.fail('请求出错啦~');
+        console.log(this.recommendProduct)
+      }
+    })
+  },
 }
 </script>
 
@@ -91,24 +119,41 @@ export default {
       flex 1
       width 100px
   .header-category
-    padding 0 10px
-    img 
-      width 100%
-      height 100%
-    .funcGrids
-      width 100%
-      display flex
-      flex-wrap wrap
-      justify-content space-between
-      color #515151
-      
-      .funcGrid
-        text-align center
-        width 20%
-        font-size 12px
-        img
-          width 28px
-          height 28px
-          padding 26px 0 3px 0
+    background-color #ffffff
+    .recommendBox
+      // background-color #e6e8fa
+      padding 0 10px 62px 10px
+      img 
+        width 100%
+        height 100%
+      .funcGrids
+        width 100%
+        display flex
+        flex-wrap wrap
+        justify-content space-between
+        color #515151
+        
+        .funcGrid
+          text-align center
+          width 20%
+          font-size 12px
+          img
+            width 28px
+            height 28px
+            padding 26px 0 3px 0
+      .recommendProduct
+        width 100%
+        .reProduct
+          margin-bottom 20px
+          // background-color #efefef
+          .productTitle
+            // font-family 宋体
+            background-color #ffffff
+            margin 0
+            padding 10px
+          .products
+            display flex
+            flex-wrap wrap
+            justify-content space-between
 </style>
 

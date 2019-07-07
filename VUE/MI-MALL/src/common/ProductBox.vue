@@ -24,19 +24,24 @@ export default {
 .productBox
   text-align center
   background-color #fff
-  width 179px
+  padding-bottom 10px
+  width 192px
   .proImg
     img
       width 100%
       height 100%
   .proTitle
-    font-size 17px
-  .proDescription
     font-size 15px
+    margin-bottom 4px
+  .proDescription
+    margin 0 0 5px 0
+    font-size 13px
   .purchase
-    width 92px
+    width 98px
     background-color #ea625b
     color #ffffff
-    font-size 15px
+    font-size 13px
     line-height 25px
+    margin-left 39px
+    margin-top 5px
 </style>
