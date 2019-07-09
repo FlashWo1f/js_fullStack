@@ -4,6 +4,7 @@ import Home from '../components/home/Home.vue'
 import Category from '../components/category/Category.vue'
 import Shopcar from '../components/shopcar/Shopcar.vue'
 import Mine from '../components/mine/Mine.vue'
+import Detail from '../common/Detail'
 
 Vue.use(Router)
 
@@ -33,5 +34,10 @@ export default new Router({
       name: 'Mine',
       component: Mine
     },
+    {
+      path: '/detail/:id',
+      name: 'Detail',
+      component: Detail
+    }
   ]
 })

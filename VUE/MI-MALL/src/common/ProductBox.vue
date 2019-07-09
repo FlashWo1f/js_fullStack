@@ -25,7 +25,7 @@ export default {
   text-align center
   background-color #fff
   padding-bottom 10px
-  width 192px
+  width 173px
   .proImg
     img
       width 100%

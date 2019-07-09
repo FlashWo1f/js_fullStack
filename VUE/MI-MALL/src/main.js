@@ -9,6 +9,18 @@ import { Tab, Tabs } from 'vant';
 import { Swipe, SwipeItem } from 'vant';
 import { Grid, GridItem } from 'vant';
 import { Toast } from 'vant';
+import Vuex from 'vuex'
+import {
+  GoodsAction,
+  GoodsActionIcon,
+  GoodsActionButton
+} from 'vant'
+Vue
+  .use(GoodsAction)
+  .use(GoodsActionIcon)
+  .use(GoodsActionButton)
+
+Vue.use(Vuex)
 Vue.use(Toast);
 Vue.use(Grid).use(GridItem);
 Vue.use(Swipe).use(SwipeItem);

@@ -3,7 +3,7 @@
     <!-- 匹配路由 -->
     <router-view />
     <!-- 底部tabbar -->
-    <div class="tabbar">
+    <div class="tabbar" v-if="this.$router.history.current.name !== 'Detail'">
       <div class="tabbar-item">
         <router-link to="/home" tag="div">
           <img src="./assets/shop-cart.png" alt="">
@@ -11,7 +11,7 @@
         </router-link>
       </div>
       <div class="tabbar-item">
-        <router-link to="/cartgory" tag="div">
+        <router-link to="/category" tag="div">
           <img src="./assets/shop-cart.png" alt="">
           <div class="item-title">分类</div>
         </router-link>

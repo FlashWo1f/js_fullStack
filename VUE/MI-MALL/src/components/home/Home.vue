@@ -45,8 +45,13 @@
                   <!-- 具体类型的推荐产品 -->
                   <div class="singleProducts" v-for="pro in item.products" :key="pro.id">
                     <!-- 自定义组件ProductBox 装载基本产品信息 -->
-                    <router-link to="" tag="div">
-                      <ProductBox :newPrice="pro.newPrice" :oldPrice="pro.oldPrice" :description="pro.description" :title="pro.title" :imgUrl="pro.img_url"/>
+                    <router-link :to="'/detail/' + pro.id" tag="div">
+                      <ProductBox :newPrice="pro.newPrice" 
+                                  :oldPrice="pro.oldPrice" 
+                                  :description="pro.description" 
+                                  :title="pro.title" 
+                                  :imgUrl="pro.img_url"                                                                    
+                                  />
                     </router-link>
                   </div>
                 </div>
@@ -90,14 +95,17 @@ export default {
   components: {
       ProductBox
   },
+  methods: {
+    
+  },
   created() {
     this.$http.get('https://www.easy-mock.com/mock/5d1e01dfb65a8b72e0d2acab/mi-mall/recommend')
     .then(res => {
-      console.log(res)
+      // console.log(res)
       if (res.status == 200) {
         this.recommendProduct = res.data.data.recommend
         // Toast.fail('请求出错啦~');
-        console.log(this.recommendProduct)
+        // console.log(this.recommendProduct)
       }
     })
   },
