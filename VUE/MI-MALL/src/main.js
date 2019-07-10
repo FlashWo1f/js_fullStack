@@ -9,6 +9,8 @@ import { Tab, Tabs } from 'vant';
 import { Swipe, SwipeItem } from 'vant';
 import { Grid, GridItem } from 'vant';
 import { Toast } from 'vant';
+import { Stepper } from 'vant';
+Vue.use(Stepper);
 import Vuex from 'vuex'
 import {
   GoodsAction,

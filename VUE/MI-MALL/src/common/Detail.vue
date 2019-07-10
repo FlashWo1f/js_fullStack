@@ -26,32 +26,48 @@
       <van-goods-action-button
         type="warning"
         text="加入购物车"
+        @click="openOption"
       />
       <van-goods-action-button
         type="danger"
         text="立即购买"
       />
     </van-goods-action>
+    <!-- 这里踩了个小坑 :closeOption="closeOption" 是错误写法  不能触发 -->
+    <transition name="opt">
+      <ProductOptions @closeOption="closeOption" v-show="flag"/>
+    </transition>
   </div>
 </template>
 
 <script>
 import Price from './Price'
+import ProductOptions from './ProductOptions'
 export default {
   data() {
     return {
-      curDetail: []
+      curDetail: [],
+      flag: false
     }
     
   },
   components: {
-    Price
+    Price,
+    ProductOptions
   },
   methods: {
     backTo() {
-      this.$router.go(-1)
-  }
+      this.$router.go(-1) 
+    },
+    closeOption(flag) {
+      this.flag = flag
+    },
+    openOption() {
+      this.flag = true
+    },
   },
+    
+
   created() {
       console.log(this.$router)
 
@@ -95,5 +111,10 @@ export default {
       width 15px
       height 15px
       padding 7px 9px
+  .opt-enter-active, .opt-leave-active
+    transition: all .3s ease;
+  .opt-enter, .opt-leave-to
+    transform: translateY(667px);
+    opacity: 0;
 
 </style>
