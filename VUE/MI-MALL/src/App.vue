@@ -3,38 +3,23 @@
     <!-- 匹配路由 -->
     <router-view />
     <!-- 底部tabbar -->
-    <div class="tabbar" v-if="this.$router.history.current.name !== 'Detail'">
-      <div class="tabbar-item">
-        <router-link to="/home" tag="div">
-          <img src="./assets/shop-cart.png" alt="">
-          <div class="item-title">首页</div>
-        </router-link>
-      </div>
-      <div class="tabbar-item">
-        <router-link to="/category" tag="div">
-          <img src="./assets/shop-cart.png" alt="">
-          <div class="item-title">分类</div>
-        </router-link>
-      </div>
-      <div class="tabbar-item">
-        <router-link to="/shopcar" tag="div">
-          <img src="./assets/shop-cart.png" alt="">
-          <div class="item-title">购物车</div>
-        </router-link>
-      </div>
-      <div class="tabbar-item">
-        <router-link to="/mine" tag="div">
-          <img src="./assets/shop-cart.png" alt="">
-          <div class="item-title">我的</div>
-        </router-link>
-      </div>
-    </div>
+    <!-- v-if="this.$router.history.current.name !== 'Detail'" -->
+    <van-tabbar 
+    v-model="active" 
+    v-if="this.$router.history.current.name !== 'Detail'"
+    active-color="#f66700">
+      <van-tabbar-item icon="wap-home" to="/home">首页</van-tabbar-item>
+      <van-tabbar-item icon="description" to="/category">分类</van-tabbar-item>
+      <van-tabbar-item icon="shopping-cart-o" info="5" to="/shopcar">购物车</van-tabbar-item>
+      <van-tabbar-item icon="contact" to="/mine">我的</van-tabbar-item>
+    </van-tabbar>
   </div>
 </template>
 
 <script>
 export default {
-  name: 'App'
+  name: 'App',
+  active: 0
 }
 </script>
 

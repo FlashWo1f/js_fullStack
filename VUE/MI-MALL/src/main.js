@@ -10,6 +10,8 @@ import { Swipe, SwipeItem } from 'vant';
 import { Grid, GridItem } from 'vant';
 import { Toast } from 'vant';
 import { Stepper } from 'vant';
+import { Tabbar, TabbarItem } from 'vant';
+Vue.use(Tabbar).use(TabbarItem)
 Vue.use(Stepper);
 import Vuex from 'vuex'
 import {
