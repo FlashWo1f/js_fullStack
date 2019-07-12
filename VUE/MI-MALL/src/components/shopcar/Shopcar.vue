@@ -2,6 +2,13 @@
   <div class="car-box">
     <div class="nav">购物车</div>
     <ProductInCar />
+    <ProductInCar />
+    <ProductInCar />
+    <ProductInCar />
+    <ProductInCar />
+    <ProductInCar />
+    <ProductInCar />
+
   </div>
 </template>
 
@@ -31,4 +38,6 @@ export default {
     line-height 51px
     position fixed
     top 0
+    border-bottom 1px solid #dddddd
+    z-index 99
 </style>

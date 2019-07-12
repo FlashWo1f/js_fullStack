@@ -1,5 +1,6 @@
 <template>
   <div class="detailBox">
+    <div class="mask" v-show="flag"></div>
     <div class="backTo" @click="backTo">
       <img src="../assets/back.png" alt="">
     </div>
@@ -116,5 +117,11 @@ export default {
   .opt-enter, .opt-leave-to
     transform: translateY(667px);
     opacity: 0;
-
+  .mask
+    position fixed
+    top 0
+    left 0
+    right 0
+    height 100vh
+    background-color rgba(33, 33, 33, 0.5)
 </style>

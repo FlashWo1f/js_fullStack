@@ -37,13 +37,13 @@ export default {
   width 100%
   display flex
   box-sizing border-box
-  border-top 1px solid #dddddd
   border-bottom 1px solid #dddddd
   .selectedOrNot
     width 21px
     height 21px
     border 1px solid #dddddd
     border-radius 50%
+    margin-top 28px
     img 
       width 100%
       height 100%
@@ -65,8 +65,10 @@ export default {
     .proOptions
       font-size 12px
       color #dddddd
+      margin-top 5px
     .priceAndCount
       flex 1
       display flex
       justify-content space-between
+      margin-top 10px
 </style>

@@ -1,6 +1,5 @@
 <template>
   <div class="optionsBox">
-    <div class="mask" @click="close"></div>
     <div class="close" @click="close">
       <img src="../assets/close.png" alt="">
     </div>
@@ -74,13 +73,6 @@ export default {
   bottom 0
   left 0
   right 0
-  .mask
-    position fixed
-    top 0
-    left 0
-    right 0
-    height 25vh
-    background-color rgba(33, 33, 33, 0.5)
   .close
     width 16px
     height 16px
