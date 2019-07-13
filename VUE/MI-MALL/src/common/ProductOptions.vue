@@ -5,28 +5,35 @@
     </div>
     <div class="options-header">
       <div class="img-box">
-        <img src="https://cdn.cnbj1.fds.api.mi-img.com/mi-mall/8f2ab52a8c96e5b9ae692576763d641c.jpg?w=1212&h=716" alt="">
+        <img :src="imgUrl" alt="">
       </div>
       <div class="pirceAndOptions">
-        <Price newPrice="2333" oldPrice="2599" />
-        <div class="showOptions">小米9 全网通版 6+64g 幻影紫</div>
+        <Price :newPrice="newPrice" :oldPrice="oldPrice" />
+        <div class="showOptions">{{title}}</div>
+        <div class="selectedOptionsText">已选规格：{{this.selectedOptions.edi}}&nbsp;{{this.selectedOptions.color}}&nbsp;</div>
       </div>
     </div>
     <div class="options-body">
       <div class="OptionBox">
         <p>版本</p>
         <div class="bbOptions options">
-          <div class="Options">6GB+128GB</div>
-          <div class="Options">8GB+128GB</div>
-          <div class="Options">8GB+256GB</div>
+          <div class="Options" 
+          v-for="(item, i) in ediOptions" 
+          :key="i" 
+          @click="changeEdi(i)" 
+          :class="{selected: ediOptionIndex === i}">
+            {{item}}</div>
         </div>
       </div>
       <div class="OptionBox">
         <p>颜色</p>
         <div class="colorOptions options">
-          <div class="Options">碳纤黑</div>
-          <div class="Options">火焰红</div>
-          <div class="Options">冰川蓝</div>
+          <div class="Options" 
+          v-for="(item, i) in colorOptions" 
+          :key="i" 
+          @click="changeColor(i)" 
+          :class="{selected: colorOptionIndex === i}">
+            {{item}}</div>
         </div>
       </div>
       <div class="numOptionBox">
@@ -34,7 +41,7 @@
         <van-stepper v-model="value" />
       </div>
     </div>
-    <div class="goPurchase">确定</div>
+    <div class="goPurchase" @click="addToCart">确定</div>
   </div>
 </template>
 
@@ -43,20 +50,62 @@ import Price from './Price'
 export default {
   data() {
     return {
-      value: 1
+      value: 1,
+      ediOptionIndex: -1,
+      colorOptionIndex: -1,
+      selectedOptions: { num: 1 },
+      ediOptions: ['6GB+128GB', '8GB+128GB', '8GB+256GB'],
+      colorOptions: ['碳纤黑', '火焰红', '冰川蓝']
     }
   },
-  props: [],
+  props: ['newPrice', 'oldPrice', 'title', 'imgUrl'],
   components: {
     Price
   },
   methods: {
     close() {
-      console.log(close)
-      let flag = false
-      this.$emit('closeOption', flag)
+      this.$store.dispatch('setShowProOptions', false)
+    },
+    changeEdi(i) {
+      this.ediOptionIndex = i
+      this.selectedOptions = {
+        ...this.selectedOptions,
+        edi: this.ediOptions[i],
+      }
+    },
+    changeColor(i) {
+      this.colorOptionIndex = i
+      this.selectedOptions = {
+        ...this.selectedOptions,
+        color: this.colorOptions[i],
+      }
+    },
+    addToCart() {
+      if (this.selectedOptions.edi && this.selectedOptions.color) {
+        this.$store.dispatch('addToCart', {
+          id: this.$route.params.id,
+          title: this.title,
+          ...this.selectedOptions,
+          price: this.newPrice,
+          imgUrl: this.imgUrl,
+          selected: true
+          })
+          this.$toast.success({message:'加入购物车成功!', duration: 1000})
+          this.$store.dispatch('setShowProOptions', false)
+      }
+      else {
+        this.$toast.fail({message: '请选择产品规格!', duration: 1000})
+      }
     }
   },
+  watch: {
+    value() {
+      this.selectedOptions = {
+        ...this.selectedOptions,
+        num: this.value
+      }
+    }   
+  }
 }
 </script>
 
@@ -95,6 +144,9 @@ export default {
     .pirceAndOptions
       flex 1
       font-size 14px
+      .selectedOptionsText
+        margin-top 10px
+        color #ff6b00
       .price
         margin 20px 0 5px 0
   .options-body
@@ -109,6 +161,9 @@ export default {
           border 1px solid #dddddd
           border-radius 3px
           margin-right 10px
+        .selected
+          background-color #ff6b00
+          color #ffffff
     .numOptionBox
       padding-top 20px
       display flex

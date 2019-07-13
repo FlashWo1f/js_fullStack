@@ -1,1 +1,2 @@
 export const COM_SHOW_PRO_OPTIONS = 'COM_SHOW_PRO_OPTIONS'
+export const CART_ADD_TO_CART = 'CART_ADD_TO_CART'

@@ -1,7 +1,7 @@
 import * as types from '../types'
 
 const state = {
-  showProOptions: false
+  showProOptions: false,
 }
 
 const mutations = {

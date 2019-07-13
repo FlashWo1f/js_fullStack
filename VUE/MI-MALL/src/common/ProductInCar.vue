@@ -1,17 +1,17 @@
 <template>
   <div class="proBox">
     <div class="selectedOrNot">
-      <img src="../assets/close.png" alt="aa">
+      <van-checkbox v-model="selected" checked-color="#ff6b00"></van-checkbox>
     </div>
     <div class="proImg">
-      <img src="../assets/close.png" alt="aa">
+      <img :src="imgUrL" alt="">
     </div>
     <div class="options">
-      <div class="proTitle">小米9 全网通版 6GB+128GB</div>
-      <div class="proOptions">全息幻影紫 128G</div>
+      <div class="proTitle">{{title}}</div>
+      <div class="proOptions">{{color}}&nbsp;{{edi}}</div>
       <div class="priceAndCount">
-        <Price newPrice="2799" oldPrice="2999" />
-        <van-stepper v-model="value" />
+        <Price :newPrice="price" />
+        <van-stepper v-model="num" />
       </div>
     </div>
   </div>
@@ -22,9 +22,11 @@ import Price from './Price'
 export default {
   data() {
     return {
-      value: 1
+      value: 1,
+      selected: true
     }
   },
+  props: ['title', 'price', 'imgUrL', 'num', 'edi', 'color'],
   components: {
     Price
   }
@@ -37,12 +39,11 @@ export default {
   width 100%
   display flex
   box-sizing border-box
+  border-top 1px solid #dddddd
   border-bottom 1px solid #dddddd
+  background-color #fcfcfc
+  margin-bottom 10px
   .selectedOrNot
-    width 21px
-    height 21px
-    border 1px solid #dddddd
-    border-radius 50%
     margin-top 28px
     img 
       width 100%

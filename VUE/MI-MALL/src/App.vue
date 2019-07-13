@@ -7,10 +7,12 @@
     <van-tabbar 
     v-model="active" 
     v-if="this.$router.history.current.name !== 'Detail'"
-    active-color="#f66700">
+    active-color="#f66700"
+    :route="true"
+    >
       <van-tabbar-item icon="wap-home" to="/home">首页</van-tabbar-item>
       <van-tabbar-item icon="description" to="/category">分类</van-tabbar-item>
-      <van-tabbar-item icon="shopping-cart-o" info="5" to="/shopcar">购物车</van-tabbar-item>
+      <van-tabbar-item icon="shopping-cart-o" :info="cartListLen" to="/shopcar">购物车</van-tabbar-item>
       <van-tabbar-item icon="contact" to="/mine">我的</van-tabbar-item>
     </van-tabbar>
   </div>
@@ -19,7 +21,16 @@
 <script>
 export default {
   name: 'App',
-  active: 0
+  data() {
+    return {
+      active: 0
+    }
+  },
+  computed: {
+    cartListLen () {
+      return this.$store.getters.cartListLen
+    },
+  },
 }
 </script>
 

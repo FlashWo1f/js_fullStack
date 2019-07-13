@@ -11,9 +11,11 @@ import { Grid, GridItem } from 'vant';
 import { Toast } from 'vant';
 import { Stepper } from 'vant';
 import { Tabbar, TabbarItem } from 'vant';
+import store from './store/store'
+import { Checkbox, CheckboxGroup } from 'vant';
+Vue.use(Checkbox).use(CheckboxGroup);
 Vue.use(Tabbar).use(TabbarItem)
 Vue.use(Stepper);
-import Vuex from 'vuex'
 import {
   GoodsAction,
   GoodsActionIcon,
@@ -23,8 +25,6 @@ Vue
   .use(GoodsAction)
   .use(GoodsActionIcon)
   .use(GoodsActionButton)
-
-Vue.use(Vuex)
 Vue.use(Toast);
 Vue.use(Grid).use(GridItem);
 Vue.use(Swipe).use(SwipeItem);
@@ -37,6 +37,7 @@ Vue.prototype.$http = axios // 将axios挂载到vue的原型链上
 new Vue({
   el: '#app',
   router,
+  store,
   components: { App },
   template: '<App/>'
 })

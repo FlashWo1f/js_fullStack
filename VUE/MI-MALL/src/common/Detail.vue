@@ -1,6 +1,6 @@
 <template>
   <div class="detailBox">
-    <div class="mask" v-show="flag"></div>
+    <div class="mask" v-show="showProOptions" @click="closeOption"></div>
     <div class="backTo" @click="backTo">
       <img src="../assets/back.png" alt="">
     </div>
@@ -20,9 +20,10 @@
         text="喜欢 "
       />
       <van-goods-action-icon
-        info="5"
+        :info="cartListLen"
         icon="cart-o"
         text="购物车"
+        to="/shopcar"
       />
       <van-goods-action-button
         type="warning"
@@ -34,23 +35,36 @@
         text="立即购买"
       />
     </van-goods-action>
-    <!-- 这里踩了个小坑 :closeOption="closeOption" 是错误写法  不能触发 -->
     <transition name="opt">
-      <ProductOptions @closeOption="closeOption" v-show="flag"/>
+      <ProductOptions 
+      v-show="showProOptions" 
+      :newPrice="curDetail.newPrice" 
+      :oldPrice="curDetail.oldPrice"
+      :title="curDetail.title"
+      :imgUrl="curDetail.img_url"/>
     </transition>
   </div>
 </template>
 
 <script>
 import Price from './Price'
+import { mapGetters } from 'vuex'
 import ProductOptions from './ProductOptions'
 export default {
   data() {
     return {
       curDetail: [],
-      flag: false
+
     }
     
+  },
+  computed: {
+    ...mapGetters([
+      'showProOptions'
+    ]),
+    cartListLen() {
+      return this.$store.getters.cartListLen
+    }
   },
   components: {
     Price,
@@ -60,18 +74,16 @@ export default {
     backTo() {
       this.$router.go(-1) 
     },
-    closeOption(flag) {
-      this.flag = flag
+    closeOption() {
+      this.$store.dispatch('setShowProOptions', false)
     },
     openOption() {
-      this.flag = true
+      this.$store.dispatch('setShowProOptions', true)
     },
   },
     
 
   created() {
-      console.log(this.$router)
-
     this.$http.get('https://www.easy-mock.com/mock/5d1e01dfb65a8b72e0d2acab/detail')
     .then(res => {
       if (res.status == 200) {

@@ -1,7 +1,12 @@
 import Vuex from 'vuex'
+import Vue from 'vue'
+import comm from './modules/comm'
+import cart from './modules/cart'
+Vue.use(Vuex)
 
-var store = new Vuex.store({
-  store: {
-    carList: []
+export default new Vuex.Store({
+  modules: {
+    comm,
+    cart
   }
 })
