@@ -1,7 +1,10 @@
 <template>
   <div class="proBox">
     <div class="selectedOrNot">
-      <van-checkbox v-model="selected" checked-color="#ff6b00"></van-checkbox>
+      <van-checkbox v-model="getGoodsSelected[id]" 
+                    checked-color="#ff6b00"
+                    @click="changeSelected(id, getGoodsSelected[id])"
+                    ></van-checkbox>
     </div>
     <div class="proImg">
       <img :src="imgUrL" alt="">
@@ -10,26 +13,44 @@
       <div class="proTitle">{{title}}</div>
       <div class="proOptions">{{color}}&nbsp;{{edi}}</div>
       <div class="priceAndCount">
-        <Price :newPrice="price" />
-        <van-stepper v-model="num" />
+        <Price :newPrice="price" oldPrice="" />
+        <van-stepper v-model="oneNum" />
       </div>
     </div>
   </div>
 </template>
 
 <script>
+import { mapGetters } from 'vuex'
 import Price from './Price'
 export default {
   data() {
     return {
       value: 1,
-      selected: true
+      selected: true,
+      oneNum: this.num
     }
   },
-  props: ['title', 'price', 'imgUrL', 'num', 'edi', 'color'],
+  computed: {
+    ...mapGetters([
+      'getGoodsSelected'
+    ])
+  },
+  watch: {
+    oneNum(val) {
+      this.$store.dispatch('changeGoodNum', {val, id: this.id})
+    }
+  },
+  props: ['title', 'price', 'imgUrL', 'num', 'edi', 'color', 'id'],
   components: {
     Price
-  }
+  },
+  methods: {
+    changeSelected(id, torf) {
+      this.$store.dispatch('changeSelected', {id,torf})
+      console.log(id,"---", torf)
+    }
+  },
 }
 </script>
 

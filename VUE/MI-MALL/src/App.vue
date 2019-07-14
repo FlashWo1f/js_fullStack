@@ -1,7 +1,7 @@
 <template>
   <div id="app">
     <!-- 匹配路由 -->
-    <router-view />
+      <router-view />
     <!-- 底部tabbar -->
     <!-- v-if="this.$router.history.current.name !== 'Detail'" -->
     <van-tabbar 
@@ -12,7 +12,7 @@
     >
       <van-tabbar-item icon="wap-home" to="/home">首页</van-tabbar-item>
       <van-tabbar-item icon="description" to="/category">分类</van-tabbar-item>
-      <van-tabbar-item icon="shopping-cart-o" :info="cartListLen" to="/shopcar">购物车</van-tabbar-item>
+      <van-tabbar-item icon="shopping-cart-o" :info="cartListLen === 0 ? '' : cartListLen" to="/shopcar">购物车</van-tabbar-item>
       <van-tabbar-item icon="contact" to="/mine">我的</van-tabbar-item>
     </van-tabbar>
   </div>

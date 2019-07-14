@@ -20,7 +20,7 @@
         text="喜欢 "
       />
       <van-goods-action-icon
-        :info="cartListLen"
+        :info="cartListLen === 0 ? '' : cartListLen"
         icon="cart-o"
         text="购物车"
         to="/shopcar"

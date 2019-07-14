@@ -10,31 +10,61 @@
                       :edi="item.edi"
                       :num="item.num" 
                       :imgUrl="item.imgUrl"
+                      :id="item.id"
                       />        
       </div>
     </div>
     <div class="countAll">
-      <van-checkbox v-model="allSelected" checked-color="#ff6b00">全选</van-checkbox>
-      <div class="totalPrice">合计:<Price newPrice="3177"/></div>
-      <div class="checkOut">结算</div>
+      <van-checkbox v-model="allSelected" checked-color="#ff6b00" @click="changeAllSelected(allSelected)">全选</van-checkbox>
+      <div class="totalPrice">合计:&nbsp;<Price :newPrice="totalPrice" oldPrice=""  /></div>
+      <div class="checkOut" ref="checkOut" @click="toCheckOut">结算({{cartListLen}})</div>
     </div>
   </div>
 </template>
 
 <script>
+import { Dialog } from 'vant';
 import Price from '../../common/Price'
 import { mapGetters } from 'vuex'
 import ProductInCar from '../../common/ProductInCar'
 export default {
   data() {
     return {
-      allSelected: true
     }
   },
   computed: {
     ...mapGetters([
-      'cartList'
+      'cartList',
+      'allSelected',
+      'totalPrice',
+      'cartListLen'
     ])
+  },
+  methods: {
+    changeAllSelected(status) {
+      this.$store.dispatch('changeAllSelected', status)
+    },
+    toCheckOut() {
+      Dialog.confirm({
+      title: '结算',
+      message: '将购物车移动到待付款，请立即付款'
+      }).then(() => {
+        // on confirm
+        this.$store.dispatch('clearCartList')
+        this.$router.push({path: '/mine'})
+      }).catch(() => {
+        // on cancel
+      });
+    }
+  },
+  watch: {
+    totalPrice(val) {
+      if (val === 0) {
+        this.$refs.checkOut.style.backgroundColor = "#dddddd"
+      } else {
+        this.$refs.checkOut.style.backgroundColor = "#ff6b00"       
+      }
+    }
   },
   components: {
     ProductInCar,
@@ -80,5 +110,5 @@ export default {
       padding 0 50px
       line-height 50px
       color #ffffff
-      background-color #ff6b00
+      background-color #dddddd
 </style>
