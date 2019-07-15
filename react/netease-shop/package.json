@@ -5,18 +5,13 @@
   "dependencies": {
     "react": "^16.8.6",
     "react-dom": "^16.8.6",
-    "react-scripts": "3.0.1",
-    "style-loader": "0.23.1"
+    "react-scripts": "3.0.1"
   },
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
-  },
-  "devDependencies": {
-    "stylus": "^0.54.5",
-    "stylus-loader": "^3.0.2"
   },
   "eslintConfig": {
     "extends": "react-app"
