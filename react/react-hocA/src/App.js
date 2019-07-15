@@ -4,7 +4,7 @@ import ShopCart from './ShopCart'
 import LoginStatus from './LoginStatus'
 import WithLogin from './WithLogin'
 import './App.css';
-// import TodoList from './TodoList'
+import TodoList from './TodoList'
 
 const WithLoginStatus = WithLogin(LoginStatus)
 const WithShopCart = WithLogin(ShopCart)
@@ -16,7 +16,7 @@ function App() {
       <ShopCart /> */}
       <WithLoginStatus />
       <WithShopCart />
-      {/* <TodoList /> */}
+      <TodoList />
     </>
   )
 }

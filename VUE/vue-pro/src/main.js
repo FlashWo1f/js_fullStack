@@ -22,7 +22,7 @@ var car = JSON.parse(localStorage.getItem('car' || []))
 
 var store = new Vuex.Store({
   state: {
-    car, //将购物车商品的数据
+    car //将购物车商品的数据
   },
   mutations:{
     addTocar(state, goodsinfo) {

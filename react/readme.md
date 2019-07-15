@@ -23,7 +23,7 @@ yarn add create-react-app -g
 
 ## 移动APP开发体验方面
 - Vue 结合Weex这门技术 提供了迁移到移动端App开发的体验(Weex，目前只是一个小东西 并没有很成功的大案例)
-- React 结合ReactNative 也提供了无缝迁移到移动App的开发体验(RN用的最多 也是最或最流行)
+- React 结合ReactNative 也提供了无缝迁移到移动App的开发体验(RN用的最多 也是最火最流行)
 
 ## 虚拟DOM
 为了实现页面中 DOM元素的高效更新
@@ -109,7 +109,7 @@ super()
 {test: /\.css/, use: {'style-loader', 'css-loader?modules' } } //为.css后缀名的样式表启用CSS模块化 
 在需要的组件中， import导入样式表，并接受模块化的CSS样式对象
 import cssObj from './obj.css'
-在需要的标签上 使用className指定木块话的样式
+在需要的标签上 使用className指定模块化的样式
 <h1 className={cssObj.title}>111</h1>
 还可以使用local
 具体参考https://www.bilibili.com/video/av37668737/?p=44
@@ -139,3 +139,65 @@ entry: {
       '../node_modules/bootstrap/dist/css/bootstrap.css'
     ]
   },
+
+## hoc(高阶组件)
+high order component
+高阶函数
+接受一个函数作为参数，返回一个函数
+接受一个函数作为组件，返回一个组件
+
+## 组件
+
+yarn eject
+可以暴露出webpack配置文件
+
+## onClick
+  `<button onClick={() => {this.handleADD()}}>添加</button>`
+  onClick里面是否需要用回调方式包装
+  需要看里面的函数是否是带() 即已经执行函数
+  如果带()  需要回调包装
+  没有 则可以省略
+
+## jsonp
+export const OPTION = {
+  param: 'jsonpCallback',
+  prefix: 'callback'
+}
+?jsonpCallback=xxx
+xxx可固定
+json jquery
+每次请求的callback xxx都是不一样的 加上随机值
+callback_1
+callback_2
+prefix: 'callback'
+
+
+## react-redux
+`https://juejin.im/post/5af00705f265da0ba60fb844`
+`https://images2015.cnblogs.com/blog/593627/201604/593627-20160418100241038-376047870.png`
+
+## React-Router
+
+- Router
+1. Router是一个外层，最后render的是它的子组件，不渲染具体业务组件。
+2. Router的props中有一个history的对象，history是对window.history的封装，history的负责管理与浏览器历史记录的交互和哪种方式的单页应用。history会作为childContext里的一个属性传下去。
+this.props.history this.props.match
+match是Route组件里匹配url后的结果
+
+- Route
+1. 负责渲染具体的业务组件，负责匹配url和对应的组件
+2. 有三种渲染的组件的方式：component(对应的组件)、render(是一个函数，函数里渲染组件)、children(无论哪种路由都会渲染)
+3. Route的props有一个exact属性。如果是true，匹配时到path结束，要和location.pathname准确匹配。
+4. path是声明在Route上的路径规则，当某个路径符合这个规则时，显示路由处理组件。
+url是满足path规则的某个具体的url。 `path和url区别`  path: "/detail/:id" url: "/detail/2"
+
+- Switch
+1. 匹配到一个Route子组件就返回不再继续匹配其他组件
+2. Switch可以套在Route的外面，匹配到了一个Route，就不再往下匹配
+
+- Link
+1. Link的属性to是字符串或对象。
+2. Link渲染a标签，在a标签上绑定事件，进行跳转。
+3. Link的跳转是用history.push完成的，a的href属性是history.createHref的返回值。
+
+pushState() 需要三个参数: 一个状态对象, 一个标题 (目前被忽略), 和 (可选的) 一个URL. 让我们来解释下这三个参数详细内容

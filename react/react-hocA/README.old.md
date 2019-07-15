@@ -8,3 +8,10 @@ high order component
 
 yarn eject
 可以暴露出webpack配置文件
+
+## onClick
+  `<button onClick={() => {this.handleADD()}}>添加</button>`
+  onClick里面是否需要用回调方式包装
+  需要看里面的函数是否是带() 即已经执行函数
+  如果带()  需要回调包装
+  没有 则可以省略

@@ -61,7 +61,7 @@ class TodoList extends Component {
             return <List value={list} key={i} index={i} onChange={this.handleChange} onDelete={this.handleDelete} />
           })
         }
-        <button onClick={this.handleADD}>添加</button>
+        <button onClick={() => {this.handleADD()}}>添加</button>
       </>
      );
   }

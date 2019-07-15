@@ -19,6 +19,7 @@ class Recommend extends Component {
     show: true
    }
   componentDidMount(){
+    console.log('this', this.props)
     getCarousel().then(res => {
       // console.log('res', res)
       this.setState({
