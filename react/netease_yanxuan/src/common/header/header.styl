@@ -1,0 +1,92 @@
+.header
+  width 100%
+  height 100%
+  background-color #fff
+  border-bottom 1px solid #d9d9d9
+  position relative
+  box-sizing border-box
+  .line
+    z-index 2
+    display flex
+    align-items center
+    padding 8px 15px
+    .logo
+      width 70px
+      height 20px
+      margin-right 10px
+    .search-box
+      flex 1
+    .login-btn
+      margin-left 8px
+      width 37px
+      height 20px
+      line-height 20px
+      font-size 12px
+      text-align center
+      color #b4282d
+      border 1px solid #b4282d
+      border-radius 4px
+  .item-wrapper
+    width 100%
+    height 30px
+    padding-left 15px
+    padding-right 60px
+    position relative
+    box-sizing border-box
+    overflow hidden
+    .tabs
+      background-color #fff
+      overflow-x scroll
+      padding-bottom 20px
+      width 100%
+      height 100%
+      white-space nowrap 
+      .nav-link:first-of-type
+        margin-left 0
+      .nav-link
+        display inline-block
+        margin-left 10px
+        font-size 14px  
+        text-decoration none
+        outline 0
+        color #333333
+        box-sizing border-box
+        &.active
+          color #b4282d
+          border-bottom 1px solid #b4282d
+          box-sizing border-box
+        .item
+          padding 0 8px
+          line-height 30px
+    .toggleWrap
+      display flex
+      flex-grow 0
+      align-items center
+      justify-content center
+      position absolute
+      top 0
+      right 0
+      .linear
+        width 30px
+        height 30px
+        background-image linear-gradient(to right,rgba(255,255,255,0) 0,#fff 100%)
+      .toggle
+        width: 50px;
+        height: 30px;
+        text-align: center;
+        background: #fff;
+        .icon
+          margin-top 8px
+          width 15px
+          height 15px
+          display inline-block
+          vertical-align middle
+          background-image url(//yanxuan-static.nosdn.127.net/hxm/yanxuan-wap/p/20161201/style/img/icon-normal/arrow-down-3-799ded53ea.png)
+          background-repeat no-repeat
+          background-size 100% 100%
+          transition transform .5s
+  .header-tab-view
+    width 100%
+    height 100%
+    position fixed
+    top 75px
