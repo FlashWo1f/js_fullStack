@@ -9,6 +9,7 @@ import cart_active from '../cart_active.png';
 import mine from '../mine.png';
 import mine_active from '../mine_active.png';
 import customServer from '../customServer.png'
+import back from '../back.png'
 
 export {
   index,
@@ -21,5 +22,6 @@ export {
   cart_active,
   mine,
   mine_active,
-  customServer
+  customServer,
+  back
 }

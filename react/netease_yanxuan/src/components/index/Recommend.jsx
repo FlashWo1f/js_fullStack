@@ -147,7 +147,7 @@ class Recommend extends Component {
     )
   }
   render() {
-    const { refreshScroll } = this.state;
+    const { refreshScroll } = this.state
     return (
       <div className="recommendPage">
         <Scroll refresh={refreshScroll}>

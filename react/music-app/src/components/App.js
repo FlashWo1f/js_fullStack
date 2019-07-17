@@ -1,5 +1,5 @@
 import React from 'react';
-import { BrowserRouter as Router, Route, Switch, Redirect, NavLink} from 'react-router-dom'
+import { BrowserRouter as Router, Route, Switch, Redirect, NavLink } from 'react-router-dom'
 import './App.styl';
 import Recommend from './recommend/Recommend'
 import Rank from './rank/Rank'
@@ -16,21 +16,21 @@ function App() {
           header
         </header>
         <div className="music-tab">
-        <div className="tab-item">
-          <NavLink className="nav-link" to="/recommend">
-            <span>推荐</span>
-          </NavLink>
-        </div>
-        <div className="tab-item">
-          <NavLink className="nav-link" to="/rank">
-            <span>排行榜</span>
-          </NavLink>
-        </div>
-        <div className="tab-item">
-          <NavLink className="nav-link" to="/search">
-            <span>搜索</span>
-          </NavLink>
-        </div>
+          <div className="tab-item">
+            <NavLink className="nav-link" to="/recommend">
+              <span>推荐</span>
+            </NavLink>
+          </div>
+          <div className="tab-item">
+            <NavLink className="nav-link" to="/rank">
+              <span>排行榜</span>
+            </NavLink>
+          </div>
+          <div className="tab-item">
+            <NavLink className="nav-link" to="/search">
+              <span>搜索</span>
+            </NavLink>
+          </div>
         </div>
         <div className="music-view">
           {/* 路由 */}

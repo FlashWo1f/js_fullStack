@@ -1,0 +1,51 @@
+
+{
+  "id": 1675063,
+  "name": "韩国制造 Between净白香氛牙膏",
+  "simpleDesc": "唇齿之间留香满溢的香水牙膏",
+  "price": 39,
+  "goodCmtRate": "99.1%",
+  "picList": [
+    "https://img.alicdn.com/imgextra/i2/30108359/O1CN01PWDPeG2BcTFIj8vLJ_!!0-saturn_solar.jpg_220x220.jpg_.webp",
+    "https://gd2.alicdn.com/imgextra/i2/4272004288/O1CN01efo7F51hXwqvLRVnS_!!4272004288.jpg_400x400.jpg",
+    "https://gd4.alicdn.com/imgextra/i4/4272004288/O1CN01HOi5291hXwqhkfRLR_!!4272004288.jpg_400x400.jpg",
+  ],
+  "colorOrOther": "规格",
+  "color": [
+    {
+      "value": "一支装：黑金 活炭净白去渍"
+    },
+    {
+      "value": "一支装：白金 多效护理留香"
+    },
+    {
+      "value": "情侣装：黑金*1支+白金*1支"
+    }
+  ],
+  "policyList": [{
+      "title": "支持30天无忧退换货",
+      "content": "顾客在收货之日起7天内保证商品完好、附件齐全的情况下，可发起无忧退换货，具体规则请参见帮助中心-退换货政策。"
+    },
+    {
+      "id": 2,
+      "title": "48小时快速退款",
+      "content": "收到退货包裹并确认无误后，将在48小时内办理退款，退款将原路返回，不同银行处理时间不同，预计1-5个工作日到账。"
+    },
+    {
+      "id": 3,
+      "title": "满88元免邮费",
+      "content": "单笔订单金额（不含运费），大陆地区满88元免邮，不满88元收取10元邮费；港澳台地区满500元免邮，不满500元收取30元运费；海外地区以下单页提示运费为准。"
+    },
+    {
+      "id": 4,
+      "title": "网易自营品牌",
+      "content": "网易原创生活类电商品牌，所有商品均为网易自营，品质保证。"
+    },
+    {
+      "title": "国内部分地区无法配送"
+    },
+    {
+      "title": "不享受企业特权"
+    }
+  ]
+},
