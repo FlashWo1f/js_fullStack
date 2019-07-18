@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+    function* test () {
+      let a = yield 1
+      // g.next('aaa') 带参即为上一次yield的返回值
+      console.log('a', a)
+      let c = yield 2
+      console.log('c', c)
+      yield 3
+    }  
+    // 惰性执行  g => 迭代器
+    var g = test()
+    function* test1 () {
+      let a = yield true
+      console.log('a2', a)
+      let b = yield false
+      console.log('b2', b)
+    }
+    autoRun(test1)
+    autoRun(test)
+    function autoRun(genFun) {
+      var g = genFun()
+      let gn = g.next()
+      while (!gn.done) {
+        gn = g.next(gn.value)
+      }
+    }
+    function autoRun1(genFun) {
+      var g = genFun()
+      function next1(value) {
+        let gn = g.next(value)
+        if (gn.done) return 
+        next1(gn.value)
+      }
+      next1()
+    }
+    autoRun1(test1)
+  </script>
+</body>
+</html>

@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+    (async function () {
+      let a = await 1;
+      let b = await 2;
+    })() 
+    function foo() {
+      return new Promise((resolve, reject) => {
+        setTimeout(() => {
+          resolve(123)
+        }, 3000)
+      })
+    }
+    _asyncToGenerator(function* () {
+      let c = yield foo()
+      console.log('c', c)
+      let a = yield 1
+      let b = yield 2
+    })
+    function _asyncToGenerator (genFunc) {
+      return new Promise ((resolve, reject) => {
+        let g = genFunc()
+        function step(key, value) { 
+          let info = {}
+          info = g[key]()
+          if (info.done) {
+            resolve(info.value)
+          }else {
+            // return info.value.then(() => {
+
+            // })
+            // 对应基本类型  用Promise.resolve包装  这样不管是不是Promise还是基本类型都能用resolve抛出
+            return Promise.resolve(info.value).then(res => {
+              return step('next', res)
+            })
+          }
+        }
+        step('next')
+
+      })
+    }
+  </script>
+</body>
+</html>
