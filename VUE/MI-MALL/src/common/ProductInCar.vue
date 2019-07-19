@@ -16,6 +16,7 @@
         <Price :newPrice="price" oldPrice="" />
         <van-stepper v-model="oneNum" />
       </div>
+      <div class="deleteInCart" @click="deleteInCart(id)">删除</div>
     </div>
   </div>
 </template>
@@ -49,6 +50,9 @@ export default {
     changeSelected(id, torf) {
       this.$store.dispatch('changeSelected', {id,torf})
       console.log(id,"---", torf)
+    },
+    deleteInCart(id) {
+      this.$store.dispatch('delFromCart', id)
     }
   },
 }
@@ -82,6 +86,7 @@ export default {
     flex 1
     display flex
     flex-direction column
+    position relative
     .proTitle
       font-size 14px
     .proOptions
@@ -93,4 +98,10 @@ export default {
       display flex
       justify-content space-between
       margin-top 10px
+    .deleteInCart
+      position absolute
+      top 0px
+      right 0px
+      font-size 12px
+      color #aaaaaa
 </style>

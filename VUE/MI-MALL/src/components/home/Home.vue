@@ -32,7 +32,7 @@
             <!-- 功能栏 -->
             <div class="funcGrids">
               <div class="funcGrid" v-for="(item, i) in funcGrid" :key="i">
-                <img :src="item.imgUrl" alt="">
+                <img :src="item.url" alt="">
                 <div class="text">{{item.text}}</div>
               </div>
             </div>
@@ -40,7 +40,9 @@
             <div class="recommendProduct">
               <!-- 推荐类型 -->
               <div class="reProduct" v-for="(item, i) in recommendProduct" :key="i">
-                <h2 class="productTitle">{{item.recommendTitle}}</h2>
+                <div class="productTitle">
+                  <img :src="item.titlePic" alt="">
+                </div>
                 <div class="products">
                   <!-- 具体类型的推荐产品 -->
                   <div class="singleProducts" v-for="pro in item.products" :key="pro.id">
@@ -57,7 +59,6 @@
                 </div>
               </div>
             </div>
-        
           </van-tab>
           <van-tab title="手机">内容 2</van-tab>
           <van-tab title="智能">内容 3</van-tab>
@@ -74,21 +75,11 @@
 
 <script>
 import ProductBox from '../../common/ProductBox'
+import { getRecommend } from '../../api/api'
 export default {
   data() {
     return {
-      funcGrid: [
-        {imgUrl: require('../../assets/crown.png'), text: '新品发布'},
-        {imgUrl: require('../../assets/qun.png'), text: '小米众筹'},
-        {imgUrl: require('../../assets/xin.png'), text: '订金预售'},
-        {imgUrl: require('../../assets/1.png'), text: '1分拼团'},
-        {imgUrl: require('../../assets/bag.png'), text: '超值特卖'},
-        {imgUrl: require('../../assets/clock.png'), text: '小米秒杀'},
-        {imgUrl: require('../../assets/transform.png'), text: '以旧换新'},
-        {imgUrl: require('../../assets/tv.png'), text: '电视热卖'},
-        {imgUrl: require('../../assets/washer.png'), text: '家电热卖'},
-        {imgUrl: require('../../assets/sim.png'), text: '米粉卡'}
-      ],
+      funcGrid: [],
       recommendProduct: []
     }
   },
@@ -99,14 +90,13 @@ export default {
     
   },
   created() {
-    this.$http.get('https://www.easy-mock.com/mock/5d1e01dfb65a8b72e0d2acab/mi-mall/recommend')
+    getRecommend()
     .then(res => {
-      // console.log(res)
-      if (res.status == 200) {
+      // console.log('res', res)
         this.recommendProduct = res.data.data.recommend
+        this.funcGrid = res.data.data.funcGrid
+        // console.log(this.funcGrid)
         // Toast.fail('请求出错啦~');
-        // console.log(this.recommendProduct)
-      }
     })
   },
 }
@@ -140,25 +130,26 @@ export default {
         flex-wrap wrap
         justify-content space-between
         color #515151
-        
+        margin-bottom 20px
         .funcGrid
           text-align center
           width 20%
           font-size 12px
           img
-            width 28px
-            height 28px
-            padding 26px 0 3px 0
+            width 100%
+      .dailySele
+        width 100%
+        img
+          width 100%
       .recommendProduct
         width 100%
         .reProduct
           margin-bottom 20px
           // background-color #efefef
           .productTitle
-            // font-family 宋体
-            background-color #ffffff
-            margin 0
-            padding 10px
+            width 100%
+            img 
+              width 100%  
           .products
             display flex
             flex-wrap wrap

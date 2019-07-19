@@ -4,9 +4,9 @@
     <div class="backTo" @click="backTo">
       <img src="../assets/back.png" alt="">
     </div>
-    <div class="img-box">
+    <div class="img-box" >
      <!-- {{this.$route.params.id}} -->
-     <img :src="curDetail.img_url" alt="">
+     <img :src="curDetail.img_url" alt="" ref="homeOrCart">
     </div>
     <div class="detailInfo">
       <h2 class="detailTitle">{{curDetail.title}}</h2>
@@ -48,6 +48,7 @@
 
 <script>
 import Price from './Price'
+import { getDetail } from '../api/api'
 import { mapGetters } from 'vuex'
 import ProductOptions from './ProductOptions'
 export default {
@@ -84,15 +85,22 @@ export default {
     
 
   created() {
-    this.$http.get('https://www.easy-mock.com/mock/5d1e01dfb65a8b72e0d2acab/detail')
+    getDetail()
     .then(res => {
       if (res.status == 200) {
         this.curDetail = res.data.data.products.find(item => item.id == this.$route.params.id)
-        console.log(this.curDetail)
+        // console.log('aaa', this.$route)
         // Toast.fail('请求出错啦~');
         // console.log(this.recommendProduct)
       }
     })
+  },
+  mounted() {
+    if (this.$route.params.id.indexOf('scc') !== -1) {
+      this.$refs.homeOrCart.style.width = "100%"
+      this.$refs.homeOrCart.style.height = "100%"
+      this.$refs.homeOrCart.style.marginLeft = "0"
+    }
   },
 }
 </script>

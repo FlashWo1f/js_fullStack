@@ -1,7 +1,9 @@
 <template>
   <div id="app">
     <!-- 匹配路由 -->
+    <keep-alive>
       <router-view />
+    </keep-alive>
     <!-- 底部tabbar -->
     <!-- v-if="this.$router.history.current.name !== 'Detail'" -->
     <van-tabbar 

@@ -43,6 +43,12 @@ const mutations = {
     state.toBePayNum += cartList.length
     cartList = []
     state.cartList = cartList
+  },
+  [types.CART_DEL_FROM_CART] (state, status) {
+    let cartList = state.cartList.slice(0)
+    let index = cartList.findIndex(item => item.id == status)
+    cartList.splice(index, 1)
+    state.cartList = cartList
   }
 }
 
@@ -67,6 +73,10 @@ const actions = {
     commit(types.CART_CLEAR_CARTLIST)
     localStorage.setItem('cartList', JSON.stringify(state.cartList))
     localStorage.setItem('toBePayNum', JSON.stringify(state.toBePayNum))
+  },
+  delFromCart({commit}, status) {
+    commit(types.CART_DEL_FROM_CART, status)
+    localStorage.setItem('cartList', JSON.stringify(state.cartList))
   }
 }
 
