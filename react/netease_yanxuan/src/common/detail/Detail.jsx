@@ -3,16 +3,19 @@ import Scroll from '../../common/scroll/Scroll'
 import { cart, customServer, back } from '../../assets/indexImg/indeximg'
 import { getGoodDetail } from '../../api/index'
 import './detail.styl'
-import Swiper from 'swiper/dist/js/swiper.js';
-import 'swiper/dist/css/swiper.min.css';
+import Swiper from 'swiper/dist/js/swiper.js'
+import 'swiper/dist/css/swiper.min.css'
+import GoodOptions from '../goodOptions/GoodOptions'
 class Detail extends Component {
   state = {
     allDetail: {},
     refreshScroll: false,
-    flag: false
+    flag: false,
+    showOptions: false,
+    getSelect: '请选择规格'
   }
   render() {
-    const { allDetail, refreshScroll, flag } = this.state
+    const { allDetail, refreshScroll, flag, getSelect } = this.state
     return (
       <div className="detailContainer">
         <Scroll refresh={refreshScroll}>
@@ -48,7 +51,7 @@ class Detail extends Component {
             </div>
             <div className="optionsAndServer">
               <div className="options">
-                已选择：
+                已选择：{getSelect}
               </div>
               <div className="server">
                 <div>服务:</div>
@@ -66,6 +69,24 @@ class Detail extends Component {
             </div>
           </div>
         </Scroll>
+        {
+          this.state.showOptions ? 
+          (<div className="detail-option">
+            <div className="detail-mask" onClick={this.handleCloseOptions}></div>
+            <div className="detail-options">
+              <GoodOptions img={allDetail.picList[0]}
+                           colorOrOther={allDetail.colorOrOther}
+                           color={allDetail.color}
+                           price={allDetail.price}
+                           name={allDetail.name}
+                           simpleDesc={allDetail.simpleDesc}
+                           getSelect={this.getSelect}
+              />
+            </div>
+          </div> ) : ''
+          
+        }
+        
         <div className="detail-goBack" onClick={this.handleBack}>
           <img src={back} alt="" />
           <span>返回</span>
@@ -80,13 +101,29 @@ class Detail extends Component {
           <div className="promptToPurchase">
             立即购买
           </div>
-          <div className="addToCart">
+          <div className="addToCart" onClick={this.handleShowOptions}>
             加入购物车
           </div>
         </div>
 
       </div>
     );
+  }
+  getSelect = (val) => {
+    this.setState({
+      getSelect: val.value,
+      showOptions: false
+    })
+  }
+  handleShowOptions = () => {
+    this.setState({
+      showOptions: true
+    })
+  }
+  handleCloseOptions = () => {
+    this.setState({
+      showOptions: false
+    })
   }
   handleBack = () => {
     this.props.history.go(-1)

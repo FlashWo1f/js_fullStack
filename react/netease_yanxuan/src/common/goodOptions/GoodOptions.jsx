@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import Price from '../price/Price'
+import Stepper from '../stepper/Stepper'
 import './goodOptions.styl'
 class GoodOptions extends Component {
   state = { 
@@ -10,39 +11,51 @@ class GoodOptions extends Component {
       colorIndex: i
     })
   }
+  confirmOptions = () => {
+    this.props.getSelect(this.props.color[this.state.colorIndex])
+  }
   render() { 
     const { colorIndex } = this.state
+    const props = this.props
     return (
       <div className="goodOptionsContainer">
         <div className="goodOptions-header">
           <div className="goodInCartPic">
-            <img src="https://yanxuan.nosdn.127.net/69a890ff1cfe400c4e2fdaee7d9e598a.png?imageView&thumbnail=160x0&quality=75" alt=""/>
+            <img src={props.img} alt=""/>
           </div>
           <div className="goodInCartInfo">
             <div className="goodInCartInfo-title">
-              自动喷香机
+              {props.name}
             </div>
             <div className="goodInCartInfo-spec">
-              主机+4罐芳香喷雾罐
+              {props.simpleDesc}
             </div>
             <div className="goodInCartInfo-price">
-              <Price newPrice="233" oldPrice="300" />
+              <Price newPrice={props.price} oldPrice="" />
             </div>
           </div>
         </div>
         <div className="goodOptions-body">
           <div className="options-color">
-            <div>颜色</div>
+            <div>{props.colorOrOther}</div>
             <div className="optionsText-color">
-              <div className={colorIndex === 0 ? 'oneColorOption colorActive' : 'oneColorOption'}  onClick={() => this.changeColor(0)}>白色</div>
-              <div className={colorIndex === 1 ? 'oneColorOption colorActive' : 'oneColorOption'}  onClick={() => this.changeColor(1)}>黑色</div>
-              <div className={colorIndex === 2 ? 'oneColorOption colorActive' : 'oneColorOption'}  onClick={() => this.changeColor(2)}>黄色</div>
+              {
+                props.color && props.color.map((item, index) => {
+                  return (
+                    <div className={colorIndex === index ? 'oneColorOption colorActive' : 'oneColorOption'} 
+                         onClick={() => this.changeColor(index)}
+                         key={index}>{item.value}</div>
+                  )
+                })
+              }
             </div>
           </div>
           <div className="options-count">
-            <div>数量</div>
+            <div className="options-countText">数量</div>
+            <Stepper goodCount="2" />
           </div>
         </div>
+        <div className="confirmOptions" onClick={this.confirmOptions}>确定</div>
       </div>
     );
   }

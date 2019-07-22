@@ -45,3 +45,17 @@ export function getGoodDetail(id) {
     })
   })
 }
+
+export function getCateList() {
+  return new Promise((resolve, reject) => {
+    axios.get('https://www.easy-mock.com/mock/5ca45811c4e9a575b66b62c0/example/netease_yanxuan/cateList')
+      .then(response => {
+        resolve(response.data)
+      }, err => {
+        reject(err)
+      })
+      .catch(error => {
+        reject(error)
+      })
+  })
+}
