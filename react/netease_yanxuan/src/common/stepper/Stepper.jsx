@@ -16,31 +16,30 @@ class Stepper extends Component {
     );
   }
   componentDidMount() {
-    var { goodCount = 1 } = this.props
-    this.setState({
-      count: goodCount
-    })
     var { count } = this.state
-    console.log(count)
     if (count === 1) {
       this.refs.stepperReduce.style.opacity = '0.5'
     }
   }
   add = () => {
+    const { currentCount } = this.props
     var { count } = this.state
     let addCount = count
     addCount += 1
     this.setState({
       count: addCount
     })
+    currentCount(addCount)
   }
   reduce = () => {
+    const { currentCount } = this.props
     var { count } = this.state
     let reduceCount = count
     reduceCount -= 1
     this.setState({
       count: reduceCount
     })
+    currentCount(reduceCount)
   }
 }
  

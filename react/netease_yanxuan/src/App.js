@@ -5,7 +5,7 @@ import Cate from './components/cate/Cate'
 import Topic from './components/topic/Topic'
 import Cart from './components/cart/Cart'
 import Mine from './components/mine/Mine'
-import Detail from './common/detail/Detail'
+import Detail from './containers/Detail'
 import * as tabIcon from './assets/indexImg/indeximg'
 import './App.styl'
 

@@ -25,7 +25,12 @@ class Detail extends Component {
                 <div className="swiper-wrapper">
                   {this.renderSwiperItem()}
                 </div>
-                <div className="swiper-pagination"></div>
+                <div className="swiper-pagination"
+                style={{
+                  color: '#666666',
+                  marginLeft: 150
+                }}
+                ></div>
               </div>
               <div className="goodPrice">
                 ￥{allDetail.price}
@@ -81,6 +86,8 @@ class Detail extends Component {
                            name={allDetail.name}
                            simpleDesc={allDetail.simpleDesc}
                            getSelect={this.getSelect}
+                           id={allDetail.id}
+                           dispatchToCart={this.dispatchToCart}
               />
             </div>
           </div> ) : ''
@@ -109,6 +116,10 @@ class Detail extends Component {
       </div>
     );
   }
+  dispatchToCart = (goodInfo) => {
+    const { addGoodToCart } = this.props
+    addGoodToCart(goodInfo)
+  }
   getSelect = (val) => {
     this.setState({
       getSelect: val.value,
@@ -135,7 +146,7 @@ class Detail extends Component {
   }
   renderSwiperItem() {
     const { allDetail, flag } = this.state
-    console.log('allDetail.picList', allDetail.picList)
+    // console.log('allDetail.picList', allDetail)
     return (
       <>
         {
@@ -152,9 +163,10 @@ class Detail extends Component {
     )
   }
   componentDidMount() {
+    // console.log('props', this.props)
     getGoodDetail(this.props.match.params.id)
       .then(res => {
-        console.log('res', res)
+        // console.log('res', res)
         this.setState({
           allDetail: res,
           flag: true
@@ -178,7 +190,13 @@ class Detail extends Component {
             loop: true,
             pagination: {
               el: '.swiper-pagination',
-            }
+              type: 'fraction',
+              renderFraction: function (currentClass, totalClass) {
+                return '<span class="' + currentClass + '"></span>' +
+                       '/' +
+                       '<span class="' + totalClass + '"></span>';
+              },
+            },
           })
         }
       })
