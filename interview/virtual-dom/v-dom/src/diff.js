@@ -1,6 +1,7 @@
+import { setAttr } from './element'
 // 都是在内存中的虚拟dom树
 function diff(oldTree, newTree) {
-  // 声明变量patches用来存放补丁的对象
+  // 声明变量patches用来存放补丁的对象   最大的补丁包
   let patches = {}
   let index = 0   // 第几个节点的改变
   // 递归遍历树
@@ -9,7 +10,7 @@ function diff(oldTree, newTree) {
 }
 function walk(oldNode, newNode, index, patches) {
   // props, children
-  let current = []  // 补丁的数组
+  let current = []  // 当前节点的补丁
   if (!newNode) {
     current.push({ type: 'REMOVE', index})
   } else if (isString(oldNode) && isString(newNode)) {  // isString()  代表只有文本没有标签
@@ -24,9 +25,14 @@ function walk(oldNode, newNode, index, patches) {
     if (Object.keys(attr).length > 0) {
       current.push({type: 'ATTR', attr})
     }
+    // 如果有子节点，遍历子节点
     diffChildren(oldNode.children, newNode.children, patches)
   } else {
     // 是节点 但是类型不一样
+    current.push({type: 'REPLACE', newNode})
+  }
+  // 新加节点 也可以用REPLACE 
+  if (!oldNode) {
     current.push({type: 'REPLACE', newNode})
   }
   if (current.length) {
@@ -39,7 +45,7 @@ function isString(obj) {
 function diffAttr(oldAttrs, newAttrs) {
   let patch = {}
   for(let key in oldAttrs) {
-    if (oldAttrs[keys] !== newAttrs[key]) {
+    if (oldAttrs[key] !== newAttrs[key]) {
       patch[key] = newAttrs[key]
     }
   }
@@ -58,8 +64,6 @@ function diffChildren(oldChildren, newChildren, patches) {
     walk(child, newChildren[index], ++num, patches)
   })
 }
-function doPatch(node, patches) {
-  
-}
+
 
 export default diff
