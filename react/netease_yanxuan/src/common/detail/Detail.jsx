@@ -6,6 +6,7 @@ import './detail.styl'
 import Swiper from 'swiper/dist/js/swiper.js'
 import 'swiper/dist/css/swiper.min.css'
 import GoodOptions from '../goodOptions/GoodOptions'
+// import { CSSTransition } from 'react-transition-group'
 class Detail extends Component {
   state = {
     allDetail: {},
@@ -79,16 +80,21 @@ class Detail extends Component {
           (<div className="detail-option">
             <div className="detail-mask" onClick={this.handleCloseOptions}></div>
             <div className="detail-options">
-              <GoodOptions img={allDetail.picList[0]}
-                           colorOrOther={allDetail.colorOrOther}
-                           color={allDetail.color}
-                           price={allDetail.price}
-                           name={allDetail.name}
-                           simpleDesc={allDetail.simpleDesc}
-                           getSelect={this.getSelect}
-                           id={allDetail.id}
-                           dispatchToCart={this.dispatchToCart}
-              />
+              {/* <CSSTransition */}
+                transitionName="example"
+                transitionEnterTimeout={500} 
+                transitionLeaveTimeout={300}>
+                <GoodOptions img={allDetail.picList[0]}
+                            colorOrOther={allDetail.colorOrOther}
+                            color={allDetail.color}
+                            price={allDetail.price}
+                            name={allDetail.name}
+                            simpleDesc={allDetail.simpleDesc}
+                            getSelect={this.getSelect}
+                            id={allDetail.id}
+                            dispatchToCart={this.dispatchToCart}
+                />
+              {/* </CSSTransition> */}
             </div>
           </div> ) : ''
           
@@ -161,6 +167,14 @@ class Detail extends Component {
         }
       </>
     )
+  }
+  componentWillMount() {
+    const { triggerTabbar } = this.props
+    triggerTabbar(false)
+  }
+  componentWillUnmount() {
+    const { triggerTabbar } = this.props
+    triggerTabbar(true)
   }
   componentDidMount() {
     // console.log('props', this.props)

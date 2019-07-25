@@ -3,7 +3,7 @@ import * as Actiontype from './actionTypes'
 const initialState = {
   showStatus: false,
   showTabbar: true,
-  shopcart: JSON.parse(localStorage.getItem('cart')) || []
+  shopcart: JSON.parse(localStorage.getItem('cartList')) || []
 }
 
 // function showStatus(showStatus = initialState.showStatus, action) {
@@ -25,8 +25,13 @@ function cart(shopcart = initialState.shopcart, action) {
       } else {
         cart[i].num += action.goodInfo.num
       }
-      localStorage.setItem('cart', JSON.stringify(cart))
+      localStorage.setItem('cartList', JSON.stringify(cart))
       return cart
+    case Actiontype.CHANGE_ALL_SELECT:
+      let cart1 = shopcart.slice(0) || []
+      cart1.map(item => item.selected = action.selectedFlag)
+      localStorage.setItem('cartList', JSON.stringify(cart1))
+      return cart1
     default:
       return shopcart
 
@@ -36,7 +41,7 @@ function showTabbar(showTabbar = initialState.showTabbar, action) {
   switch (action.type) {
     case Actiontype.TRIGGER_TABBAR:
       let showOrNot = showTabbar
-      showOrNot = !showOrNot
+      showOrNot = action.flag
       return showOrNot
     default:
       return showTabbar

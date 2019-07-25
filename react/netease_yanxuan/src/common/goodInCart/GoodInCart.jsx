@@ -2,25 +2,33 @@ import React, { Component } from 'react';
 import Price from '../price/Price'
 import './goodInCart.styl'
 class GoodInCart extends Component {
-  state = {  }
+  state = { 
+    selected: true
+   }
   render() { 
+    const { selected } = this.state
+    // const { price, num, simpleDesc, name, color, id, selected, img } = this.props
     return (
       <div className="goodInCartContainer">
         <div className="selectedOrNot">
-          <img src={require('../../assets/check_box.png')} alt=""/>
+          {
+            selected ? <img src={require('../../assets/check_box.png')} onClick={this.triggerSelected}/> :
+            <div className="notSelected" onClick={this.triggerSelected}></div>
+          }
+          
         </div>
         <div className="goodInCartPic">
-          <img src="https://yanxuan.nosdn.127.net/69a890ff1cfe400c4e2fdaee7d9e598a.png?imageView&thumbnail=160x0&quality=75" alt=""/>
+          <img src={this.props.img} alt=""/>
         </div>
         <div className="goodInCartInfo">
           <div className="goodInCartInfo-title">
-            自动喷香机
+            {this.props.name}
           </div>
           <div className="goodInCartInfo-spec">
-            主机+4罐芳香喷雾罐
+            {this.props.simpleDesc}
           </div>
           <div className="goodInCartInfo-price">
-            <Price newPrice="233" oldPrice="300" />
+            <Price newPrice={this.props.price} oldPrice="" />
           </div>
         </div>
         <div className="goodInCartCount">
@@ -28,6 +36,11 @@ class GoodInCart extends Component {
         </div>
       </div>
     );
+  }
+  triggerSelected = () => {
+    this.setState({
+      selected: !this.state.selected
+    })
   }
 }
  

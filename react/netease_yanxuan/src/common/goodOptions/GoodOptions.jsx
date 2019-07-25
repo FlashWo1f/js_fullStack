@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import Price from '../price/Price'
 import Stepper from '../stepper/Stepper'
 import './goodOptions.styl'
+import { Toast } from 'antd-mobile';
+import 'antd-mobile/dist/antd-mobile.css';
 class GoodOptions extends Component {
   state = { 
     colorIndex: -1,
@@ -23,11 +25,12 @@ class GoodOptions extends Component {
         name: props.name,
         img: props.img,
         simpleDesc: props.simpleDesc,
-        color: props.color[colorIndex],
+        color: props.color[colorIndex].value,
         num: count,
         selected: true
       }
       props.dispatchToCart(goodInfo)
+      Toast.success('加入购物车成功!', 2)
     }
   }
   currentCount = (count) => {
