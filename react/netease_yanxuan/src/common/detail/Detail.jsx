@@ -157,7 +157,7 @@ class Detail extends Component {
       <>
         {
           flag ?
-            allDetail.picList.map((item, index) => {
+          allDetail.picList && allDetail.picList.map((item, index) => {
               return (
                 <div className="swiper-slide" key={index}>
                   <img src={item} alt="" />

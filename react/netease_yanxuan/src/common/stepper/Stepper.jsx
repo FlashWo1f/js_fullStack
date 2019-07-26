@@ -5,7 +5,6 @@ class Stepper extends Component {
     count: 1
    }
   render() { 
-    
     var { count } = this.state
     return (
       <div className="stepperContainer">
@@ -14,6 +13,12 @@ class Stepper extends Component {
         <div className="stepperAdd" onClick={this.add}>+</div>
       </div>
     );
+  }
+  componentWillMount(){
+    const { propsCount = 1 } = this.props
+    this.setState({
+      count: propsCount
+    })
   }
   componentDidMount() {
     var { count } = this.state
@@ -35,11 +40,13 @@ class Stepper extends Component {
     const { currentCount } = this.props
     var { count } = this.state
     let reduceCount = count
-    reduceCount -= 1
-    this.setState({
-      count: reduceCount
-    })
-    currentCount(reduceCount)
+    if (reduceCount > 1) {
+      reduceCount -= 1
+      this.setState({
+        count: reduceCount
+      })
+      currentCount(reduceCount)
+    }
   }
 }
  

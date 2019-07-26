@@ -1,12 +1,21 @@
 import Cart from '../components/cart/Cart'
 import { connect } from 'react-redux'
-import { changeAllSelected } from '../redux/actions'
+import { changeAllSelected, changeEachCount, changeEachSelected, delOneGood } from '../redux/actions'
 
 
 const mapDispatchToProps = (dispatch) =>{
   return {
     allSelectedChange: (selectedFlag) => {
       dispatch(changeAllSelected(selectedFlag))
+    },
+    eachCount: (countInfo) => {
+      dispatch(changeEachCount(countInfo))
+    },
+    eachSelected: (selectedInfo) => {
+      dispatch(changeEachSelected(selectedInfo))
+    },
+    deleteOneGood: (id) => {
+      dispatch(delOneGood(id))
     }
   }
 }

@@ -9,3 +9,12 @@ export function showTabbar(flag) {
 export function changeAllSelected(selectedFlag) {
   return { type: ActionType.CHANGE_ALL_SELECT, selectedFlag }
 }
+export function changeEachCount(countInfo) {
+  return { type: ActionType.CHANGE_EACH_COUNT, countInfo}
+}
+export function changeEachSelected(selectedInfo) {
+  return { type: ActionType.CHANGE_EACH_SELECTED, selectedInfo}
+}
+export function delOneGood(goodId) {
+  return { type: ActionType.DELETE_ONE_GOOD, goodId}
+}
