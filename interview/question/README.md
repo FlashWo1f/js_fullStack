@@ -14,3 +14,23 @@
 1. 创建闭包最常见方式，就是在一个函数内部创建另一个函数。
 2. 函数的作用域及其所有变量都会在函数执行结束后被销毁。但是，在创建了一个闭包以后，这个函数的作用域就会一直保存到闭包不存在为止。
 3. `https://segmentfault.com/a/1190000006875662`
+
+### 隐式原型 和 显式原型
+function Person(name) {
+  this.name = name
+}
+let p = new Person('sa')
+
+p.__proto__ = Person.prototype
+Person.__proto__ = Function.prototype
+Function.__proto__ = Object.prototype
+
+### 构造函数本不需要返回值   如果返回值为对象则被覆盖 如果返回值不为对象  则这条返回值则被忽略
+function Person(name) {
+  this.name = name
+//  return {}
+  return 666
+}
+var p = new Person('pl')
+console.log(p)
+
