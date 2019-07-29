@@ -63,7 +63,7 @@ class Cart extends Component {
               allSelectedOrNot ? <img src={require('../../assets/check_box.png')} onClick={this.triggerAllSelected} /> :
                 <div className="notSelected" onClick={this.triggerAllSelected}></div>
             }
-            已选
+            全选
           </div>
           <div className="countAllPrice">合计:<Price newPrice={this.returnFloat(totalPrice)} /></div>
           <div className="overBooking">下单</div>

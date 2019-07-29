@@ -80,10 +80,10 @@ class Detail extends Component {
           (<div className="detail-option">
             <div className="detail-mask" onClick={this.handleCloseOptions}></div>
             <div className="detail-options">
-              {/* <CSSTransition */}
+              {/* <CSSTransition 
                 transitionName="example"
                 transitionEnterTimeout={500} 
-                transitionLeaveTimeout={300}>
+                transitionLeaveTimeout={300}>*/}
                 <GoodOptions img={allDetail.picList[0]}
                             colorOrOther={allDetail.colorOrOther}
                             color={allDetail.color}
@@ -190,8 +190,6 @@ class Detail extends Component {
         this.setState({
           refreshScroll: true
         })
-        
-
       })
       .then(() => {
         if (!this.detailSwiper) {

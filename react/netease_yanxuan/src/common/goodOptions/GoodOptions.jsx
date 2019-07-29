@@ -31,6 +31,8 @@ class GoodOptions extends Component {
       }
       props.dispatchToCart(goodInfo)
       Toast.success('加入购物车成功!', 2)
+    } else {
+      Toast.fail('请选择规格', 1.5)
     }
   }
   currentCount = (count) => {
