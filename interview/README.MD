@@ -204,3 +204,288 @@ let diff = new Set([...a].filter(x => !b.has(x
 ### 遍历器 Iterator
 
 Object.prototype.toString.call
+
+## 设计模式之发布订阅
+
+它其实是一种对象间一对多的依赖关系，当一个对象的状态发送改变时，所有依赖于它的对象都将得到状态改变的通知
+
+作用：
+1. 广泛应用于异步编程中(替代了传递回调函数)
+2. 对象之间松散耦合的编写代码
+let event = {
+    list: {},
+    on(key, fn) {
+        if (!this.list[key]) {
+            this.list[key] = [];
+        }
+        this.list[key].push(fn);
+    },
+    emit() {
+        let key = [].shift.call(arguments),
+            fns = this.list[key];
+
+        if (!fns || fns.length === 0) {
+            return false;
+        }
+        fns.forEach(fn => {
+            fn.apply(this, arguments);
+        });
+    },
+    remove(key, fn) {
+        // 这回我们加入了取消订阅的方法
+        let fns = this.list[key];
+        // 如果缓存列表中没有函数，返回false
+        if (!fns) return false;
+        // 如果没有传对应函数的话
+        // 就会将key值对应缓存列表中的函数都清空掉
+        if (!fn) {
+            fns && (fns.length = 0);
+        } else {
+            // 遍历缓存列表，看看传入的fn与哪个函数相同
+            // 如果相同就直接从缓存列表中删掉即可
+            fns.forEach((cb, i) => {
+                if (cb === fn) {
+                    fns.splice(i, 1);
+                }
+            });
+        }
+    }
+};
+
+function cat() {
+    console.log('一起喵喵喵');
+}
+function dog() {
+    console.log('一起旺旺旺');
+}
+
+event.on('pet', data => {
+    console.log('接收数据');
+    console.log(data);
+});
+event.on('pet', cat);
+event.on('pet', dog);
+// 取消dog方法的订阅
+event.remove('pet', dog);
+// 发布
+event.emit('pet', ['二哈', '波斯猫']);
+/*
+    接收数据
+    [ '二哈', '波斯猫' ]
+    一起喵喵喵
+*/
+
+创建一个对象(缓存列表)
+on方法用来把回调函数fn都加到缓存列表中
+emit方法取到arguments里第一个当做key，根据key值去执行对应缓存列表中的函数
+remove方法可以根据key值取消订阅
+
+优点：
+
+对象之间的解耦
+异步编程中，可以更松耦合的代码编写
+
+缺点：
+
+创建订阅者本身要消耗一定的时间和内存
+多个发布者和订阅者嵌套一起的时候，程序难以跟踪维护
+
+## 类的创建与继承
+
+
+## 原型链
+实例的原型指向构造器的prototype属性
+Student.prototype = Object.create(Person.prototype)
+Student.prototype.constructor = Student
+
+
+## 深拷贝和浅拷贝
+深拷贝和浅拷贝最主要的区别就是其在内存中的存储类型不同
+堆和栈都是内存中划分出来用来存储的区域
+> 栈（stack）为自动分配的内存空间，它由系统自动释放；而堆（heap）则是动态分配的内存，大小不定也不会自动释放
+- 浅拷贝的实现方式
+  1. Object.assign()
+    Object.assign() 方法可以把任意多个的源对象自身的可枚举属性拷贝给目标对象，然后返回目标对象。但是 Object.assign()进行的是浅拷贝，拷贝的是对象的属性的引用，而不是对象本身。
+    var obj = { a: {a: "kobe", b: 39} };
+    var initalObj = Object.assign({}, obj);
+    initalObj.a.a = "wade";
+    console.log(obj.a.a); //wade
+    `当object只有一层的时候，是深拷贝`
+  2. Array.prototype.concat()
+  3. Array.prototype.slice()
+- 深拷贝的实现方式
+  1. JSON.parse(JSON.stringify())
+    用JSON.stringify将对象转成JSON字符串，再用JSON.parse()把字符串解析成对象，一去一来，新的对象产生了，而且对象会开辟新的栈，实现深拷贝  `这种方法虽然可以实现数组或对象深拷贝,但不能处理函数`
+  2. 
+
+- 浅拷贝和赋值(=)的区别
+  var obj1 = {
+          'name' : 'zhangsan',
+          'age' :  '18',
+          'language' : [1,[2,3],[4,5]],
+      };
+
+      var obj2 = obj1;
+
+
+      var obj3 = shallowCopy(obj1);
+      function shallowCopy(src) {
+          var dst = {};
+          for (var prop in src) {
+              if (src.hasOwnProperty(prop)) {
+                  dst[prop] = src[prop];
+              }
+          }
+          return dst;
+      }
+
+      obj2.name = "lisi";
+      obj3.age = "20";
+
+      obj2.language[1] = ["二","三"];
+      obj3.language[2] = ["四","五"];
+
+      console.log(obj1);  
+      //obj1 = {
+      //    'name' : 'lisi',
+      //    'age' :  '18',
+      //    'language' : [1,["二","三"],["四","五"]],
+      //};
+
+      console.log(obj2);
+      //obj2 = {
+      //    'name' : 'lisi',
+      //    'age' :  '18',
+      //    'language' : [1,["二","三"],["四","五"]],
+      //};
+
+      console.log(obj3);
+      //obj3 = {
+      //    'name' : 'zhangsan',
+      //    'age' :  '20',
+      //    'language' : [1,["二","三"],["四","五"]],
+      //};
+
+然后我们改变 obj2 的 name 属性和 obj3 的 name 属性，可以看到，改变赋值得到的对象 obj2 同时也会改变原始值 obj1，而改变浅拷贝得到的的 obj3 则不会改变原始对象 obj1。这就可以说明赋值得到的对象 obj2 只是将指针改变，其引用的仍然是同一个对象，而浅拷贝得到的的 obj3 则是重新创建了新对象。
+然而，我们接下来来看一下改变引用类型会是什么情况呢，我又改变了赋值得到的对象 obj2 和浅拷贝得到的 obj3 中的 language 属性的第二个值和第三个值（language 是一个数组，也就是引用类型）。结果见输出，可以看出来，无论是修改赋值得到的对象 obj2 和浅拷贝得到的 obj3 都会改变原始数据。
+这是因为浅拷贝只复制一层对象的属性，并不包括对象里面的为引用类型的数据。所以就会出现改变浅拷贝得到的 obj3 中的引用类型时，会使原始数据得到改变
+`https://juejin.im/post/59ac1c4ef265da248e75892b`
+而深拷贝就需要递归一下了
+ // 内部方法：用户合并一个或多个对象到第一个对象
+    // 参数：
+    // target 目标对象  对象都合并到target里
+    // source 合并对象
+    // deep 是否执行深度合并
+    function extend(target, source, deep) {
+        for (key in source)
+            if (deep && (isPlainObject(source[key]) || isArray(source[key]))) {
+                // source[key] 是对象，而 target[key] 不是对象， 则 target[key] = {} 初始化一下，否则递归会出错的
+                if (isPlainObject(source[key]) && !isPlainObject(target[key]))
+                    target[key] = {}
+
+                // source[key] 是数组，而 target[key] 不是数组，则 target[key] = [] 初始化一下，否则递归会出错的
+                if (isArray(source[key]) && !isArray(target[key]))
+                    target[key] = []
+                // 执行递归
+                extend(target[key], source[key], deep)
+            }
+            // 不满足以上条件，说明 source[key] 是一般的值类型，直接赋值给 target 就是了
+            else if (source[key] !== undefined) target[key] = source[key]
+    
+### 深拷贝
+JS的原生不支持深拷贝，Object.assign和{...obj}都属于浅拷贝，下面我们讲解如何使用JS实现深拷贝。
+
+JSON.sringify 和 JSON.parse 实现深拷贝
+原理就是先将对象转换为字符串，再通过JSON.parse重新建立一个对象。 但是这种方法的局限也很多：
+  不能复制function、正则、Symbol
+  循环引用报错
+  相同的引用会被重复复制
+  `手写递归深拷贝`
+  //定义检测数据类型的功能函数
+    function checkedType(target) {
+      return Object.prototype.toString.call(target).slice(8, -1)
+    }
+    //实现深度克隆---对象/数组
+    function clone(target) {
+      //判断拷贝的数据类型
+      //初始化变量result 成为最终克隆的数据
+      let result, targetType = checkedType(target)
+      if (targetType === 'Object') {
+        result = {}
+      } else if (targetType === 'Array') {
+        result = []
+      } else {
+        return target
+      }
+      //遍历目标数据
+      for (let i in target) {
+        //获取遍历数据结构的每一项值。
+        let value = target[i]
+        //判断目标结构里的每一值是否存在对象/数组
+        if (checkedType(value) === 'Object' ||
+          checkedType(value) === 'Array') { //对象/数组里嵌套了对象/数组
+          //继续遍历获取到value值
+          result[i] = clone(value)
+        } else { //获取到value值是基本的数据类型或者是函数。
+          result[i] = value;
+        }
+      }
+      return result
+    }
+`https://juejin.im/post/5b5dcf8351882519790c9a2e`
+
+## 前端事件流
+HTML中与javascript交互是通过事件驱动来实现的，例如鼠标点击事件onclick、页面的滚动事件onscroll等等，可以向文档或者文档中的元素添加事件侦听器来预订事件。想要知道这些事件是在什么时候进行调用的，就需要了解一下“事件流”的概念。
+什么是事件流：事件流描述的是从页面中接收事件的顺序,DOM2级事件流包括下面几个阶段。
+  事件捕获阶段
+
+  处于目标阶段
+
+  事件冒泡阶段
+addEventListener：addEventListener 是DOM2 级事件新增的指定事件处理程序的操作，这个方法接收3个参数：要处理的事件名、作为事件处理程序的函数和一个布尔值。最后这个布尔值参数如果是true，表示在捕获阶段调用事件处理程序；如果是false，表示在冒泡阶段调用事件处理程序。
+` 如何让事件先冒泡后捕获`
+在DOM标准事件模型中，是先捕获后冒泡。但是如果要实现先冒泡后捕获的效果，对于同一个事件，监听捕获和冒泡，分别对应相应的处理函数，监听到捕获事件，先暂缓执行，直到冒泡事件被捕获后再执行捕获之间。
+### 事件委托
+简介：事件委托指的是，不在事件的发生地（直接dom）上设置监听函数，而是在其父元素上设置监听函数，通过事件冒泡，父元素可以监听到子元素上事件的触发，通过判断事件发生元素DOM的类型，来做出不同的响应。
+举例：最经典的就是ul和li标签的事件监听，比如我们在添加事件时候，采用事件委托机制，不会在li标签上直接添加，而是在ul父元素上添加。
+
+好处：比较合适动态元素的绑定，新添加的子元素也会有监听函数，也可以有事件触发机制。
+
+### 懒加载和预加载
+预加载：提前加载图片，当用户需要查看时可直接从本地缓存中渲染。
+懒加载：懒加载的主要目的是作为服务器前端的优化，减少请求数或延迟请求数。
+
+
+两种技术的本质：两者的行为是相反的，一个是提前加载，一个是迟缓甚至不加载。
+懒加载对服务器前端有一定的缓解压力作用，预加载则会增加服务器前端压力
+
+`懒加载 的图片一定设置高度`
+在img标签上的src属性上不设置值  在一个自定义的属性上准备好该图片的URL 也加一个lazyload属性来表示这是lazyload图片 用var eles = document.querySelectorAll('img[data-original][lazyload]')
+来取到 有lozyload和data-original属性的img标签
+rect = item.getBoundingClientRect()  用于获得页面中某个元素的左，上，右和下分别相对浏览器视窗的位置
+if (rect.bottom >= 0 && rect.top < viewHeight)
+!function () {
+    // var img = new Image()
+    // img.src = item.dataset.original
+    // img.onload = function () {
+    //     item.src = img.src
+    // }
+    item.src = item.dataset.original
+    item.removeAttribute("data-original")//移除属性，下次不再遍历
+    item.removeAttribute("lazyload")
+  }()
+  lazyload()//刚开始还没滚动屏幕时，要先触发一次函数，初始化首页的页面图片
+document.addEventListener("scroll",lazyload)
+
+## js的new操作符做了哪些事情
+new 操作符新建了一个空对象，这个对象原型指向构造函数的prototype，执行构造函数后返回这个对象。
+new 通过构造函数 Test 创建出来的实例可以访问到构造函数中的属性
+new 通过构造函数 Test 创建出来的实例可以访问到构造函数原型链中的属性，也就是说通过 new 操作符，实例与构造函数通过原型链连接了起来
+构造函数本没有返回值  如果自己强行加上一个返回值  如果它是基本数据类型 结果是一样的  返回值没有意义
+如果它是对象，那么这个返回值会被正常使用  但是返回原始值不会生效 new也没有用 所以不要给构造函数return
+
+
+##  Event loop
+- 我们都知道JavaScript是单线程的，也就是说同一时间只能干一件事。这是因为JavaScript主要是用来操作DOM的，如果变成多线程，浏览器就懵逼了，不知道该听谁的了。但是虽然js是单线程，但是完全可以模拟多线程，靠的就是Event Loop
+- 我们都知道js中的代码分 同步 和 异步，所谓的 异步 其实就是不会阻塞我们的主线程，等待主线程的代码执行完毕才会执行。callback setTimeout setInterval Promise ... 这些都是都是我们耳熟能详的 异步 代码
+> https://juejin.im/post/5b63b4cb6fb9a04fb4017f5a
