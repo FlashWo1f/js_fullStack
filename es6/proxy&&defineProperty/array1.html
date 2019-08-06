@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+    // 改写数组的push方法  但还是返回原来的方法 只不过在中间加些想要的操作
+    Array.prototype.$push = function(...arg) {
+      console.log('数组发生变化')
+      return this.push(...arg)
+    }  
+    var arr = [1,2,3]
+    arr.$push(4,5)
+
+    var originPop = Array.prototype.pop
+    // 覆盖原来的方法
+    Array.prototype.pop = function () {
+      console.log('数组发生pop')
+      return originPop.apply(this, arguments)
+    }
+    arr.pop()
+    var arrMethods = ['push', 'pop', 'shift', 'unshift', 'splice']
+    arrMethods.forEach(methodName => {
+      let originMethod = Array.prototype[methodName]
+      Array.prototype.methodName = function() {
+        console.log(`数组发生${methodName}`)
+        return originMethod.apply(this, arguments)
+      }
+    })
+    arr.unshift('9')
+  </script>
+</body>
+</html>

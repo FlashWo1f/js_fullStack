@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+    let arr = [0,1,2,3]
+    let newArr = new Proxy(arr, {
+      get: function(target, key, receiver) {
+        console.log('get', key)
+        return Reflect.get(target, key, receiver)
+      },
+      set: function(target, key, value, receiver) {
+        console.log('set', key)
+        return Reflect.set(target, key, value, receiver)
+      }
+    })  
+    newArr.push('9')
+    // 取到原来数组长度
+    // [len] = '9'
+    // 改变原来的数组长度
+  </script>
+</body>
+</html>

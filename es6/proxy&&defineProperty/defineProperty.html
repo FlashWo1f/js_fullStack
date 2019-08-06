@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+    // 监测对象属性的变化
+    var obj = {}  
+    Object.defineProperty(obj, 'text', {
+      set: function() {
+        console.log('set')
+      },
+      get: function() {
+        console.log('get')
+      }
+    })
+    obj.text = 1
+    obj.text1 = 1
+  </script>
+</body>
+</html>
