@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<body>
+  <!-- method=GET http://127.0.0.1:8080/login?username=admin&password=111111 -->
+  <!-- <form action="/login" method="GET">
+    <input type="text" name="username">
+    <input type="password" name="password" id="">
+    <input type="submit" value="提交">
+  </form> -->
+  <script>
+    var a = 1
+
+    function c () {
+      var a = 2;
+      b();
+    }
+// 作用域是在函数创建的时候就定好了
+    function b () {
+      console.log(a);
+    }
+    c();
+  </script>
+</body>
+</html>
