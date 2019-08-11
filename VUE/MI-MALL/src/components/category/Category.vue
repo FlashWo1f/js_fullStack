@@ -16,7 +16,7 @@
           v-for="(item, index) in categoryList" 
           :key="index"
           class="menu-item"
-          :class="{'current':currentIndex===index}"
+          :class="{'current':currentIndex==index}"
           @click="selectMenu(index, $event)"
           >
             <span>{{item[0].name}}</span>
@@ -90,7 +90,7 @@ export default {
     let refPros = this.$refs.refPro;
     let el = refPros[index];
     this.products.scrollToElement(el, 300); // 300 ms
-    console.log('currentIndex', this.currentIndex)
+    // console.log('currentIndex', this.currentIndex)
     },
   },
   computed: {
@@ -159,9 +159,9 @@ export default {
           text-align center
           align-items center
           padding 12px  
-          .current
-            border-left 2px solid #fd6c02
-            color #fd6c02
+        .current
+          border-left 2px solid #fd6c02
+          color #fd6c02
     .products
       height 80vh
       margin-left 75px

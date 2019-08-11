@@ -82,17 +82,14 @@ export default {
       this.$store.dispatch('setShowProOptions', true)
     },
   },
-    
-
   created() {
     getDetail()
     .then(res => {
-      if (res.status == 200) {
         this.curDetail = res.data.data.products.find(item => item.id == this.$route.params.id)
         // console.log('aaa', this.$route)
         // Toast.fail('请求出错啦~');
-        // console.log(this.recommendProduct)
-      }
+        console.log(this.curDetail.id, '----', this.$route.params.id)
+        // console.log(res)
     })
   },
   mounted() {

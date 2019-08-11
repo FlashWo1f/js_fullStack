@@ -7,7 +7,7 @@
                     ></van-checkbox>
     </div>
     <div class="proImg">
-      <img :src="imgUrL" alt="">
+      <img :src="imgUrl" alt="">
     </div>
     <div class="options">
       <div class="proTitle">{{title}}</div>
@@ -24,6 +24,7 @@
 <script>
 import { mapGetters } from 'vuex'
 import Price from './Price'
+import { Dialog } from 'vant';
 export default {
   data() {
     return {
@@ -42,17 +43,27 @@ export default {
       this.$store.dispatch('changeGoodNum', {val, id: this.id})
     }
   },
-  props: ['title', 'price', 'imgUrL', 'num', 'edi', 'color', 'id'],
+  props: ['title', 'price', 'imgUrl', 'num', 'edi', 'color', 'id'],
   components: {
     Price
   },
   methods: {
     changeSelected(id, torf) {
       this.$store.dispatch('changeSelected', {id,torf})
-      console.log(id,"---", torf)
+      // console.log(id,"---", torf)
+      console.log('img', this.props.price)
     },
     deleteInCart(id) {
-      this.$store.dispatch('delFromCart', id)
+      Dialog.confirm({
+      title: '删除',
+      message: '确定删除此宝贝嘛~'
+      }).then(() => {
+        // on confirm
+        this.$store.dispatch('delFromCart', id)
+      }).catch(() => {
+        // on cancel
+      });
+      
     }
   },
 }
