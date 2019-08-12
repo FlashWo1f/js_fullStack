@@ -10,6 +10,28 @@ yarn add create-react-app -g
   - CommentInput  { userName, comment }
   - CommentList   []  props => commentLists
 
+## React和Vue的区别
+- 监听数据变化的实现原理不同 这是因为Vue和React在设计理念上的不同 Vue使用的是可变数据 React强调的是数据的不可变
+> Vue 通过 getter/setter 以及一些函数的劫持，能精确知道数据变化，不需要特别的优化就能达到很好的性能
+
+> React 默认是通过比较引用的方式进行的，如果不优化（PureComponent/shouldComponentUpdate）可能导致大量不必要的VDOM的重新渲染
+
+- 数据流
+> Vue可以set/get 和Object.defineProperty 来用数据劫持来实现数据的双向绑定
+> React从设计之初就不支持双向数据绑定
+
+- 模板语法不同
+> React jsx
+> Vue 扩展HTML
+
+- Redux Vuex
+
+1. 在 Vuex 中，$store 被直接注入到了组件实例中，因此可以比较灵活的使用
+使用 dispatch 和 commit 提交更新
+
+通过 mapState 或者直接通过 this.$store 来读取数据
+2.  
+
 ## 对比React和Vue组件化
 1. 什么是模块化： 从代码角度分析问题 把我们编程时候的业务逻辑 分割到不同的模块中来开发 这样能够方便代码的重用
 2. 什么是组件化： 从UI的角度分析问题 把一个页面 拆分未一些互不相干的小组件 随着我们项目的开发 我们手里的组件越来越多 最后 如果要实现一个页面 可能直接把现有的组件拿过来复用就可以快速得到一个完整的页面 这样方便了UI元素重用 组件是元素的集合体
@@ -201,3 +223,107 @@ url是满足path规则的某个具体的url。 `path和url区别`  path: "/detai
 3. Link的跳转是用history.push完成的，a的href属性是history.createHref的返回值。
 
 pushState() 需要三个参数: 一个状态对象, 一个标题 (目前被忽略), 和 (可选的) 一个URL. 让我们来解释下这三个参数详细内容
+
+## 纯函数
+function(a, b) {
+  return a + b          => 纯函数 因为该函数不会尝试改变入参 且多次调用下相同的入参始终返回相同的结果。
+}
+
+function(account, amount) {
+  account.total -= amount   => 非纯函数 因为它更改了自己的入参
+}
+
+
+## State Props
+`所有 React 组件都必须像纯函数一样保护它们的 props 不被更改`
+https://overreacted.io/zh-hans/why-do-we-write-super-props/
+this.props 和 this.state 是 React 本身设置的，且都拥有特殊的含义，但是其实你可以向 class 中随意添加不参与数据流（比如计时器 ID）的额外字段.
+
+`正确地使用State`
+1. 不要直接修改state 例如，此代码不会重新渲染组件
+// Wrong
+this.state.comment = 'Hello';
+// Correct
+this.setState({comment: 'Hello'});
+构造函数是唯一可以给 this.state 赋值的地方：
+2. State 的更新可能是异步的
+出于性能考虑，React 可能会把多个 setState() 调用合并成一个调用
+因为 this.props 和 this.state 可能会异步更新，所以你不要依赖他们的值来更新下一个状态
+例如，此代码可能会无法更新计数器：
+// Wrong
+this.setState({
+  counter: this.state.counter + this.props.increment,
+});
+要解决这个问题，可以让 setState() 接收一个函数而不是一个对象。这个函数用上一个 state 作为第一个参数，将此次更新被应用时的 props 做为第二个参数：
+`// Correct` `!important`
+`this.setState((state, props) => ({
+  counter: state.counter + props.increment
+}))
+3. State 的更新会被合并
+当你调用 setState() 的时候，React 会把你提供的对象合并到当前的 state。
+4. 数据是向下流动的
+不管是父组件或是子组件都无法知道某个组件是有状态的还是无状态的，并且它们也并不关心它是函数组件还是 class 组件。
+
+这就是为什么称 state 为局部的或是封装的的原因。除了拥有并设置了它的组件，其他组件都无法访问。
+这通常会被叫做“自上而下”或是“单向”的数据流。任何的 state 总是所属于特定的组件，而且从该 state 派生的任何数据或 UI 只能影响树中“低于”它们的组件。
+
+如果你把一个以组件构成的树想象成一个 props 的数据瀑布的话，那么每一个组件的 state 就像是在任意一点上给瀑布增加额外的水源，但是它只能向下流动。
+
+## 条件渲染
+通过if之类控制渲染对象
+###  与运算符 &&
+通过花括号包裹代码，你可以在 JSX 中嵌入任何表达式。这也包括 JavaScript 中的逻辑与 (&&) 运算符。它可以很方便地进行元素的条件渲染。
+{unreadMessages.length > 0 &&
+        <h2>
+          You have {unreadMessages.length} unread messages.
+        </h2>
+}
+`三元运算符`
+
+`阻止组件渲染`
+在极少数情况下，你可能希望能隐藏组件，即使它已经被其他组件渲染。若要完成此操作，你可以让 render 方法直接返回 null，而不进行任何渲染
+## key 
+key 帮助 React 识别哪些元素改变了，比如被添加或删除。因此你应当给数组中的每一个元素赋予一个确定的标识
+当元素没有确定 id 的时候，万不得已你可以使用元素索引 index 作为 key：
+
+## this.setState
+- React作为View层，通过改变data从而引发UI的更新。React不像Vue这种MVVM库，直接修改data并不能视图的改变，更新状态(state)的过程必须使用setState。
+
+- setState的函数签名：
+setState(partialState,callback)
+
+setState接受两个参数，一个是partialState，它是新的state用来更新之前的state。callback作为回调函数，会在更新结束之后执行
+
+
+setState用来设置state的子集，永远都只使用setState更改state。你应该将this.state视为不可变数据。
+并不能保证this.state会被立即更新，因此在调用这个方法之后访问this.state可能会得到的是之前的值。
+不能保证调用setState之后会同步运行，因为它们可能被批量更新，你可以提供可选的回调函数，在setState真正地完成了之后，回调函数将会被执行。
+
+`https://juejin.im/post/599b8f066fb9a0247637d61b`
+// 一般改变state值的一种方式
+const { data } = this.state;
+this.setState({ data: {...data, key: 1 } });
+// 另外一种可以通过callback的方式改变state的值
+this.setState(({ data }) => ({ data: {...data, key: 1 } }));
+// 还可以
+this.setState((state, props) => {
+return { counter: state.counter + props.step };
+});
+## this.setState遇到的坑
+currentCount = (count) => {
+    this.setState({
+      eachCount: count
+    })
+    // this.setState是异步操作
+    console.log('goodincart',count)
+    // 所以这样操作的话 提交出去的值还是上一次的值 
+    // this.props.changeCount(this.state.eachCount, this.props.id)
+    this.props.changeCount(count, this.props.id)
+
+  }
+  // 在网易严选项目里的购物车里的stepper
+
+
+## MVVM   Vue 和 React 的区别
+
+1. React作为View层，通过改变data从而引发UI的更新。React不像Vue这种MVVM库，直接修改data并不能视图的改变，更新状态(state)的过程必须使用setState。
