@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+    // var twoSum = function(nums, target) {
+    //   for (let i = 0; i < nums.length; i++) {
+    //     let cur = nums[i];
+    //     for (let j = i + 1; j < nums.length; j++) {
+    //       let next = nums[j];
+    //       if (cur + next === target) {
+    //         return [i, j];
+    //       }
+    //     }
+    //   }
+    // }
+
+    // map
+    // var map = {
+    //   'lilei': '李雷',
+    //   'lihua': '李华'
+    // } 
+    // var lileiFun = () => {
+    //   console.log('吃饭了');
+    // }
+    // var lihuaFun = () => {
+    //   console.log('睡觉了');
+    // }
+    // var userNameMap = {
+    //   'lilei': lileiFun,
+    //   'lihua': lihuaFun
+    // }
+    // // 优化 if else
+    // function doSomething (userName) {
+    //   // if (userName === 'lilei') {
+    //   //   lileiFun();
+    //   // } else if (userName === 'lihua') {
+    //   //   lihua();
+    //   // }
+    //   if (userNameMap[userName]) {
+    //     userNameMap[userName]()
+    //   }
+    // }
+    // doSomething('lilei');
+    // doSomething('lihua');
+
+    // let map1 = new Map;
+
+    var numsMap = {
+      '2': 0,
+      '7': 1,
+      '11': 2,
+      '5': 3
+    }
+    var set = [...(new Set([1,2,3,4,4]))]
+    var twoSum = function (nums, target) {
+      // 给所有的数建立 map
+      var obj = {};
+      for (let i = 0; i < nums.length; i++) {
+        obj[nums[i]] = i;
+      }
+      for (let i = 0; i < nums.length; i++) {
+        let cur = nums[i];
+        let anotherNum = target - cur;
+        if (obj[anotherNum] !== undefined && obj[anotherNum] !== i) {
+          return [i, obj[anotherNum]]
+        }
+      }
+    }
+  </script>
+</body>
+</html>
