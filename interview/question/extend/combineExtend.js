@@ -9,14 +9,13 @@ Animal.prototype.eat = function(food) {
   console.log(this.name + ' is eating ' + food)
 }
 // 组合继承
-
 function Cat(name) {
-  Animal.call(this)
-  this.name = name || 'tom'
+  console.log('s',this)
+  Animal.call(this, name)
 }
-let cat = new Cat()
+let cat = new Cat('tom')
 console.log(cat.name)
-console.log(cat.sleep())
+console.log(cat.sleep())  // tom...
 console.log(cat instanceof Cat)
 console.log(cat instanceof Animal)  /// false
 
