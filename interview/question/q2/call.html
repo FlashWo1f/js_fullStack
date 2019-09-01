@@ -32,9 +32,9 @@
       // this指向是当前函数 func
       thisArg.func = this
       // 执行函数
-      let result = function(){
+      let result = function(newArg){
         args = args.concat(Array.prototype.slice.call(newArg))
-        thisArg.func(...args)
+        return thisArg.func(...args)
       }
       delete thisArg.func
       return result
